@@ -40,7 +40,22 @@ public class GameManager : MonoBehaviour
 
     [Header("Alt Karakter Ýþlemleri")]
     public bool LowerCharacterItem=false;
-    
+
+    //
+    [Header("ITEM ISLEMLERI")]
+
+    [Header("Item Renk Adlarý")]
+    public List<string> HatColorName;
+    public List<string> StickColorName;
+
+    [Header("Sapka renk islemleri")]
+    public Material HatColorMaterial;
+    public Material DefaultHatColorMaterial;
+    [Header("Sopa renk islemleri")]
+    public Material StickColorMaterial;
+    public Material DefaultStickColorMaterial;
+
+    //
     [Header("PAUSE ISLEMLERI")]
 
     [Header("Pause Panel")]
