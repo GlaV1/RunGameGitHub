@@ -198,7 +198,33 @@ public class GameManager : MonoBehaviour
         WarSituation();
     }
    
+    public void ItemColorCheck()
+    {
+        Color NewColor;
+        if (_MemoryManagement.ReadData_int("ActiveHatColor") !=-1)
+        {
+            if (ColorUtility.TryParseHtmlString(HatColorName[_MemoryManagement.ReadData_int("ActiveHatColor")], out NewColor))
+            {
+                HatColorMaterial.color = NewColor;
+            }
+        }
+        else
+        {
+            HatColorMaterial.color = DefaultHatColorMaterial.color;
+        }
 
+        if (_MemoryManagement.ReadData_int("ActiveStickColor") != -1)
+        {
+            StickColorMaterial.color = DefaultStickColorMaterial.color;
+        }
+        else
+        {
+            if (ColorUtility.TryParseHtmlString(StickColorName[_MemoryManagement.ReadData_int("ActiveStickColor")], out NewColor))
+            {
+                StickColorMaterial.color = NewColor;
+            }
+        }
+    }
     public void ItemCheck()
     {
         if (_MemoryManagement.ReadData_int("ActiveHat")!=-1)
