@@ -1,0 +1,894 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using rgame;
+using TMPro;
+using System.IO;
+using ProtoBuf;
+using System;
+using System.Collections.ObjectModel;
+using static UnityEditor.Progress;
+using System.Threading;
+using TMPro.EditorUtilities;
+using System.Linq;
+using OpenCover.Framework.Model;
+//using System.Diagnostics;
+
+
+public class CustomizeManager : MonoBehaviour
+{
+    [Header("Paneller")]
+    public GameObject[] PanelProcess;
+    [Header("Canvaslar")]   
+    public GameObject[] CanvasProcess;
+    [Header("Text")]
+    public TextMeshProUGUI PointText;//dýþarýdan puan verilmesi
+    public TextMeshProUGUI BuyingText;//dýþarýdan puan verilmesi
+    public TextMeshProUGUI AlertText;//dýþarýdan puan verilmesi//
+    public Text HatText;//dýþarýdan þapka texti verilmesi
+    public Text StickText;//dýþarýdan sopa texti verilmesi
+    public Text ManColorText;//dýþarýdan tema rengi texti verilmesi
+   
+    [Header("Buton")]
+    public Button BuyButton;
+    public Button CustomizeSaveButton;
+   
+
+    [Header("Þapka Ýþlemleri")]
+    public Button[] HatButtons;
+    public GameObject[] Hats;//þarpka dizisi oluþturuluyor
+    int hatindex=-1;//hatindex -1 den baþlar
+
+    [Header("Sopa Ýþlemleri")]
+    public Button[] StickButtons;
+    public GameObject[] Sticks;//sopa dizisi oluþturuluyor
+    static int stickindex = -1;
+
+    [Header("Karakter Color Ýþlemleri")]
+    public Material[] ManColorMaterials;//karakter materyalleri oluþturuluyor
+    public Material DefaultManColorMaterial;//karakter materyalleri oluþturuluyor
+    public Button[] ManColorButtons;
+    
+    [Header("Karakter Ýþlemleri")]
+    public SkinnedMeshRenderer _SkinnedMeshRenderer;
+    int mancolorindex = -1;
+
+    [Header("ITEM RENK ISLEMLERI")]
+
+    [Header("Sopalar")]
+    public Button[] StickColorButtons;
+    public Material StickColorMaterial;
+    public Material DefaultStickColorMaterial;
+    public RawImage StickColorRawImage;
+    int stickcolorindex=-1;
+
+    [Header("Sapkalar")]
+    public Button[] HatColorButtons;
+    public Material HatColorMaterial;
+    public Material DefaultHatColorMaterial;
+    public RawImage HatColorRawImage;
+    int hatcolorindex = -1;
+   
+    [Header("Item Renk Adlarý")]
+    public List<string> HatColorName;
+    public List<string> StickColorName;
+
+
+
+    /////////
+    MemoryManagement _MemoryManagement= new MemoryManagement();
+    DataManager _DataManager = new DataManager();
+    [Header("Ýtem Bilgi Ýþlemleri")]
+    public List<ItemInformations> _ItemInformations = new List<ItemInformations>();
+    /////////
+
+    //aktif panel
+    int ActiveCustomizePanelIndex = 0;
+    void Start()
+    {
+        MakeControl(0,true);
+        MakeControl(1,true);
+        MakeControl(2,true);
+        _MemoryManagement.SaveData_int("Point", 5000);
+        PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
+        _DataManager.DataUpload();
+        _ItemInformations=_DataManager.TransferList();        
+    }
+
+    //ana menü sahnesinin yüklenme iþlemleri
+    public void BackToMainMenu()
+    {
+        _DataManager.DataSave(_ItemInformations);
+        SceneManager.LoadScene(0);//menü sahnesinin yüklenme iþlemi
+    }
+
+    public void HatDirection(string direction)
+    {
+        PublicDirectionButtons(0, direction);      
+    }
+
+    public void StickDirection(string direction)
+    {
+        PublicDirectionButtons(1, direction);
+    }
+   
+    public void ManColorDirection(string direction)
+    {
+        PublicDirectionButtons(2, direction);
+    }
+
+    public void HatColorDirection(string direction)
+    {
+        PublicItemColorDirection(0,direction);
+    }
+
+    public void StickColorDirection(string direction)
+    {
+        PublicItemColorDirection(1,direction);
+    }
+
+    //genel item renk yönlendirme
+    private void PublicItemColorDirection(int process,string direction)
+    {
+        Color NewColor;
+        switch (process)
+        {
+            case 0:
+                if (direction=="Foward")
+                {
+                    if (hatcolorindex==-1)
+                    {
+                        hatcolorindex = 0;
+                        if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                        {
+                            HatColorMaterial.color = NewColor;
+                            HatColorRawImage.color = NewColor;
+                        }
+                    }
+                    else
+                    {
+                        hatcolorindex++;
+                        if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                        {
+                            HatColorMaterial.color = NewColor;
+                            HatColorRawImage.color = NewColor;
+                        }
+                    }
+                    if (hatcolorindex == HatColorName.Count- 1)
+                    {
+                        HatColorButtons[1].interactable = false;
+                    }
+                    else if (hatcolorindex != -1)
+                    {
+                        HatColorButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        HatColorButtons[1].interactable = true;
+                    }
+                }
+                else
+                {
+                    if (hatcolorindex!=-1)
+                    {
+                        hatcolorindex--;
+                        if (hatcolorindex!=-1)
+                        {
+                            if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                            {
+                                HatColorMaterial.color = NewColor;
+                                HatColorRawImage.color = NewColor;
+                            }
+                        }
+                        else
+                        {
+                            HatColorMaterial.color=DefaultHatColorMaterial.color;
+                            HatColorRawImage.color=Color.white;
+                            HatColorButtons[0].interactable = false;
+                        }
+                    }
+                    else
+                    {
+                        HatColorButtons[0].interactable = false;
+                    }
+                    if (hatcolorindex != HatColorName.Count - 1)
+                    {
+                        HatColorButtons[1].interactable = true;
+                    }
+                }
+            break;
+            case 1:
+                if(direction=="Foward")
+                {
+                    if (stickcolorindex == -1)
+                    {
+                        stickcolorindex = 0;
+                        if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex], out NewColor))
+                        {
+                            StickColorMaterial.color = NewColor;
+                            StickColorRawImage.color = NewColor;
+                        }
+                    }
+                    else
+                    {
+                        stickcolorindex++;
+                        if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex], out NewColor))
+                        {
+                            StickColorMaterial.color = NewColor;
+                            StickColorRawImage.color = NewColor;
+                        }
+                    }
+                    if (stickcolorindex == StickColorName.Count - 1)
+                    {
+                        StickColorButtons[1].interactable = false;
+                    }
+                    else if (stickcolorindex != -1)
+                    {
+                        StickColorButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        StickColorButtons[1].interactable = true;
+                    }
+                }
+                else
+                {
+                    if (stickcolorindex != -1)
+                    {
+                        stickcolorindex--;
+                        if (stickcolorindex != -1)
+                        {
+                            if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex], out NewColor))
+                            {
+                                StickColorMaterial.color = NewColor;
+                                StickColorRawImage.color = NewColor;
+                            }
+                        }
+                        else
+                        {
+                            StickColorMaterial.color = DefaultStickColorMaterial.color;
+                            StickColorRawImage.color = Color.white;
+                            StickColorButtons[0].interactable = false;
+                        }
+                    }
+                    else
+                    {
+                        StickColorButtons[0].interactable = false;
+                    }
+                    if (stickcolorindex != StickColorName.Count - 1)
+                    {
+                        StickColorButtons[1].interactable = true;
+                    }
+                }
+                break;
+        }
+    }
+    
+    //genel item yönlendirme
+    private void PublicDirectionButtons(int process, string direction)
+    {
+        switch (process)
+        {
+            case 0:
+                if (direction == "Foward")
+                {
+                    if (hatindex == -1)
+                    {
+                        hatindex = 0;
+                        Hats[hatindex].SetActive(true);
+                        HatText.text = _ItemInformations[hatindex].ItemName;
+                        PurchaseControl(hatindex);
+                    }
+                    else
+                    {
+                        Hats[hatindex].SetActive(false);
+                        hatindex++;
+                        Hats[hatindex].SetActive(true);
+                        HatText.text = _ItemInformations[hatindex].ItemName;
+                        PurchaseControl(hatindex);
+                    }
+
+                    if (hatindex == Hats.Length - 1)
+                    {
+                        HatButtons[1].interactable = false;
+                    }
+                    else if (hatindex != -1)
+                    {
+                        HatButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        HatButtons[1].interactable = true;
+                    }
+                }
+                else
+                {
+                    if (hatindex != -1)
+                    {
+                        Hats[hatindex].SetActive(false);
+                        hatindex--;
+                        if (hatindex != -1)
+                        {
+                            Hats[hatindex].SetActive(true);
+                            HatButtons[0].interactable = true;
+                            HatText.text = _ItemInformations[hatindex].ItemName;
+                            PurchaseControl(hatindex);
+                        }
+                        else
+                        {
+                            HatButtons[0].interactable = false;
+                            HatText.text = "Þapka Yok";
+                            BuyingText.text = "-";
+                            BuyButton.interactable = false;
+                        }
+                    }
+                    else
+                    {
+                        HatButtons[0].interactable = false;
+                        HatText.text = "Þapka Yok";
+                        BuyingText.text = "-";
+                        BuyButton.interactable = false;
+                    }
+                    if (hatindex != Hats.Length - 1)
+                    {
+                        HatButtons[1].interactable = true;
+                    }
+                }
+                //ItemColorPanelControl(0,hatindex);
+                break;
+            case 1:
+                int StickArrayCalculation = (Hats.Length) + stickindex;
+                if (direction == "Foward")
+                {
+                    if (stickindex == -1)
+                    {
+                        stickindex = 0;
+                        Sticks[stickindex].SetActive(true);
+                        StickText.text = _ItemInformations[StickArrayCalculation + 1].ItemName;
+                        PurchaseControl(StickArrayCalculation + 1);
+                    }
+                    else
+                    {
+                        Sticks[stickindex].SetActive(false);
+                        stickindex++;
+                        Sticks[stickindex].SetActive(true);
+                        StickText.text = _ItemInformations[StickArrayCalculation + 1].ItemName;
+                        PurchaseControl(StickArrayCalculation + 1);
+                    }
+
+                    if (stickindex == Sticks.Length - 1)
+                    {
+                        StickButtons[1].interactable = false;
+                    }
+                    if (stickindex != -1)
+                    {
+                        StickButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        StickButtons[1].interactable = true;
+                    }
+                }
+                else
+                {
+                    if (stickindex != -1)
+                    {
+                        Sticks[stickindex].SetActive(false);
+                        stickindex--;
+                        if (stickindex != -1)
+                        {
+                            Sticks[stickindex].SetActive(true);
+                            StickButtons[0].interactable = true;
+                            StickText.text = _ItemInformations[StickArrayCalculation - 1].ItemName;
+                            PurchaseControl(StickArrayCalculation - 1);
+                        }
+                        else
+                        {
+                            StickButtons[0].interactable = false;
+                            StickText.text = "sopa yoktir";
+                            BuyingText.text = "sopa yok";
+                            BuyButton.interactable = false;
+                        }
+                    }
+                    else
+                    {
+                        StickButtons[0].interactable = false;
+                        StickText.text = "sopa Yoktir";
+                        BuyingText.text = "sopa yok";
+                        BuyButton.interactable = false;
+                    }
+                    if (stickindex != Sticks.Length - 1)
+                    {
+                        StickButtons[1].interactable = true;
+                    }
+                }
+                ItemColorPanelControl(1,StickArrayCalculation+1);
+                break;
+            case 2:
+                int ManColorArrayCalculation = (mancolorindex) + (Hats.Length) + (Sticks.Length);
+                if (direction == "Foward")
+                {
+                    if (mancolorindex == -1)
+                    {
+                        mancolorindex = 0;
+                        ManColorText.text = _ItemInformations[ManColorArrayCalculation+1].ItemName;
+                        PurchaseControl(ManColorArrayCalculation+1);
+                    }
+                    else
+                    {
+                        mancolorindex++;
+                        Material[] mats = _SkinnedMeshRenderer.materials;
+                        mats[0] = ManColorMaterials[mancolorindex];
+                        _SkinnedMeshRenderer.materials = mats;
+                        ManColorText.text = _ItemInformations[ManColorArrayCalculation + 1].ItemName;
+                        PurchaseControl(ManColorArrayCalculation + 1);
+                    }
+
+                    if (mancolorindex == ManColorMaterials.Length - 1)
+                    {
+                        ManColorButtons[1].interactable = false;
+                    }
+                    if (mancolorindex != -1)
+                    {
+                        ManColorButtons[0].interactable = true;
+                    }
+                    else
+                    {
+                        ManColorButtons[1].interactable = true;
+                    }
+                }
+                else
+                {
+                    if (mancolorindex != -1)
+                    {
+                        mancolorindex--;
+                        if (mancolorindex != -1)
+                        {
+                            Material[] mats = _SkinnedMeshRenderer.materials;
+                            mats[0] = ManColorMaterials[mancolorindex];
+                            _SkinnedMeshRenderer.materials = mats;
+                            ManColorButtons[0].interactable = true;
+                            ManColorText.text = _ItemInformations[ManColorArrayCalculation-1].ItemName;
+                            PurchaseControl(ManColorArrayCalculation-1);
+                        }
+                        else
+                        {
+                            ManColorButtons[0].interactable = false;
+                            BuyingText.text = "þapka yok";
+                            BuyButton.interactable = false;
+                        }
+                    }
+                    else
+                    {
+                        Material[] mats = _SkinnedMeshRenderer.materials;
+                        mats[0] = DefaultManColorMaterial;
+                        _SkinnedMeshRenderer.materials = mats;
+                        ManColorButtons[0].interactable = false;
+                        BuyingText.text = "þapka yok";
+                        BuyButton.interactable = false;
+                    }
+                    if (mancolorindex != ManColorMaterials.Length - 1)
+                    {
+                        ManColorButtons[1].interactable = true;
+                    }
+                }
+                break;
+        }
+    }
+
+    //panelleri açma ve kapatma iþlemleri
+    public void ProcessPanelActive(int Index)
+    {
+        PanelProcess[3].SetActive(false);
+        PanelProcess[ActiveCustomizePanelIndex].SetActive(false);
+        MakeControl(ActiveCustomizePanelIndex, true);
+        ActiveCustomizePanelIndex = -1;
+        PanelProcess[Index].SetActive(true);
+        PanelProcess[3].SetActive(true);  
+        MakeControl(Index, false);
+        ActiveCustomizePanelIndex = Index;
+    }
+
+    //satýn alma iþlemleri
+    public void CustomizeBuying()
+    {
+        //index hesaplama
+        int StickArrayCalculation = (stickindex) + (Hats.Length) ;
+        int ManColorArrayCalculation = (mancolorindex) + (Hats.Length) + (Sticks.Length);
+        //index hesaplama
+        if (ActiveCustomizePanelIndex > -1)
+        {
+            switch (ActiveCustomizePanelIndex)
+            {
+                case 0:
+                    if (_ItemInformations[hatindex].Point <= _MemoryManagement.ReadData_int("Point") )
+                    {
+                        PurchasingHelper(hatindex);
+                    }
+                    else
+                    {
+                        StartCoroutine(ShowAlert(2));
+                    }
+                    break;
+                case 1:
+                    if (_ItemInformations[StickArrayCalculation].Point<= _MemoryManagement.ReadData_int("Point"))
+                    {
+                        PurchasingHelper(StickArrayCalculation);
+                    }
+                    else
+                    {
+                        StartCoroutine(ShowAlert(2));
+                    }
+                    break;
+                case 2:
+                    if (_MemoryManagement.ReadData_int("Point") <= _ItemInformations[ManColorArrayCalculation].Point)
+                    {
+                        PurchasingHelper(ManColorArrayCalculation);
+                    }
+                    else
+                    {
+                        StartCoroutine(ShowAlert(2));
+                    }
+                    break;
+            }
+        }      
+    }
+    
+    //kaydetme iþlemleri
+    public void CustomizeSave()
+    {
+        if (ActiveCustomizePanelIndex>-1)
+        {
+            switch (ActiveCustomizePanelIndex)
+            {
+                case 0:
+                    _MemoryManagement.SaveData_int("ActiveHat",hatindex);
+                    _MemoryManagement.SaveData_int("ActiveHatColor",hatcolorindex);
+                    StartCoroutine(ShowAlert(1));
+                    break;
+                case 1:
+                    _MemoryManagement.SaveData_int("ActiveStick",stickindex);
+                    _MemoryManagement.SaveData_int("ActiveStickColor",stickcolorindex);
+                    StartCoroutine(ShowAlert(1));
+                    break;
+                case 2:
+                    _MemoryManagement.SaveData_int("ActiveManColor",mancolorindex);
+                    StartCoroutine(ShowAlert(1));
+                    break;
+            }
+        }
+    }
+
+    //sayfa açýlýnca itemlarý kontrol eder
+    public void MakeControl(int Index,bool process =false)
+    {
+        int StickArrayCalculation = (stickindex) + (Hats.Length);
+        int ManColorArrayCalculation = (mancolorindex) + (Hats.Length) + (Sticks.Length);
+        if (Index == 0)
+        {
+            if (_MemoryManagement.ReadData_int("ActiveHat") == -1)//-1 varsayýlan þapka deðeri olarak tanýmlý
+            {
+                foreach (var item in Hats)//açýk bir þapka modeli olmasýn diye diziyi tek tek gezer ve þapkalarýn aktifliðini kapatýr
+                {
+                    item.SetActive(false);
+                }
+                BuyButton.interactable = false;
+                BuyingText.text = "Satýn Al";
+                if (process == true)
+                {
+                    hatindex = -1;
+                    HatText.text = " Þapka Yok";
+                }
+                if (hatindex == Hats.Length - 1)
+                {
+                    HatButtons[1].interactable = false;
+                }
+                else if (hatindex != -1)
+                {
+                    HatButtons[0].interactable = true;
+                }
+                else if (hatindex != Hats.Length - 1)
+                {
+                    HatButtons[1].interactable = true;
+                }
+            }
+            else
+            {
+                foreach (var item in Hats)
+                {
+                    item.SetActive(false);
+                }           
+                hatindex = _MemoryManagement.ReadData_int("ActiveHat");
+                HatText.text = _ItemInformations[hatindex].ItemName;
+                Hats[hatindex].SetActive(true);
+                BuyButton.interactable = false;
+                CustomizeSaveButton.interactable = true;
+                BuyingText.text = "-";
+                if (hatindex!=Hats.Length-1)
+                {
+                    HatButtons[1].interactable = true;
+                }
+                if (hatindex!=-1)
+                {
+                    HatButtons[0].interactable= true;
+                }
+                if (hatindex==Hats.Length-1)
+                {
+                    HatButtons[1].interactable = false;
+                }
+            }
+            ItemColorControl(Index);
+            ItemColorPanelControl(Index, hatindex);
+        }
+        else if (Index == 1)
+        {
+            ItemColorControl(Index);
+            if (_MemoryManagement.ReadData_int("ActiveStick") == -1)
+            {
+                foreach (var item in Sticks)
+                {
+                    item.SetActive(false);
+                }
+                BuyButton.interactable = false;
+                BuyingText.text = "Satýn Al";
+                if (process == true)
+                {
+                    stickindex = -1;
+                    StickText.text = "sopa yok";
+                    BuyButton.interactable = false;
+
+                }
+
+                if (stickindex == Sticks.Length - 1)
+                {
+                    StickButtons[1].interactable = false;
+                }
+                else if (stickindex != -1)
+                {
+                    StickButtons[0].interactable = true;
+                }
+                else
+                {
+                    StickButtons[1].interactable = true;
+                }
+            }
+            else
+            {
+                foreach (var item in Sticks)
+                {
+                    item.SetActive(false);
+                }    
+                stickindex = _MemoryManagement.ReadData_int("ActiveStick");
+                StickText.text = _ItemInformations[StickArrayCalculation].ItemName;
+                Sticks[stickindex].SetActive(true);
+                BuyButton.interactable = false;
+                CustomizeSaveButton.interactable = true;
+                BuyingText.text = "-";
+
+                if (stickindex != Sticks.Length - 1)
+                {
+                    StickButtons[1].interactable = true;
+                }
+                if (stickindex != -1)
+                {
+                    StickButtons[0].interactable = true;
+                }
+                if (stickindex == Sticks.Length - 1)
+                {
+                    StickButtons[1].interactable = false;
+                }
+            }
+            ItemColorControl(Index);
+            ItemColorPanelControl(Index, StickArrayCalculation);
+        }
+        else if (Index == 2)
+        {
+            if (_MemoryManagement.ReadData_int("ActiveManColor") == -1)
+            {
+                BuyingText.text = "SATIN AL";
+                if (process == true)
+                {
+                    mancolorindex = -1;
+                    ManColorText.text = "renk yok";
+
+                    BuyButton.interactable = false; ;
+                }
+                else
+                {
+                    Material[] mats = _SkinnedMeshRenderer.materials;
+                    mats[0] = DefaultManColorMaterial;
+                    _SkinnedMeshRenderer.materials = mats;
+                }
+
+            }
+            else
+            {
+                mancolorindex = _MemoryManagement.ReadData_int("ActiveManColor");
+                ManColorText.text = _ItemInformations[ManColorArrayCalculation].ItemName;
+                Material[] mats = _SkinnedMeshRenderer.materials;
+                mats[0] = ManColorMaterials[mancolorindex];
+                _SkinnedMeshRenderer.materials = mats;
+                BuyButton.interactable = false;
+                CustomizeSaveButton.interactable = true;
+                BuyingText.text = "-";
+            }
+        }
+    }
+
+    private void ItemColorPanelControl(int PanelIndex,int Array)
+    {
+        if (PanelIndex == 0)
+        {
+            if (Array>-1)
+            {
+                if (_ItemInformations[Array].BuyingStatus==true)
+                {
+                    PanelProcess[4].gameObject.SetActive(true);
+                    PanelProcess[5].gameObject.SetActive(false);
+                }
+                else
+                {
+                    PanelProcess[4].gameObject.SetActive(false);
+                    PanelProcess[5].gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                PanelProcess[4].gameObject.SetActive(false);
+                PanelProcess[5].gameObject.SetActive(false);
+            }
+        }
+        else if (PanelIndex == 1)
+        {
+            if (Array>-1)
+            {
+                if (_ItemInformations[Array].BuyingStatus==true)
+                {
+                    PanelProcess[4].gameObject.SetActive(false);
+                    PanelProcess[5].gameObject.SetActive(true);
+                }
+                else
+                {
+                    PanelProcess[4].gameObject.SetActive(false);
+                    PanelProcess[5].gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                PanelProcess[4].gameObject.SetActive(false);
+                PanelProcess[5].gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            PanelProcess[4].gameObject.SetActive (false);
+            PanelProcess[5].gameObject.SetActive (false);
+        }
+    }
+    private void ItemColorControl(int Index)
+    {
+        Color NewColor;
+        if (Index==0)
+        {
+            if (_MemoryManagement.ReadData_int("ActiveHatColor")==-1)
+            {
+                HatColorRawImage.color = DefaultHatColorMaterial.color;
+                HatColorMaterial.color = DefaultHatColorMaterial.color;
+                if (hatcolorindex == HatColorName.Count - 1)
+                {
+                    HatColorButtons[1].interactable = false;
+                }
+                else if (hatcolorindex != -1)
+                {
+                    HatColorButtons[0].interactable = true;
+                }
+                else
+                {
+                    HatColorButtons[1].interactable = true;
+                }
+            }
+            else
+            {
+                hatcolorindex = _MemoryManagement.ReadData_int("ActiveHatColor");
+                if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                {
+                    HatColorMaterial.color = NewColor;
+                    HatColorRawImage.color = NewColor;
+                }
+            }
+        }
+        else
+        {
+            if (_MemoryManagement.ReadData_int("ActiveStickColor")==-1)
+            {
+                StickColorRawImage.color = DefaultStickColorMaterial.color;
+                StickColorMaterial.color = DefaultStickColorMaterial.color;
+                if (stickcolorindex == StickColorName.Count - 1)
+                {
+                    StickColorButtons[1].interactable = false;
+                }
+                else if (stickcolorindex != -1)
+                {
+                    StickColorButtons[0].interactable = true;
+                }
+                else
+                {
+                    StickColorButtons[1].interactable = true;
+                }
+            }
+            else
+            {
+                stickcolorindex = _MemoryManagement.ReadData_int("ActiveStickColor");
+                if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex],out NewColor))
+                {
+                    StickColorRawImage.color= NewColor;
+                    StickColorMaterial.color= NewColor;
+                }
+            }
+        }
+    }
+
+    //satýn alýnmýþ mý diye kontrol eder
+    private void PurchaseControl(int purchasecontrolindex)
+    {
+        if (!_ItemInformations[purchasecontrolindex].BuyingStatus)
+        {
+            if (_ItemInformations[purchasecontrolindex].Point>0)
+            {
+                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + " Satýn AL";
+                BuyButton.interactable = true;
+                CustomizeSaveButton.interactable = false;
+            }           
+        }
+        else
+        {
+            BuyingText.text = "-";
+            BuyButton.interactable = false;
+            CustomizeSaveButton.interactable = true;
+        }
+
+    }
+
+    //alert textini gösterir
+    IEnumerator ShowAlert(int process)
+    {
+        switch (process)
+        {
+            // (0) satýn alma mesajý|(1) kaydetme mesajý|(2) yetersizbakiye mesajý
+            case 0:
+                AlertText.text = "Satýn Alýndý";
+                AlertText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                AlertText.gameObject.SetActive(false);
+                break;
+            case 1:
+                AlertText.text = "Kaydedildi";
+                AlertText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1f);
+                AlertText.gameObject.SetActive(false);
+                break;
+            case 2:
+                AlertText.text = "Yetersiz bakiye";
+                AlertText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(1.5f);
+                AlertText.gameObject.SetActive(false);
+                break;
+        }
+    }
+
+    private void PurchasingHelper(int ArrayIndex)
+    {
+        _ItemInformations[ArrayIndex].BuyingStatus = true;
+        _MemoryManagement.SaveData_int("Point", _MemoryManagement.ReadData_int("Point") - _ItemInformations[ArrayIndex].Point);
+        BuyButton.interactable = false;
+        BuyingText.text = "-";
+        CustomizeSaveButton.interactable = true;
+        PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
+        StartCoroutine(ShowAlert(0));
+        Debug.Log("satýn alýndý");
+    }
+
+     
+}

@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyChracter : MonoBehaviour
+{
+    public GameObject Attack_Target;//dýþarýdan saldýrý hedefi verilir
+    public NavMeshAgent _NavMesh;//dýþarýdan nav mash agent verilir
+    public Animator _Animator;//dýþarýdan animatör verilir
+    public GameManager _GameManager; // dýþarýdan gamemanager scripti çaðýrýlýr
+    bool AttackStarted;//saldýrý baþladý mý
+    public void AnimationRun()//animasyon çalýþtýrs
+    {
+        _Animator.SetBool("Attack",true);//düþman karakter animatöründeki saldýr deðiþkenine true deðeri verilie
+        AttackStarted = true;//atak baþladý mý evet
+    }
+
+    private void LateUpdate()
+    {
+        if (AttackStarted==true)//eðer saldýrý baþladý ise olmasý gerekenler
+        {
+            _NavMesh.SetDestination(Attack_Target.transform.position);//düþman karaktere saldýrý hedefi verilir
+        }
+    }
+
+    //düþman karakter çarptýðýnda çarpýýp geçtiðinde(tetikleme) yaptýðýnda olmasý gerekenler
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("LowerCharacters"))//düþman karakter  alt karaktere çarptýðýnda olmasý gerekenler
+        {
+            Vector3 newpos = new Vector3(transform.position.x, .23f, transform.position.z);//x ve z ekseni sabit olmak üzere y ekseninde deðiþiklik olmakla beraber yeni bir posizyon belirtilir
+            _GameManager.ExtinctionnEffectRun(newpos,false,true);//gamemanager scriptinden yok olma efekti çalýþtýr fonksiyonu çaðýrýlýr
+            gameObject.SetActive(false);//objenin aktifliði kapatýlýr
+        }
+    }
+}
