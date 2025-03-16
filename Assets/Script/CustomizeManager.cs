@@ -866,7 +866,8 @@ public class CustomizeManager : MonoBehaviour
         {
             if (_ItemInformations[purchasecontrolindex].Point>0)
             {
-                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + " Satýn AL";
+                //
+                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + "";
                 BuyButton.interactable = true;
                 CustomizeSaveButton.interactable = false;
             }           

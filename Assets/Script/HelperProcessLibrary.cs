@@ -276,6 +276,7 @@ namespace rgame
                 PlayerPrefs.SetFloat("GameAudio",1);
                 PlayerPrefs.SetFloat("MenuAudio",1);
                 PlayerPrefs.SetFloat("MenuFxAudio", 1);
+                PlayerPrefs.SetFloat("SelectedLanguage", 0);//dropdownda 0 ýncý seçili yani trkçe
 
             }
         }

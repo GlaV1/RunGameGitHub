@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Game_Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Game_Text
+  m_TableCollectionNameGuidString: 08490f6ddcd0a3544a22c6d42427fff6
+  m_Entries:
+  - m_Id: 1260631429120
+    m_Key: Settings_MenuVolumePanel_txt_MenuAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2026771386368
+    m_Key: Settings_MenuFxVolumePanel_txt_MenuFxAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2028931452928
+    m_Key: Settings_GameVolumePanel_txt_GameAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2030865027072
+    m_Key: Settings_GameQualityPanel_txt_GameQuality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2033977200640
+    m_Key: Settings_LanguagePanel_txt_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4053970784256
+    m_Key: MainMenu_ButtonPanel_btn_Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292546990080
+    m_Key: MainMenu_ButtonPanel_btn_Customize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4380623179776
+    m_Key: MainMenu_ButtonPanel_btn_LevelSelect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4435157520384
+    m_Key: MainMenu_ButtonPanel_btn_Market
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4486516772864
+    m_Key: MainMenu_ButtonPanel_btn_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423587201024
+    m_Key: LevelSelect_TopBarPanel_txt_LevelSelect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6192549924864
+    m_Key: Customize_BottomPanel_btn_CustomizeSave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6347504291840
+    m_Key: Customize_BottomPanel_btn_Buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7323443335168
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 666814593345781786
+  references:
+    version: 2
+    RefIds:
+    - rid: 666814593345781786
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1742127645457

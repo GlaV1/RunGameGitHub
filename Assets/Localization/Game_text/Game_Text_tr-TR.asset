@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Game_Text_tr-TR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: tr-TR
+  m_SharedData: {fileID: 11400000, guid: 08490f6ddcd0a3544a22c6d42427fff6, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1260631429120
+    m_Localized: "Men\xFC Sesi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2033977200640
+    m_Localized: "Dil Se\xE7imi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2030865027072
+    m_Localized: Grafik Kalitesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2028931452928
+    m_Localized: Oyun Sesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2026771386368
+    m_Localized: "Men\xFC Fx Sesi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4053970784256
+    m_Localized: Oyna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4292546990080
+    m_Localized: "\xD6zelle\u015Ftir"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4380623179776
+    m_Localized: "Level Se\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4435157520384
+    m_Localized: Market
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4486516772864
+    m_Localized: Ayarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5423587201024
+    m_Localized: "B\xF6l\xFCm Se\xE7"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6192549924864
+    m_Localized: Kaydet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6347504291840
+    m_Localized: "Sat\u0131n Al"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
