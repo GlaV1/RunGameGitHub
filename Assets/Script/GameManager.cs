@@ -72,6 +72,9 @@ public class GameManager : MonoBehaviour
     ////
 
     Scene _Scene;
+    /// <summary>
+    /// sahne baþladýðýndan olmasý gereken Ýþlemler Düþman Karakterlerini aktif eder sahneyi yükler. Ses ayalarýný kayýt dosyasýndan okur ve getirir
+    /// </summary>
     void Start()
     {
         EnemyCreate();
@@ -80,10 +83,17 @@ public class GameManager : MonoBehaviour
         _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float("MenuFxAudio");
         _GameAudioSlider.value = _MemoryManagement.ReadData_float("GameAudio");
     }
+   
+    /// <summary>
+    /// Sahne yüklenmeden önce olmasý gerekenler
+    /// </summary>
     private void Awake()
     {
       ItemCheck();
     }
+    /// <summary>
+    /// Düþman Karakterleri ortaya çýkarma iþlemi
+    /// </summary>
     public void EnemyCreate()
     {
         for (int i = 0; i < HowMuchEnemy; i++)
@@ -92,6 +102,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ana karakterden çoðalacak veya yok olacak alt karakterlerin iþlemleri(çarpma,bölme,toplama,çýkarma)
+    /// </summary>
+    /// <param name="processtype">Karakterin Hangi Isleme uðrayacaðýný belirler</param>
+    /// <param name="incomingnum">Karakterin hangi sayýya çarpýp iþleme gireceiðini belirler</param>
+    /// <param name="newposition">karakterin çýkmasý gereken pozisyon</param>
     public void ManManager(string processtype,int incomingnum, Transform newposition)
     {
         switch (processtype)
@@ -114,7 +130,9 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
+    /// <summary>
+    /// Savaþ Durumu fonksiyonu eðer sona gelindiyse Karakterlerin Attack animasyonunu aktif eder
+    /// </summary>
     void WarSituation()
     {
         if (ComeToEnd==true)
@@ -158,6 +176,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="effect_position">Efektin çýkmasý gerekn pozinyonu alýr</param>
+    /// <param name="hammer">Çekiç Tarafýndan ezilen karakterlere farklý evet uygulamak için kontrol yapar</param>
+    /// <param name="Status">Savaþ sýrasýnda eðer düþman karakter çaptý ise True deðeri gelir ve canlý karakter sayýsýný azaltýr eðer alt karakter çarptý ise false deðeri gelir ve Düþman karakter sayýsý azaltýlýr</param>
     public void ExtinctionnEffectRun(Vector3 effect_position,bool hammer=false,bool Status=false)
     {
         foreach (var item in ExtinctionnEffect)
@@ -200,6 +224,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Düþman karakterlere Saldýrma komutunu verir ve efektrini etkinleþtirir.Sona gelindi deðiþkenini true deðer döndürür.ve SAvaþ durumu deðiþkenini çaðýrýr
+    /// </summary>
     public void EnemyTrigger()
     {
         foreach (var item in EnemyCharacter)
@@ -213,6 +240,9 @@ public class GameManager : MonoBehaviour
         WarSituation();
     }
    
+    /// <summary>
+    /// Karakter özelleþitirme sayfasýnda Deðiþtirilen item renklerini kayýt dosyasýndan okur ve karkterlere uygular
+    /// </summary>
     public void ItemColorCheck()
     {
         Color NewColor;
@@ -240,6 +270,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// Customize Sayfasýnda özelleþtirilen karakterdek itemleri kayýt dosyasýndan okur ve karaktere özelleþtirmeyi uygular
+    /// </summary>
     public void ItemCheck()
     {
         if (_MemoryManagement.ReadData_int("ActiveHat")!=-1)
@@ -266,12 +300,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Pause düðmeseine basýlýnca Oyunu Durdurur
+    /// </summary>
     public void PauseGame()
     {
         Time.timeScale = 0;
         Panels[0].gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Oyun Durunca açýlan duraklama menüsündeki islemleri kontrol eder
+    /// </summary>
+    /// <param name="process">Kullanýcýnýn Hangi Ýþlemi Yaptýðýnýn Bilgisini alýr</param>
     public void PauseProcess(int process)
     {
         switch (process)
@@ -308,6 +349,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// kullanýcýdan gelen cevaba göre oyunu kapatýr veya kapatmaz
+    /// </summary>
+    /// <param name="Question"> kullanýcýdan evet yada hayýr cevabýný alýr</param>
     public void ExitQuestion(string Question)
     {
         if (Question=="Yes")
@@ -321,13 +366,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ayarlar panelini kapatýr ve duraklama menüsünü açar
+    /// </summary>
     public void BackToPauseMenu()
     {
         Panels[1].gameObject.SetActive(false);
         Panels[0].gameObject.SetActive(true);
     }
 
-    public void AudioChange(int process)//process=0 MenuAudioChange|| process=1 MenuFxAudioChange || process=2 GameAudioChange
+    /// <summary>
+    /// duraklama menüsündeki ayarlar kýsmýndaki ses ayarlarýný yapmaya izin verir ve kaydeder
+    /// </summary>
+    /// <param name="process"> Slider dan gelen iþleme göre ses seviyesini ayarlar </param>
+    public void AudioChange(int process)
     {
         switch (process)
         {

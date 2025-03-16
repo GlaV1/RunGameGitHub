@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2380879254238239765}
   - component: {fileID: 6552554201443330121}
   m_Layer: 0
-  m_Name: direk (1)
+  m_Name: direk1
   m_TagString: Mast
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 269380010737128105}
   - component: {fileID: 7569698460007100251}
   m_Layer: 0
-  m_Name: direk (2)
+  m_Name: direk2
   m_TagString: Mast
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

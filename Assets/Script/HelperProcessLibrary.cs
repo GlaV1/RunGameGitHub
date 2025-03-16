@@ -14,7 +14,7 @@ namespace rgame
     {
         //çarpma iþlemi
         public void MultiplacationClass(int incomingnum, List<GameObject> Characters, Transform newposition, List<GameObject> FormationEffects)
-        {
+        {                           
             int LoopNumber = (GameManager.LiveCharacterNum * incomingnum) - GameManager.LiveCharacterNum;
             int sayi = 0;
             foreach (var item in Characters)
