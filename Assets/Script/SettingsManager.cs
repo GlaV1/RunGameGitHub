@@ -18,6 +18,10 @@ public class SettingsManager : MonoBehaviour
     AudioSource GameAudioSource;
     
     MemoryManagement _MemoryManagement= new MemoryManagement();
+
+    /// <summary>
+    /// Oyun baþladýðýnda olmasý gerekenler.Kayýt dosyasýndan ses seviyelerini okur ve verileir getirir
+    /// </summary>
     void Start()
     {
         _MenuAudioSlider.value = _MemoryManagement.ReadData_float("MenuAudio");
@@ -28,11 +32,17 @@ public class SettingsManager : MonoBehaviour
       //  _GameQualityDropdown.value = PlayerPrefs.GetInt("SelectedQuality"); 
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Ana menü sahnesinin yükleme iþlemini yapar
+    /// </summary>
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);//menü sahnesinin yüklenme iþlemi
     }
+    /// <summary>
+    /// kullanýcýdan dropdown menüsü ile Oyun Kalitesini alýr ve Deðiþiklikleri uygular
+    /// </summary>
+    /// <param name="SelectedQuality">Seçilen kalite deðerini kullanýcýdan alýr</param>
     public void QualitySelection(int SelectedQuality)
     {
         PlayerPrefs.SetInt("SelectedQuality",SelectedQuality);
@@ -45,7 +55,10 @@ public class SettingsManager : MonoBehaviour
 
     }*/
 
-
+    /// <summary>
+    /// Kullanýcýdan gelen veriye göre ses seviyelerini kayýt eder
+    /// </summary>
+    /// <param name="process">Kullanýcýdan Hangi Ses seviyesini deðiþtirmek istediði alýnýr</param>
     public void AudioChange(int process)//process=0 MenuAudioChange|| process=1 MenuFxAudioChange || process=2 GameAudioChange
     {
         switch (process)

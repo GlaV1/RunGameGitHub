@@ -26,7 +26,7 @@ public class LevelSelectManager : MonoBehaviour
                 int sceneindex = index + 4;//sceneindex deðiþkenine index+4 iþlemi(düz index +4 yazýnca skýntý oluþuyor onun içn ayrý bi atama iþlemi yaptýk)
                 Buttons[i].onClick.AddListener(delegate {UploadScene(sceneindex);});//butonlara týklama iþlemi atamasý yapýlýr ve sahne yükleme iþlemine index gönderilir
             }
-            else//mevcut level indexten BÜYÜK ise olmasý gerekenler
+            else//mevcut level indexten KÜÇÜK ise olmasý gerekenler
             {
                 Buttons[i].GetComponentInChildren<Image>().sprite = LockedButtons;//butonlara sprite atama iþlemleri
                 Buttons[i].enabled = false;//butonlarýn týklamalarýný kapatma iþlemi
@@ -34,11 +34,17 @@ public class LevelSelectManager : MonoBehaviour
             index++; //index deðeri 1 arttýrma iþlemi
         }
     }
+    /// <summary>
+    /// Gelen index verisine göre sahne yükleme iþlemini yapar
+    /// </summary>
+    /// <param name="index">Ýndex verisi alýnýr</param>
     public void UploadScene(int index) //sahne yükleme iþlemleri
     {
         SceneManager.LoadScene(index);
     }
-
+    /// <summary>
+    /// Ana Menüye dönme iþlemi
+    /// </summary>
     public void BackToMainMenu()//ana menü sahnesinin yüklenme iþlemleri
     {
         SceneManager.LoadScene(0);

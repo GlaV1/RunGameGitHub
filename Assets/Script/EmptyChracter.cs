@@ -24,7 +24,9 @@ public class EmptyChracter : MonoBehaviour
         }
     }
 
-    //renk deðiþimi ve animasyon tetikleme iþlemleri
+    /// <summary>
+    /// Boþ Karaktere Alt karakter veya Ana karakter çarptýðýnda Animasyonu çalýþtýrýr ve geri kalan iþlemleri yapar
+    /// </summary>
     public void AnimationTrigger()
     {
         //karaktere dokunuldðunda materyal deðiþtirme iþlemleri
@@ -36,12 +38,15 @@ public class EmptyChracter : MonoBehaviour
         GameManager.LiveCharacterNum++;//gamemanager scriptindeki anlýk karakter sayýsýnda +1 deðiþimi yapýlýr
     }
 
-    Vector3 GivePosition() // y eksen bileþeninde .23 deðer verir x ve z ekseninde deðiþklik yapýlmaz
+    Vector3 GivePosition() // y eksen bileþeninde .23 deðer verir x ve z ekseninde deðiþklik yapýlmaz(efektler için)
     {
         return new Vector3(transform.position.x, .23f, transform.position.z);
     }
 
-    //çarpma çarpýp tetikleme iþlemleri
+    /// <summary>
+    /// Boþ karakter çarptýðýnda ve ya boþ karaktere çarpýldýðýnda  olmasý gereken iþlemler
+    /// </summary>
+    /// <param name="other">Boþ Karakter Collideri</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("LowerCharacters")||other.CompareTag("Player"))//boþ karakterere alt karakter ve oyuncu karakterin çarptýðý zaman olacaklar

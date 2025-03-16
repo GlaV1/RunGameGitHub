@@ -129,7 +129,11 @@ public class CustomizeManager : MonoBehaviour
         PublicItemColorDirection(1,direction);
     }
 
-    //genel item renk yönlendirme
+    /// <summary>
+    ///  Karakter özelleþtirme itemlerinin RENKleri  arasýnda gezinme iþlemlerini indexlere göre yapar
+    /// </summary>
+    /// <param name="process">Hangi ýtemlerin renklerinin arasýnda gezileceðini belirler</param>
+    /// <param name="direction">>Ýleri mi geri gidileceðini belirler</param>
     private void PublicItemColorDirection(int process,string direction)
     {
         Color NewColor;
@@ -266,7 +270,11 @@ public class CustomizeManager : MonoBehaviour
         }
     }
     
-    //genel item yönlendirme
+    /// <summary>
+    /// Karakter özelleþtirme itemleri arasýnda gezinme iþlemlerini indexlere göre yapar
+    /// </summary>
+    /// <param name="process">Hangi ýtemlerin arasýnda gezileceðini belirler</param>
+    /// <param name="direction">Ýleri mi geri gidileceðini belirler </param>
     private void PublicDirectionButtons(int process, string direction)
     {
         switch (process)
@@ -336,7 +344,7 @@ public class CustomizeManager : MonoBehaviour
                         HatButtons[1].interactable = true;
                     }
                 }
-                //ItemColorPanelControl(0,hatindex);
+                ItemColorPanelControl(0,hatindex);
                 break;
             case 1:
                 int StickArrayCalculation = (Hats.Length) + stickindex;
@@ -491,7 +499,9 @@ public class CustomizeManager : MonoBehaviour
         ActiveCustomizePanelIndex = Index;
     }
 
-    //satýn alma iþlemleri
+    /// <summary>
+    /// aktif panele göre satýn almalarýn kontrol iþlemlerini yapar yapar 
+    /// </summary>
     public void CustomizeBuying()
     {
         //index hesaplama
@@ -536,7 +546,9 @@ public class CustomizeManager : MonoBehaviour
         }      
     }
     
-    //kaydetme iþlemleri
+    /// <summary>
+    /// Aktif Panele göre item kaydetme ve item indexi kaydetme iþlemlerini yapar
+    /// </summary>
     public void CustomizeSave()
     {
         if (ActiveCustomizePanelIndex>-1)
@@ -561,7 +573,11 @@ public class CustomizeManager : MonoBehaviour
         }
     }
 
-    //sayfa açýlýnca itemlarý kontrol eder
+    /// <summary>
+    ///özelleþtirme sayfasýaçýldýðý zaman Item indexlerini kayýt dosyasýndan okur okunan verilere göre Karaktere uygular 
+    /// </summary>
+    /// <param name="Index">Açýlan PAnel indexi</param>
+    /// <param name="process"></param>
     public void MakeControl(int Index,bool process =false)
     {
         int StickArrayCalculation = (stickindex) + (Hats.Length);
@@ -638,7 +654,6 @@ public class CustomizeManager : MonoBehaviour
                     stickindex = -1;
                     StickText.text = "sopa yok";
                     BuyButton.interactable = false;
-
                 }
 
                 if (stickindex == Sticks.Length - 1)
@@ -717,13 +732,19 @@ public class CustomizeManager : MonoBehaviour
         }
     }
 
-    private void ItemColorPanelControl(int PanelIndex,int Array)
+
+    /// <summary>
+    /// Eðer Ýtem Satýn alýndýysa renk paletini açar ve arasýnda gezmeye izin verir eðer Item satýn alýnmadýysa renk paletlerini kapatýr
+    /// </summary>
+    /// <param name="PanelIndex">Þapka veya Sopa panellerini açmak için gerekli index</param>
+    /// <param name="ItemArrayIndex">Gelen item indexiyle satýn alýnmýþ mý diye kontrol eder </param>
+    private void ItemColorPanelControl(int PanelIndex,int ItemArrayIndex)
     {
         if (PanelIndex == 0)
         {
-            if (Array>-1)
+            if (ItemArrayIndex > -1)
             {
-                if (_ItemInformations[Array].BuyingStatus==true)
+                if (_ItemInformations[ItemArrayIndex].BuyingStatus==true)
                 {
                     PanelProcess[4].gameObject.SetActive(true);
                     PanelProcess[5].gameObject.SetActive(false);
@@ -742,9 +763,9 @@ public class CustomizeManager : MonoBehaviour
         }
         else if (PanelIndex == 1)
         {
-            if (Array>-1)
+            if (ItemArrayIndex > -1)
             {
-                if (_ItemInformations[Array].BuyingStatus==true)
+                if (_ItemInformations[ItemArrayIndex].BuyingStatus==true)
                 {
                     PanelProcess[4].gameObject.SetActive(false);
                     PanelProcess[5].gameObject.SetActive(true);
@@ -767,6 +788,11 @@ public class CustomizeManager : MonoBehaviour
             PanelProcess[5].gameObject.SetActive (false);
         }
     }
+   
+    /// <summary>
+    /// Item renk indexlerini kayýt dosyasýndan okur ve default index ise ona göre renk verir default halde deðil ise okunan indexe göre renk verme iþlemlerini yapar
+    /// </summary>
+    /// <param name="Index">Gelen indexe göre kontrol iþlem yapar</param>
     private void ItemColorControl(int Index)
     {
         Color NewColor;
@@ -830,7 +856,10 @@ public class CustomizeManager : MonoBehaviour
         }
     }
 
-    //satýn alýnmýþ mý diye kontrol eder
+    /// <summary>
+    /// Gelen indexe göre Ýtem sayýn alýnmýþmý alýnmamýþ diye kontrol eder
+    /// </summary>
+    /// <param name="purchasecontrolindex">Hangi item kotnrol edilmek isteniyosa onun indexi verilir</param>
     private void PurchaseControl(int purchasecontrolindex)
     {
         if (!_ItemInformations[purchasecontrolindex].BuyingStatus)
@@ -851,12 +880,15 @@ public class CustomizeManager : MonoBehaviour
 
     }
 
-    //alert textini gösterir
+    /// <summary>
+    /// Gelen iþleme göre kullanýcýya mesaj verir
+    /// </summary>
+    /// <param name="process">(0) satýn alma mesajý|(1) kaydetme mesajý|(2) yetersizbakiye mesajý</param>
+    /// <returns></returns>
     IEnumerator ShowAlert(int process)
     {
         switch (process)
         {
-            // (0) satýn alma mesajý|(1) kaydetme mesajý|(2) yetersizbakiye mesajý
             case 0:
                 AlertText.text = "Satýn Alýndý";
                 AlertText.gameObject.SetActive(true);
@@ -878,6 +910,11 @@ public class CustomizeManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    ///Gelen indexe Göre Satýn alma iþlemini yapar puan düzenlemesini yapar butonlarý kapatýr  puan textini günceller ve kullanýcýya mesaj verir
+    /// </summary>
+    /// <param name="ArrayIndex">Dizi indexleri alýnýr</param>
     private void PurchasingHelper(int ArrayIndex)
     {
         _ItemInformations[ArrayIndex].BuyingStatus = true;

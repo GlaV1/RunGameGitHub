@@ -5,6 +5,10 @@ using UnityEngine;
 public class PropallerWindArea : MonoBehaviour
 {
 
+    /// <summary>
+    /// Eðer alt karakterler Rüzgar alanýna girdiyse. alt karakterlere güç uygular ve rüzgar yemiþ efekti verir
+    /// </summary>
+    /// <param name="other">Karaktelerin Çarptýý alan/bölge</param>
     private void OnTriggerStay(Collider other)
     {    
         if (other.CompareTag("LowerCharacters"))//eðer çarpýþmayý tetikleyen objenin tagý alt karakter ise olmasý gerekenler

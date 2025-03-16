@@ -67,15 +67,18 @@ public class Character : MonoBehaviour
     }
 
 
-    //karakterin çarpýp geçme tetikleme olaylarý
+    /// <summary>
+    /// Karakter bir objeye çarptýðýnda veya Herhangi bir obje karaktere çarptýðýnda olmasý gereken iþlemler
+    /// </summary>
+    /// <param name="other">Karakterin Collideri</param>
     private void OnTriggerEnter(Collider other)
     {
         //taglarý bölme,toplama,çarpma,çýkarma iþlemleri olan nesneleri tetikler ise olacaklar
         if (other.CompareTag("DivisionProcess")|| other.CompareTag("CollectionProcess") || other.CompareTag("MultiplacationProcess") || other.CompareTag("ExtractionProcess"))
         {
             //gamemaner scriptindeki manmanager metoduna verileri gönderir
-            int num = int.Parse(other.name);
-            _GameManager.ManManager(other.tag,num,other.transform);
+            int num = int.Parse(other.name);//çarptýðý nesnenin adýndaki sayýyý alýr
+            _GameManager.ManManager(other.tag,num,other.transform);//manmanagera çarptýðý nesnenin tagýný, num deðiþkenini ve çarptýðý yerin pozisyonunu gönderir
         }
         else if (other.CompareTag("LastTrigger"))//karakterin çarptýðý tetikledi nesnenin tagý son tetkleyici ise olacaklar
         {
@@ -89,7 +92,10 @@ public class Character : MonoBehaviour
         }
     }
 
-    //çarpma ve kalma olaylarý
+   /// <summary>
+   /// Ana karakterin collideri ve pervaneiðneleri,iðneli kutu ve direðe çarptýðýnda karakter takýlý kalmasýn diye ufak bir düzeltme(ekranýn sðýna veya solunda bulunmasýna göre)
+   /// </summary>
+   /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         //direk,iðneli kutu,pervanenin iðne taglý objelere çarptýðýnda yapýlmasý gereken iþlemler

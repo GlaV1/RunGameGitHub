@@ -266,7 +266,7 @@ namespace rgame
         {
             if (!PlayerPrefs.HasKey("LastLevel"))//son bölüm adlý anahtar kayýtlý DEÐÝL ÝSE olmasý gerekenler
             {//Son bölüm=oyuncunun kaldýðý son bölüm
-                PlayerPrefs.SetInt("LastLevel",5);//5.index teki scene açmak için gerekli iþlemler
+                PlayerPrefs.SetInt("LastLevel",5);//5.index teki scene açmak için gerekli iþlemler(5.index=level 1)
                 PlayerPrefs.SetInt("Point",0);
                 PlayerPrefs.SetInt("ActiveHat",-1);
                 PlayerPrefs.SetInt("ActiveStick", -1);

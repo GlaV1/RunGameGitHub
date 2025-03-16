@@ -8,7 +8,10 @@ public class Propeller : MonoBehaviour
     public float WaitTime;//bekleme süresi
     public Collider _PropallerWind;//dýþarýdan rüzgarýn geldiði bölümün collideri verilir(rüzgar alaný)
 
-    //animatörde baþlangýçta Run fonksiyonun deðeri TRUE dur
+    /// <summary>
+    /// Fan durumunu kontrol eder ve Fan ile ilgili iþlemleri yapar
+    /// </summary>
+    /// <param name="fanstatus">Fan çalýþýyor mu çalýþmýyor mu</param>
     public void AnimationStatus(string fanstatus)//animasyon durumu
     {
         if (fanstatus=="true")//eðer animasyon çalýþýyor ise
@@ -24,6 +27,10 @@ public class Propeller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fan animasyonunu Gelen istenilen bekleme süresine göre oynatýr
+    /// </summary>
+    /// <returns></returns>
     IEnumerator FanAnimationTrigger()//fan animasyonu tetikle
     {
         yield return new WaitForSeconds(WaitTime);//

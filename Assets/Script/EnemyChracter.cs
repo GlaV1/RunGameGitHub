@@ -10,11 +10,16 @@ public class EnemyChracter : MonoBehaviour
     public Animator _Animator;//dýþarýdan animatör verilir
     public GameManager _GameManager; // dýþarýdan gamemanager scripti çaðýrýlýr
     bool AttackStarted;//saldýrý baþladý mý
+    
+    /// <summary>
+    /// Düþman Karakterin Saldýrma efektini aktif eder
+    /// </summary>
     public void AnimationRun()//animasyon çalýþtýrs
     {
         _Animator.SetBool("Attack",true);//düþman karakter animatöründeki saldýr deðiþkenine true deðeri verilie
         AttackStarted = true;//atak baþladý mý evet
     }
+
 
     private void LateUpdate()
     {
@@ -24,7 +29,10 @@ public class EnemyChracter : MonoBehaviour
         }
     }
 
-    //düþman karakter çarptýðýnda çarpýýp geçtiðinde(tetikleme) yaptýðýnda olmasý gerekenler
+    /// <summary>
+    /// Düþman Karaktere, Alt Karater çaptýysa olmasý gerekenler
+    /// </summary>
+    /// <param name="other">Düþman karakterin collideri</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("LowerCharacters"))//düþman karakter  alt karaktere çarptýðýnda olmasý gerekenler

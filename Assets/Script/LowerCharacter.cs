@@ -27,6 +27,7 @@ public class LowerCharacter : MonoBehaviour
 
     private void Awake()
     {
+        //gamemanger sayfasýndan gelen veriye göre alt karakterlere istenen özelleþtirmeler uygulanýr veya uygulanmaz
         if (_GameManager.LowerCharacterItem==true)
         {
             ItemCheck();
@@ -38,6 +39,7 @@ public class LowerCharacter : MonoBehaviour
         _Navmesh = GetComponent<NavMeshAgent>();//kompanentlerden nav mese eriþiyoruz
     }
 
+
     private void LateUpdate()
     {
         _Navmesh.SetDestination(FinishPoint.transform.position);//alt karakterin gitmesi gereken yeri veriyoruz
@@ -47,6 +49,11 @@ public class LowerCharacter : MonoBehaviour
     {
         return new Vector3(transform.position.x, .23f, transform.position.z);//x ve z eksenlerindeki posizyon ayný y ekseninde .23f lik bir posizyon
     }
+
+    /// <summary>
+    /// Alt karakter çarptýðýnda veya alt karakter çarptýðýnda olmasý gereken iþlemler
+    /// </summary>
+    /// <param name="other">Alt Karakterin collideri</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("NeedleBox"))//alt karakter iðneli kutuya çarptýðýnda olmasý gerekenler
@@ -81,6 +88,9 @@ public class LowerCharacter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Alt Karakterlere customize sayfasýndaki özelleþtirmeleri uygular
+    /// </summary>
     public void ItemCheck()
     {
         if (_MemoryManagement.ReadData_int("ActiveHat") != -1)
