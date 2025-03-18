@@ -29,6 +29,7 @@ public class SettingsManager : MonoBehaviour
         _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float("MenuFxAudio");
         _GameAudioSlider.value = _MemoryManagement.ReadData_float("GameAudio");
         _GameLanguageDropdown.value = _MemoryManagement.ReadData_int("SelectedLanguage");
+        LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));
       //  _GameQualityDropdown.value = PlayerPrefs.GetInt("SelectedQuality"); 
     }
     private void Update()

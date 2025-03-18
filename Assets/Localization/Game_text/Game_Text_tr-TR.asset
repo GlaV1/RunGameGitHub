@@ -70,6 +70,38 @@ MonoBehaviour:
     m_Localized: "Sat\u0131n Al"
     m_Metadata:
       m_Items: []
+  - m_Id: 744466075684864
+    m_Localized: "D\xFC\u015F\xFCk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748280337993728
+    m_Localized: Orta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748378790891520
+    m_Localized: "Y\xFCksek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748456742031360
+    m_Localized: "\xC7ok Y\xFCksek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751458915782656
+    m_Localized: "\u0130ngilizce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751628671848448
+    m_Localized: "T\xFCrk\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751770401574912
+    m_Localized: "\u0130spanyolca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751823740538880
+    m_Localized: "\xC7ince"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

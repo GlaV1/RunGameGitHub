@@ -67,8 +67,36 @@ MonoBehaviour:
     m_Key: Customize_BottomPanel_btn_Buy
     m_Metadata:
       m_Items: []
-  - m_Id: 7323443335168
-    m_Key: New Entry
+  - m_Id: 744466075684864
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748280337993728
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748378790891520
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748456742031360
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_VeryHigh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751458915782656
+    m_Key: Settings_LanguagePanel_drpdwn_Language_English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751628671848448
+    m_Key: Settings_LanguagePanel_drpdwn_Language_Turkish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751770401574912
+    m_Key: Settings_LanguagePanel_drpdwn_Language_Spanish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751823740538880
+    m_Key: Settings_LanguagePanel_drpdwn_Language_Chinese
     m_Metadata:
       m_Items: []
   m_Metadata:
