@@ -19,6 +19,7 @@ public class SettingsManager : MonoBehaviour
     // AudioSource MenuFxAudioSource;
     //  AudioSource GameAudioSource;
     MemoryManagement _MemoryManagement= new MemoryManagement();
+    LanguageManager _LanguageManager= new LanguageManager();
 
     /// <summary>
     /// Oyun baþladýðýnda olmasý gerekenler.Kayýt dosyasýndan ses seviyelerini okur ve verileir getirir
@@ -29,12 +30,13 @@ public class SettingsManager : MonoBehaviour
         _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float("MenuFxAudio");
         _GameAudioSlider.value = _MemoryManagement.ReadData_float("GameAudio");
         _GameLanguageDropdown.value = _MemoryManagement.ReadData_int("SelectedLanguage");
-        LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));
+        _LanguageManager.LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));
       //  _GameQualityDropdown.value = PlayerPrefs.GetInt("SelectedQuality"); 
     }
     private void Update()
     {
-        _GameLanguageDropdown.onValueChanged.AddListener(LanguageSelection);
+        _GameLanguageDropdown.onValueChanged.AddListener(_LanguageManager.LanguageSelection);
+        _GameLanguageDropdown.value = _MemoryManagement.ReadData_int("SelectedLanguage");
     }
 
     /// <summary>
@@ -54,11 +56,6 @@ public class SettingsManager : MonoBehaviour
         QualitySettings.SetQualityLevel(SelectedQuality);
     }
 
-    public void LanguageSelection(int SelectionLanguage)
-    {
-        _MemoryManagement.SaveData_int("SelectedLanguage",SelectionLanguage);
-        LocalizationSettings.SelectedLocale=LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
-    }
 
     /// <summary>
     /// Kullanýcýdan gelen veriye göre ses seviyelerini kayýt eder

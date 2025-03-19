@@ -1784,61 +1784,73 @@ MonoBehaviour:
   - GroupIndex: 0
     ItemIndex: 0
     ItemName: "\u015Eapka 1"
+    LocalizationKey: Customize_Hat1
     Point: 250
     BuyingStatus: 0
   - GroupIndex: 0
     ItemIndex: 1
     ItemName: "\u015Eapka 2"
+    LocalizationKey: Customize_Hat2
     Point: 350
     BuyingStatus: 0
   - GroupIndex: 0
     ItemIndex: 2
     ItemName: "\u015Eapka 3"
+    LocalizationKey: Customize_Hat3
     Point: 450
     BuyingStatus: 0
   - GroupIndex: 0
     ItemIndex: 3
     ItemName: "\u015Eapka 4"
+    LocalizationKey: Customize_Hat4
     Point: 850
     BuyingStatus: 0
   - GroupIndex: 1
     ItemIndex: 0
     ItemName: Sopa 1
+    LocalizationKey: Customize_Stick1
     Point: 550
     BuyingStatus: 0
   - GroupIndex: 1
     ItemIndex: 1
     ItemName: Sopa 2
+    LocalizationKey: Customize_Stick2
     Point: 850
     BuyingStatus: 0
   - GroupIndex: 1
     ItemIndex: 2
     ItemName: Sopa 3
+    LocalizationKey: Customize_Stick3
     Point: 1150
     BuyingStatus: 0
   - GroupIndex: 2
     ItemIndex: 0
     ItemName: Tema 1
+    LocalizationKey: Customize_Theme1
     Point: 350
     BuyingStatus: 0
   - GroupIndex: 2
     ItemIndex: 1
     ItemName: Tema 2
+    LocalizationKey: Customize_Theme2
     Point: 450
     BuyingStatus: 0
   - GroupIndex: 2
     ItemIndex: 2
     ItemName: Tema 3
+    LocalizationKey: Customize_Theme3
     Point: 550
     BuyingStatus: 0
   - GroupIndex: 2
     ItemIndex: 3
     ItemName: Tema 4
+    LocalizationKey: Customize_Theme4
     Point: 650
     BuyingStatus: 0
   - GroupIndex: 2
     ItemIndex: 4
     ItemName: Tema 5
+    LocalizationKey: Customize_Theme5
     Point: 750
     BuyingStatus: 0
 --- !u!1 &1593860711

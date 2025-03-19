@@ -99,6 +99,30 @@ MonoBehaviour:
     m_Key: Settings_LanguagePanel_drpdwn_Language_Chinese
     m_Metadata:
       m_Items: []
+  - m_Id: 1080156445544448
+    m_Key: Customize_MidItemPanel_HatPanel_txt_NoHatText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1083036195950592
+    m_Key: Customize_MidItemPanel_SticksPanel_txt_NoStickText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1083631254441984
+    m_Key: Customize_MidItemPanel_ManColorPanel_txt_NoManColorText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084529082961920
+    m_Key: CustomizeShowAlertPurchase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084530735517696
+    m_Key: CustomizeShowAlertRecorded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084532123832320
+    m_Key: CustomizeShowAlertInsufficientFunds
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

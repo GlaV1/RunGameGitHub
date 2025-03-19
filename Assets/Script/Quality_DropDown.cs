@@ -7,7 +7,7 @@ using UnityEngine.Localization;
 
 public class Quality_DropDown : MonoBehaviour
 {
-    public TMP_Dropdown _GameLanguageDropdown;
+    public TMP_Dropdown _GameQualityDropdown;
     public LocalizedString[] localizedOptions;
     void Start()
     {
@@ -25,12 +25,12 @@ public class Quality_DropDown : MonoBehaviour
     }
     private void UpdateDropDown()
     {
-        _GameLanguageDropdown.ClearOptions();
+        _GameQualityDropdown.ClearOptions();
         foreach (var item in localizedOptions)
         {
             string translatedText = item.GetLocalizedString();
-            _GameLanguageDropdown.options.Add(new TMP_Dropdown.OptionData(translatedText));
+            _GameQualityDropdown.options.Add(new TMP_Dropdown.OptionData(translatedText));
         }
-        _GameLanguageDropdown.RefreshShownValue();
+        _GameQualityDropdown.RefreshShownValue();
     }
 }

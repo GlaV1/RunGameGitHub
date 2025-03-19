@@ -102,6 +102,30 @@ MonoBehaviour:
     m_Localized: Chinese
     m_Metadata:
       m_Items: []
+  - m_Id: 1080156445544448
+    m_Localized: No Hat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1083036195950592
+    m_Localized: No Stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1083631254441984
+    m_Localized: No Theme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084529082961920
+    m_Localized: Purchase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084530735517696
+    m_Localized: Recorded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084532123832320
+    m_Localized: insufficient funds
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -14,6 +14,8 @@ using System.Threading;
 using TMPro.EditorUtilities;
 using System.Linq;
 using OpenCover.Framework.Model;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 //using System.Diagnostics;
 
 
@@ -21,8 +23,11 @@ public class CustomizeManager : MonoBehaviour
 {
     [Header("Paneller")]
     public GameObject[] PanelProcess;
+    int ActiveCustomizePanelIndex = 0;//aktif panel
+
     [Header("Canvaslar")]   
     public GameObject[] CanvasProcess;
+
     [Header("Text")]
     public TextMeshProUGUI PointText;//dýþarýdan puan verilmesi
     public TextMeshProUGUI BuyingText;//dýþarýdan puan verilmesi
@@ -80,21 +85,55 @@ public class CustomizeManager : MonoBehaviour
     /////////
     MemoryManagement _MemoryManagement= new MemoryManagement();
     DataManager _DataManager = new DataManager();
+    LanguageManager _LanguageManager = new LanguageManager();   
     [Header("Ýtem Bilgi Ýþlemleri")]
     public List<ItemInformations> _ItemInformations = new List<ItemInformations>();
+
     /////////
 
-    //aktif panel
-    int ActiveCustomizePanelIndex = 0;
+
+    ////////Dil deðiþiklik Ýþlemþeri  
+    private string LocalizationCutomizeItemTableName = "Customize_Table"; //Ýtem Adlarýnýn tutulduðu tablolar
+    private string LocalizationCustomizeTextTableName="Game_Text";
+    public void UpdateLocalizedItemNames()
+    {
+        foreach (var item in _ItemInformations)
+        {
+            item.ItemName = LocalizationSettings.StringDatabase.GetLocalizedString(LocalizationCutomizeItemTableName, item.LocalizationKey);
+        }
+
+    }
+    private void OnEnable()
+    {
+        // Dil deðiþtiðinde isimleri tekrar güncelle
+        LocalizationSettings.SelectedLocaleChanged += UpdateNamesOnLanguageChange;
+    }
+
+    private void OnDisable()
+    {
+        LocalizationSettings.SelectedLocaleChanged -= UpdateNamesOnLanguageChange;
+    }
+
+    private void UpdateNamesOnLanguageChange(Locale locale)
+    {
+        UpdateLocalizedItemNames();
+    }
+    ////////Dil deðiþiklik Ýþlemþeri
+
+
+
     void Start()
     {
+        _LanguageManager.LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));
+        UpdateLocalizedItemNames();
         MakeControl(0,true);
         MakeControl(1,true);
         MakeControl(2,true);
         _MemoryManagement.SaveData_int("Point", 5000);
         PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
+        _DataManager.DataSave(_ItemInformations);
         _DataManager.DataUpload();
-        _ItemInformations=_DataManager.TransferList();        
+        _ItemInformations = _DataManager.TransferList();
     }
 
     //ana menü sahnesinin yüklenme iþlemleri
@@ -327,7 +366,7 @@ public class CustomizeManager : MonoBehaviour
                         else
                         {
                             HatButtons[0].interactable = false;
-                            HatText.text = "Þapka Yok";
+                            HatText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_HatPanel_txt_NoHatText");
                             BuyingText.text = "-";
                             BuyButton.interactable = false;
                         }
@@ -335,7 +374,7 @@ public class CustomizeManager : MonoBehaviour
                     else
                     {
                         HatButtons[0].interactable = false;
-                        HatText.text = "Þapka Yok";
+                        HatText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_HatPanel_txt_NoHatText");
                         BuyingText.text = "-";
                         BuyButton.interactable = false;
                     }
@@ -395,16 +434,16 @@ public class CustomizeManager : MonoBehaviour
                         else
                         {
                             StickButtons[0].interactable = false;
-                            StickText.text = "sopa yoktir";
-                            BuyingText.text = "sopa yok";
+                            StickText.text =_LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_SticksPanel_txt_NoStickText");
+                            BuyingText.text = "-";
                             BuyButton.interactable = false;
                         }
                     }
                     else
                     {
                         StickButtons[0].interactable = false;
-                        StickText.text = "sopa Yoktir";
-                        BuyingText.text = "sopa yok";
+                        StickText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_SticksPanel_txt_NoStickText"); 
+                        BuyingText.text = "-";
                         BuyButton.interactable = false;
                     }
                     if (stickindex != Sticks.Length - 1)
@@ -464,7 +503,7 @@ public class CustomizeManager : MonoBehaviour
                         else
                         {
                             ManColorButtons[0].interactable = false;
-                            BuyingText.text = "þapka yok";
+                            BuyingText.text = "-";
                             BuyButton.interactable = false;
                         }
                     }
@@ -474,7 +513,7 @@ public class CustomizeManager : MonoBehaviour
                         mats[0] = DefaultManColorMaterial;
                         _SkinnedMeshRenderer.materials = mats;
                         ManColorButtons[0].interactable = false;
-                        BuyingText.text = "þapka yok";
+                        BuyingText.text = "-";
                         BuyButton.interactable = false;
                     }
                     if (mancolorindex != ManColorMaterials.Length - 1)
@@ -591,11 +630,11 @@ public class CustomizeManager : MonoBehaviour
                     item.SetActive(false);
                 }
                 BuyButton.interactable = false;
-                BuyingText.text = "Satýn Al";
+                BuyingText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
                 if (process == true)
                 {
                     hatindex = -1;
-                    HatText.text = " Þapka Yok";
+                    HatText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_HatPanel_txt_NoHatText");
                 }
                 if (hatindex == Hats.Length - 1)
                 {
@@ -648,11 +687,11 @@ public class CustomizeManager : MonoBehaviour
                     item.SetActive(false);
                 }
                 BuyButton.interactable = false;
-                BuyingText.text = "Satýn Al";
+                BuyingText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
                 if (process == true)
                 {
                     stickindex = -1;
-                    StickText.text = "sopa yok";
+                    StickText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_SticksPanel_txt_NoStickText");
                     BuyButton.interactable = false;
                 }
 
@@ -702,11 +741,11 @@ public class CustomizeManager : MonoBehaviour
         {
             if (_MemoryManagement.ReadData_int("ActiveManColor") == -1)
             {
-                BuyingText.text = "SATIN AL";
+                BuyingText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
                 if (process == true)
                 {
                     mancolorindex = -1;
-                    ManColorText.text = "renk yok";
+                    ManColorText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_ManColorPanel_txt_NoManColorText");
 
                     BuyButton.interactable = false; ;
                 }
@@ -867,7 +906,7 @@ public class CustomizeManager : MonoBehaviour
             if (_ItemInformations[purchasecontrolindex].Point>0)
             {
                 //
-                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + "";
+                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
                 BuyButton.interactable = true;
                 CustomizeSaveButton.interactable = false;
             }           
@@ -891,19 +930,19 @@ public class CustomizeManager : MonoBehaviour
         switch (process)
         {
             case 0:
-                AlertText.text = "Satýn Alýndý";
+                AlertText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeShowAlertPurchase");
                 AlertText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 AlertText.gameObject.SetActive(false);
                 break;
             case 1:
-                AlertText.text = "Kaydedildi";
+                AlertText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeShowAlertRecorded");
                 AlertText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 AlertText.gameObject.SetActive(false);
                 break;
             case 2:
-                AlertText.text = "Yetersiz bakiye";
+                AlertText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeShowAlertInsufficientFunds");
                 AlertText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1.5f);
                 AlertText.gameObject.SetActive(false);
@@ -925,8 +964,5 @@ public class CustomizeManager : MonoBehaviour
         CustomizeSaveButton.interactable = true;
         PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
         StartCoroutine(ShowAlert(0));
-        Debug.Log("satýn alýndý");
-    }
-
-     
+    }  
 }

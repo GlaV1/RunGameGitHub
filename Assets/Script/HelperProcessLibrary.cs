@@ -7,6 +7,7 @@ using Google.Protobuf;
 using System.IO;
 using ProtoBuf;
 using UnityEngine.Playables;
+using UnityEngine.Localization.Settings;
 
 namespace rgame
 {
@@ -297,8 +298,9 @@ namespace rgame
         [ProtoMember(1)] public int GroupIndex;//hangi modelde olduðumuzu söyleyecek(örneðin; þapkalar,sopalar vs.)
         [ProtoMember(2)] public int ItemIndex;//item gruplarýnda kaçýncý itemde olduðumuzu söyleyecek(örn; sopa1,sopa2)
         [ProtoMember(3)] public string ItemName;//item adýný verir
-        [ProtoMember(4)] public int Point;//toplam puan
-        [ProtoMember(5)] public bool BuyingStatus;//item satýn alýnmýþmý  diye kontrol eder
+        [ProtoMember(4)] public string LocalizationKey;//item adýný verir
+        [ProtoMember(5)] public int Point;//toplam puan
+        [ProtoMember(6)] public bool BuyingStatus;//item satýn alýnmýþmý  diye kontrol eder
     }
 
     public class DataManager
@@ -349,6 +351,21 @@ namespace rgame
             return IntermediateItemInformation;
         }
 
+    }
+
+    public class LanguageManager
+    {
+        MemoryManagement _MemoryManagement = new MemoryManagement();
+        public void LanguageSelection(int SelectionLanguage)
+        {
+            _MemoryManagement.SaveData_int("SelectedLanguage", SelectionLanguage);
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
+        }
+
+        public string BringText(string TableName ,string key)
+        {
+          return  LocalizationSettings.StringDatabase.GetLocalizedString(TableName,key);
+        }
     }
 }
 

@@ -102,6 +102,30 @@ MonoBehaviour:
     m_Localized: "\xC7ince"
     m_Metadata:
       m_Items: []
+  - m_Id: 1080156445544448
+    m_Localized: "\u015Eapka Yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1083036195950592
+    m_Localized: Sopa Yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1083631254441984
+    m_Localized: Teme Yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084529082961920
+    m_Localized: "Sat\u0131n Al\u0131nd\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084530735517696
+    m_Localized: Kaydedildi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1084532123832320
+    m_Localized: Yetersiz Bakiye
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
