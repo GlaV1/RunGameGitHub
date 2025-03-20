@@ -15,122 +15,126 @@ MonoBehaviour:
   m_TableCollectionName: Game_Text
   m_TableCollectionNameGuidString: 08490f6ddcd0a3544a22c6d42427fff6
   m_Entries:
-  - m_Id: 1260631429120
-    m_Key: Settings_MenuVolumePanel_txt_MenuAudio
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2026771386368
-    m_Key: Settings_MenuFxVolumePanel_txt_MenuFxAudio
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2028931452928
-    m_Key: Settings_GameVolumePanel_txt_GameAudio
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2030865027072
-    m_Key: Settings_GameQualityPanel_txt_GameQuality
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2033977200640
-    m_Key: Settings_LanguagePanel_txt_Language
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4053970784256
-    m_Key: MainMenu_ButtonPanel_btn_Play
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4292546990080
-    m_Key: MainMenu_ButtonPanel_btn_Customize
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4380623179776
-    m_Key: MainMenu_ButtonPanel_btn_LevelSelect
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4435157520384
-    m_Key: MainMenu_ButtonPanel_btn_Market
-    m_Metadata:
-      m_Items: []
-  - m_Id: 4486516772864
-    m_Key: MainMenu_ButtonPanel_btn_Settings
-    m_Metadata:
-      m_Items: []
-  - m_Id: 5423587201024
-    m_Key: LevelSelect_TopBarPanel_txt_LevelSelect
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6192549924864
-    m_Key: Customize_BottomPanel_btn_CustomizeSave
-    m_Metadata:
-      m_Items: []
-  - m_Id: 6347504291840
+  - m_Id: 27963232256
     m_Key: Customize_BottomPanel_btn_Buy
     m_Metadata:
       m_Items: []
-  - m_Id: 744466075684864
-    m_Key: Settings_GameQualityPanel_drpdwn_Quality_Low
+  - m_Id: 30353985536
+    m_Key: Customize_BottomPanel_btn_CustomizeSave
     m_Metadata:
       m_Items: []
-  - m_Id: 748280337993728
-    m_Key: Settings_GameQualityPanel_drpdwn_Quality_Medium
-    m_Metadata:
-      m_Items: []
-  - m_Id: 748378790891520
-    m_Key: Settings_GameQualityPanel_drpdwn_Quality_High
-    m_Metadata:
-      m_Items: []
-  - m_Id: 748456742031360
-    m_Key: Settings_GameQualityPanel_drpdwn_Quality_VeryHigh
-    m_Metadata:
-      m_Items: []
-  - m_Id: 751458915782656
-    m_Key: Settings_LanguagePanel_drpdwn_Language_English
-    m_Metadata:
-      m_Items: []
-  - m_Id: 751628671848448
-    m_Key: Settings_LanguagePanel_drpdwn_Language_Turkish
-    m_Metadata:
-      m_Items: []
-  - m_Id: 751770401574912
-    m_Key: Settings_LanguagePanel_drpdwn_Language_Spanish
-    m_Metadata:
-      m_Items: []
-  - m_Id: 751823740538880
-    m_Key: Settings_LanguagePanel_drpdwn_Language_Chinese
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1080156445544448
+  - m_Id: 32065261568
     m_Key: Customize_MidItemPanel_HatPanel_txt_NoHatText
     m_Metadata:
       m_Items: []
-  - m_Id: 1083036195950592
-    m_Key: Customize_MidItemPanel_SticksPanel_txt_NoStickText
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1083631254441984
+  - m_Id: 33935921152
     m_Key: Customize_MidItemPanel_ManColorPanel_txt_NoManColorText
     m_Metadata:
       m_Items: []
-  - m_Id: 1084529082961920
+  - m_Id: 38629347328
+    m_Key: Customize_MidItemPanel_SticksPanel_txt_NoStickText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40290291712
+    m_Key: CustomizeItemPurchaseControlText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40965574656
+    m_Key: CustomizeShowAlertInsufficientFunds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41850572800
     m_Key: CustomizeShowAlertPurchase
     m_Metadata:
       m_Items: []
-  - m_Id: 1084530735517696
+  - m_Id: 42559410176
     m_Key: CustomizeShowAlertRecorded
     m_Metadata:
       m_Items: []
-  - m_Id: 1084532123832320
-    m_Key: CustomizeShowAlertInsufficientFunds
+  - m_Id: 43285024768
+    m_Key: LevelSelect_TopBarPanel_txt_LevelSelect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44019027968
+    m_Key: MainMenu_ButtonPanel_btn_Customize
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44769808384
+    m_Key: MainMenu_ButtonPanel_btn_LevelSelect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45512200192
+    m_Key: MainMenu_ButtonPanel_btn_Market
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46271369216
+    m_Key: MainMenu_ButtonPanel_btn_Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46963429376
+    m_Key: MainMenu_ButtonPanel_btn_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700167557120
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 701878833152
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703472668672
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 704965840896
+    m_Key: Settings_GameQualityPanel_drpdwn_Quality_VeryHigh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789464289280
+    m_Key: Settings_GameQualityPanel_txt_GameQuality
+    m_Metadata:
+      m_Items: []
+  - m_Id: 791804710912
+    m_Key: Settings_GameVolumePanel_txt_GameAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 795416006656
+    m_Key: Settings_LanguagePanel_drpdwn_Language_Chinese
+    m_Metadata:
+      m_Items: []
+  - m_Id: 861186887680
+    m_Key: Settings_LanguagePanel_drpdwn_Language_English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 863384702976
+    m_Key: Settings_LanguagePanel_drpdwn_Language_Spanish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 865037258752
+    m_Key: Settings_LanguagePanel_drpdwn_Language_Turkish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 926899048448
+    m_Key: Settings_LanguagePanel_txt_Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 943865008128
+    m_Key: Settings_MenuFxVolumePanel_txt_MenuFxAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 961351061504
+    m_Key: Settings_MenuVolumePanel_txt_MenuAudio
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 666814593345781786
+    rid: 666814684502949888
   references:
     version: 2
     RefIds:
-    - rid: 666814593345781786
+    - rid: 666814684502949888
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1742127645457
+        m_CustomEpoch: 1742473396244

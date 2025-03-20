@@ -830,7 +830,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
     m_TableEntryReference:
-      m_KeyId: 6347504291840
+      m_KeyId: 27963232256
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -3415,7 +3415,7 @@ MonoBehaviour:
     m_TableReference:
       m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
     m_TableEntryReference:
-      m_KeyId: 6192549924864
+      m_KeyId: 30353985536
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -5164,7 +5164,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2077862449
