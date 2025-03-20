@@ -14,6 +14,8 @@ public class Character : MonoBehaviour
     public GameObject WillGoWarCharacter;//karakterlerin gideceði yer
     public Slider _Slider;//slider
     public GameObject EndGame;//finish line
+    public double MainCharacterSpeed = 1.2;
+    public Animator _MainCharacterAnimator;
 
     private void Start()
     {
@@ -64,6 +66,11 @@ public class Character : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Awake()
+    {
+        _MainCharacterAnimator.speed = ((float)MainCharacterSpeed);
     }
 
 

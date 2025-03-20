@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+
       ItemCheck();
     }
     /// <summary>

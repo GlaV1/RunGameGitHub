@@ -93,8 +93,8 @@ public class CustomizeManager : MonoBehaviour
 
 
     ////////Dil deðiþiklik Ýþlemþeri  
-    private string LocalizationCutomizeItemTableName = "Customize_Table"; //Ýtem Adlarýnýn tutulduðu tablolar
-    private string LocalizationCustomizeTextTableName="Game_Text";
+    private string LocalizationCutomizeItemTableName = "Customize_Table"; //Ýtem textlerinin tutulduðu tablo
+    private string LocalizationCustomizeTextTableName="Game_Text"; //oyun textlerinin tutulduðu tablo
     public void UpdateLocalizedItemNames()
     {
         foreach (var item in _ItemInformations)
