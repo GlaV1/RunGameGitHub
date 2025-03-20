@@ -1,3 +1,4 @@
+using rgame;
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
@@ -7,13 +8,28 @@ using UnityEngine.AI;
 public class EmptyChracter : MonoBehaviour
 {
     public SkinnedMeshRenderer _Renderer;
-    public Material _WillGivenMaterial; // boþ karaktere dýþarýdan verilcecek materyal
+     // boþ karaktere dýþarýdan verilcecek materyal
     public NavMeshAgent _NavMesh; //boþ karaktere dýþarýdan verilecek ýolan nav mesh agent
     public Animator _Animator; //dýþarýdan verilecek animatör
     public GameObject Target;//dýþarýdan verilecek olan hedef
     bool CharacterContact; //boþ karaktere temas varmý deðiþkeni
     public GameManager _GameManager;// gamemanergar scripti dýþarýdan verilir 
 
+    [Header("Sapkalar")]
+    public GameObject[] Hats;
+
+    [Header("Sopalar")]
+    public GameObject[] Sticks;//sopa dizisi oluþturuluyor
+
+    [Header("Temalar")]
+    public Material[] ManColorMaterials;//karakter materyalleri oluþturuluyor
+    public Material DefaultManColorMaterial;
+    public Material _WillGivenMaterial;
+
+    [Header("Karakter Ýþlemleri")]
+    public SkinnedMeshRenderer _SkinnedMeshRenderer;
+
+    MemoryManagement _MemoryManagement = new MemoryManagement();
     //karaktere posizyon verme iþlemleri
     private void LateUpdate()
     {
@@ -36,6 +52,13 @@ public class EmptyChracter : MonoBehaviour
         _Animator.SetBool("Attack", true); //animatorde ki saldýr iþlemi aktif edilir
         gameObject.tag = "LowerCharacters";//boþ karakterin tagý alt karakter olarak deðiþtirilir
         GameManager.LiveCharacterNum++;//gamemanager scriptindeki anlýk karakter sayýsýnda +1 deðiþimi yapýlýr
+        if (_GameManager.LowerCharacterItem==true)
+        {
+            if (gameObject.tag == "LowerCharacters" && _Animator.GetBool("Attack") == true)
+            {
+                ItemCheck();
+            }
+        }
     }
 
     Vector3 GivePosition() // y eksen bileþeninde .23 deðer verir x ve z ekseninde deðiþklik yapýlmaz(efektler için)
@@ -82,6 +105,30 @@ public class EmptyChracter : MonoBehaviour
         {
             _GameManager.ExtinctionnEffectRun(GivePosition(), true);//gamemanager scriptinden yok olma efektinin methodunu çaðýrýr ve gerekli deðerleri gönderir
             gameObject.SetActive(false);//objeyi aktifliðini kapatýr
+        }
+    }
+
+    private void ItemCheck()
+    {
+        if (_MemoryManagement.ReadData_int("ActiveHat")!=-1)
+        {
+            Hats[_MemoryManagement.ReadData_int("ActiveHat")].SetActive(true);
+        }
+        if (_MemoryManagement.ReadData_int("ActiveStick")!=-1)
+        {
+            Sticks[_MemoryManagement.ReadData_int("ActiveStick")].SetActive(true);
+        }
+        if (_MemoryManagement.ReadData_int("ActiveManColor") != -1)
+        {
+            Material[] mats = _SkinnedMeshRenderer.materials;
+            mats[0] = ManColorMaterials[_MemoryManagement.ReadData_int("ActiveManColor")];
+            _SkinnedMeshRenderer.materials = mats;
+        }
+        else
+        {
+            Material[] mats = _SkinnedMeshRenderer.materials;
+            mats[0] = DefaultManColorMaterial;
+            _SkinnedMeshRenderer.materials = mats;
         }
     }
 }
