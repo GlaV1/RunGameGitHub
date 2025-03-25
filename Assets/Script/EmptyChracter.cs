@@ -28,6 +28,8 @@ public class EmptyChracter : MonoBehaviour
 
     [Header("Karakter Ýþlemleri")]
     public SkinnedMeshRenderer _SkinnedMeshRenderer;
+    public double EmptyCharacterSpeed = 1.2;
+    public Animator _EmptyCharacterAnimator;
 
     MemoryManagement _MemoryManagement = new MemoryManagement();
     //karaktere posizyon verme iþlemleri
@@ -61,6 +63,10 @@ public class EmptyChracter : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _EmptyCharacterAnimator.speed = (float)(EmptyCharacterSpeed);
+    }
     Vector3 GivePosition() // y eksen bileþeninde .23 deðer verir x ve z ekseninde deðiþklik yapýlmaz(efektler için)
     {
         return new Vector3(transform.position.x, .23f, transform.position.z);

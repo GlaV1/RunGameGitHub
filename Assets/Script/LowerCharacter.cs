@@ -22,6 +22,8 @@ public class LowerCharacter : MonoBehaviour
 
     [Header("Karakter Ýþlemleri")]
     public SkinnedMeshRenderer _SkinnedMeshRenderer;
+    public double LowerCharacterSpeed = 1.2;
+    public Animator _LowerCharacterAnimator;
 
     MemoryManagement _MemoryManagement= new MemoryManagement();
 
@@ -32,6 +34,7 @@ public class LowerCharacter : MonoBehaviour
         {
             ItemCheck();
         }
+        _LowerCharacterAnimator.speed = ((float)LowerCharacterSpeed);
         
     }
     void Start()

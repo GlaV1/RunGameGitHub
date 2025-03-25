@@ -136,37 +136,56 @@ public class CustomizeManager : MonoBehaviour
         _ItemInformations = _DataManager.TransferList();
     }
 
-    //ana menü sahnesinin yüklenme iþlemleri
+    /// <summary>
+    /// Ana mEnüye dönme iþlemleri
+    /// </summary>
     public void BackToMainMenu()
     {
         _DataManager.DataSave(_ItemInformations);
         SceneManager.LoadScene(0);//menü sahnesinin yüklenme iþlemi
     }
-
+    /// <summary>
+    /// Þapka Ýtemlerinde gezinme
+    /// </summary>
+    /// <param name="direction">Yön belirtme</param>
     public void HatDirection(string direction)
     {
         PublicDirectionButtons(0, direction);      
     }
-
+    /// <summary>
+    /// Sopa itemlerinde gezinme
+    /// </summary>
+    /// <param name="direction">Yön belirtme</param>
     public void StickDirection(string direction)
     {
         PublicDirectionButtons(1, direction);
     }
-   
+   /// <summary>
+   /// karakter temalarýnda gezinme
+   /// </summary>
+   /// <param name="direction">yön belirtme</param>
     public void ManColorDirection(string direction)
     {
         PublicDirectionButtons(2, direction);
     }
 
+    /// <summary>
+    /// Þapka item renklerinde gezinme
+    /// </summary>
+    /// <param name="direction">Yön Belirtme</param>
     public void HatColorDirection(string direction)
     {
         PublicItemColorDirection(0,direction);
     }
-
+    /// <summary>
+    /// Sopa item renklerinde gezinme
+    /// </summary>
+    /// <param name="direction">Yön Belirtme</param>
     public void StickColorDirection(string direction)
     {
         PublicItemColorDirection(1,direction);
     }
+
 
     /// <summary>
     ///  Karakter özelleþtirme itemlerinin RENKleri  arasýnda gezinme iþlemlerini indexlere göre yapar

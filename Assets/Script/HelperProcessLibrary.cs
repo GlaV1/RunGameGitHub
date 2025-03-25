@@ -221,7 +221,7 @@ namespace rgame
         }
     }
     
-    public class MemoryManagement //kaydedilecek verilerin iþlemleri
+    public class MemoryManagement //Player pref verileri kaydetme iþlemleri iþlemleri
     {
         //Verilerin string,int,float olarak keydedildiði yer
         public void SaveData_string(string Key,string Value)
