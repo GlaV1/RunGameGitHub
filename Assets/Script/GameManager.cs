@@ -158,20 +158,19 @@ public class GameManager : MonoBehaviour
                 MainCharacter.GetComponent<Animator>().SetBool("Attack", false);
                 if (LiveCharacterNum < HowMuchEnemy || LiveCharacterNum == HowMuchEnemy)
                 {
-                    //kaybettin canvasý hazýrlanacak
+                    Panels[4].SetActive(true);
                     Debug.Log("lose");
                     _MemoryManagement.SaveData_int("Point",99);
                 }
                 else
                 {
-                    //kazandýn canvasý hazýrlanacak
                     Debug.Log("Win");
                     _MemoryManagement.SaveData_int("Point", _MemoryManagement.ReadData_int("Point") +799);
                     if (_Scene.buildIndex== _MemoryManagement.ReadData_int("LastLevel"))
                     {
                         _MemoryManagement.SaveData_int("LastLevel",_MemoryManagement.ReadData_int("LastLevel")+1);
                     }
-                    
+                    Panels[3].SetActive(true);
                 }
             }
         }
@@ -311,7 +310,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Oyun Durunca açýlan duraklama menüsündeki islemleri kontrol eder
+    /// Oyun Durunca açýlan duraklama menüsündeki islemleri kontrol eder 0=play||1=replay|2=settings|3=gotomainmenu|4=exit|5=next level
     /// </summary>
     /// <param name="process">Kullanýcýnýn Hangi Ýþlemi Yaptýðýnýn Bilgisini alýr</param>
     public void PauseProcess(int process)
@@ -346,6 +345,9 @@ public class GameManager : MonoBehaviour
                     item.gameObject.SetActive(false);
                 }
                 Panels[2].gameObject.SetActive(true);
+                break;
+            case 5:
+                SceneManager.LoadScene(_Scene.buildIndex + 1);
                 break;
         }
     }
@@ -395,4 +397,5 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
 }

@@ -127,6 +127,14 @@ MonoBehaviour:
     m_Key: Settings_MenuVolumePanel_txt_MenuAudio
     m_Metadata:
       m_Items: []
+  - m_Id: 2730836180668416
+    m_Key: Level1_WonPanel_MidPanel_txt_WonText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2731105857638400
+    m_Key: Level1_LosePanel_MidPanel_txt_LostText
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

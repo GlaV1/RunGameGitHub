@@ -130,6 +130,14 @@ MonoBehaviour:
     m_Localized: Buy
     m_Metadata:
       m_Items: []
+  - m_Id: 2730836180668416
+    m_Localized: Win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2731105857638400
+    m_Localized: Lost
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
