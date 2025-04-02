@@ -6,15 +6,22 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    
 
+    [Header("GameManager")]
     public GameManager _GameManager;//Oyun yöneticisi
+    [Header("Kamera")]
     public CameraManagement _Camera;//kamera
+    [Header("Sona Geldik mi")]
     public bool ComeToEnd;//sona geldik mi kontrol yapan deðiþken
+    [Header("Savas Alani")]
     public GameObject WillGoWarCharacter;//karakterlerin gideceði yer
+    [Header("Slider")]
     public Slider _Slider;//slider
+    [Header("Bitis Cizgisi")]
     public GameObject EndGame;//finish line
+    [Header("Ana Karakter Hýz")]
     public double MainCharacterSpeed = 1.2;
+    [Header("Ana Karakter Animator")]
     public Animator _MainCharacterAnimator;
 
     private void Start()

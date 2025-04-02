@@ -7,12 +7,16 @@ using UnityEngine.AI;
 
 public class EmptyChracter : MonoBehaviour
 {
+    [Header("SkinMesh")]
     public SkinnedMeshRenderer _Renderer;
-     // boþ karaktere dýþarýdan verilcecek materyal
+    [Header("NavMesh")]
     public NavMeshAgent _NavMesh; //boþ karaktere dýþarýdan verilecek ýolan nav mesh agent
+    [Header("Animator")]
     public Animator _Animator; //dýþarýdan verilecek animatör
+    [Header("Targer")]
     public GameObject Target;//dýþarýdan verilecek olan hedef
     bool CharacterContact; //boþ karaktere temas varmý deðiþkeni
+    [Header("GameManager")]
     public GameManager _GameManager;// gamemanergar scripti dýþarýdan verilir 
 
     [Header("Sapkalar")]

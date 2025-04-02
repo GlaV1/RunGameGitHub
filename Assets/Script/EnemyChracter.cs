@@ -5,9 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyChracter : MonoBehaviour
 {
+    [Header("Saldiri Hedefi")]
     public GameObject Attack_Target;//dýþarýdan saldýrý hedefi verilir
+    [Header("NavMesh")]
     public NavMeshAgent _NavMesh;//dýþarýdan nav mash agent verilir
+    [Header("Animator")]
     public Animator _Animator;//dýþarýdan animatör verilir
+    [Header("GameManager")]
     public GameManager _GameManager; // dýþarýdan gamemanager scripti çaðýrýlýr
     bool AttackStarted;//saldýrý baþladý mý
     

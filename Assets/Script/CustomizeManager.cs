@@ -120,8 +120,6 @@ public class CustomizeManager : MonoBehaviour
     }
     ////////Dil deðiþiklik Ýþlemþeri
 
-
-
     void Start()
     {
         _LanguageManager.LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));

@@ -19,19 +19,17 @@ public class MainMenuManager : MonoBehaviour
     {
         _MemoryManagement.Check();
         _DataManager.FirstSave(_ItemInformations);
-       
     }
 
 
     public void UploadScene(int index) //sahne yükleme isþlemleri
     {
-        // SceneManager.LoadScene(index);
         sceneLoading.LoadScene(index);
     }
 
     public void Play() //oyna butonu iþlemleri
     {
-       // StartCoroutine(LoadAsync(_MemoryManagement.ReadData_int("LastLevel")));
+        sceneLoading.LoadScene(_MemoryManagement.ReadData_int("LastLevel"));  
     }
 
    

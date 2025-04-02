@@ -12,9 +12,13 @@ public class GameManager : MonoBehaviour
     public static int LiveCharacterNum = 1;// anlýk yaþayan karakter sayýsý (ana karakterden dolayý 1 e eþittir)
     [Header("AltKarakterler")]
     public List<GameObject> LowerCharacters; //dýþarýdan karakterlerin verileceði liste
+    [Header("Olusma Efekti")]
     public List<GameObject> FormationEffect; // dýþarýdan oluþma efektlerinin verileceði liste
+    [Header("Yok Olma Efekti")]
     public List<GameObject> ExtinctionnEffect; // dýþarýdan yok olma efektlerinin verileceði liste
+    [Header("Ezilme efekti")]
     public List<GameObject> ManStainsEffect; //// dýþarýdan ezilme efektlerinin verileceði liste
+    [Header("Ana Karakter")]
     public GameObject MainCharacter; //dýþarýdan ana karakterimizin verileceði obje
     HelperProcessLibrary _HelperLibrary = new HelperProcessLibrary();// sýnýf tanýmlamalarý
     MemoryManagement _MemoryManagement = new MemoryManagement();// sýnýf tanýmlamalarý
@@ -66,12 +70,10 @@ public class GameManager : MonoBehaviour
     public Slider _MenuFxAudioSlider;
     public Slider _GameAudioSlider;
 
-
-
-
     ////
 
     Scene _Scene;
+
     /// <summary>
     /// sahne baþladýðýndan olmasý gereken Ýþlemler Düþman Karakterlerini aktif eder sahneyi yükler. Ses ayalarýný kayýt dosyasýndan okur ve getirir
     /// </summary>
@@ -89,7 +91,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-
       ItemCheck();
     }
     /// <summary>

@@ -5,16 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MarketManager : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void BackToMainMenu()//ana menü sahnesinin yüklenme iþlemleri
     {
         SceneManager.LoadScene(0);
