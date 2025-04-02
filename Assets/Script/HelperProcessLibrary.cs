@@ -11,9 +11,18 @@ using UnityEngine.Localization.Settings;
 
 namespace rgame
 {
-    public class HelperProcessLibrary // karakterimizin çoðalma iþlermleri
+    /// <summary>
+    /// Ana karakterter çoðlan veya eksilen alt karakter iþlemleri
+    /// </summary>
+    public class HelperProcessLibrary 
     {
-        //çarpma iþlemi
+        /// <summary>
+        /// Çarpma Ýþlemi
+        /// </summary>
+        /// <param name="incomingnum">Gelen Ýþlem sayýsý(Karakterin çarptýðý sayýlar)</param>
+        /// <param name="Characters">Ýþlem Yapýlan Karakter listesi</param>
+        /// <param name="newposition">Oluþacaðý pozisyon</param>
+        /// <param name="FormationEffects">Kullanýlacak efekt(Oluþma efekti)</param>
         public void MultiplacationClass(int incomingnum, List<GameObject> Characters, Transform newposition, List<GameObject> FormationEffects)
         {                           
             int LoopNumber = (GameManager.LiveCharacterNum * incomingnum) - GameManager.LiveCharacterNum;
@@ -48,8 +57,14 @@ namespace rgame
                 }
             }
             GameManager.LiveCharacterNum *= incomingnum;
-        } 
-        //çýkarma iþlemi
+        }
+        
+        /// <summary>
+        /// Çýkartma Ýþlemi
+        /// </summary>
+        /// <param name="incomingnum">Gelen Ýþlem sayýsý(Karakterin çarptýðý sayýlar)</param>
+        /// <param name="Characters">Ýþlem Yapýlan Karakter listesi</param>
+        /// <param name="ExtinctionnEffects">Kullanýlacak Efekt(yok olma efekti)</param>
         public void ExtractionClass(int incomingnum, List<GameObject> Characters, List<GameObject> ExtinctionnEffects)
         {
             if (GameManager.LiveCharacterNum < incomingnum)
@@ -109,7 +124,13 @@ namespace rgame
                 GameManager.LiveCharacterNum -= incomingnum;
             }
         }
-        //bölme iþlemi
+       
+        /// <summary>
+        /// Bölme ÝÞlemi
+        /// </summary>
+        /// <param name="incomingnum">Gelen Ýþlem sayýsý(Karakterin çarptýðý sayýlar)</param>
+        /// <param name="Characters">Ýþlem yapýlan karakter listesi</param>
+        /// <param name="ExtinctionnEffects">Kullanýlacak efekt(yok olma efekti)</param>
         public void DivisionClass(int incomingnum, List<GameObject> Characters, List<GameObject> ExtinctionnEffects)
         {
             if (GameManager.LiveCharacterNum <= incomingnum)
@@ -184,7 +205,14 @@ namespace rgame
                 }
             }
         }
-        //toplama iþlemi
+        
+        /// <summary>
+        /// Toplama iþlemi
+        /// </summary>
+        /// <param name="incomingnum">Gelen Ýþlem sayýsý(Karakterin çarptýðý sayýlar)</param>
+        /// <param name="Characters">iþlem yapýlan karakter listesi</param>
+        /// <param name="newposition">Oluþacak karakterin oluþmasý gerekn posizyon</param>
+        /// <param name="FormationEffects">kullanýlacak efekt(Oluþma efekti)</param>
         public void CollectionClass(int incomingnum, List<GameObject> Characters, Transform newposition, List<GameObject> FormationEffects)
         {
             int sayi = 0;
@@ -303,9 +331,15 @@ namespace rgame
         [ProtoMember(6)] public bool BuyingStatus;//item satýn alýnmýþmý  diye kontrol eder
     }
 
+    /// <summary>
+    /// veri kaydetme ve geri yükleme iþlemleri
+    /// </summary>
     public class DataManager
     {
-
+        /// <summary>
+        /// Eðer oyunun hiç kaydý bulunmadýysa yapýlan ilk kayýt
+        /// </summary>
+        /// <param name="_ItemInformation">Ýtem  bilgi listesi</param>
         public void FirstSave(List<ItemInformations> _ItemInformation)
         {
             string filepath = Application.persistentDataPath + "/GameData.dat";
@@ -319,6 +353,10 @@ namespace rgame
            
         }
 
+        /// <summary>
+        /// eðer ilk kayýt var ise üstüne yazma(kaydetme) iþlemi
+        /// </summary>
+        /// <param name="_ItemInformation">Ýtem  bilgi listesi</param>
         public void DataSave(List<ItemInformations> _ItemInformation)
         {
             string filepath = Application.persistentDataPath + "/GameData.dat";
@@ -330,6 +368,9 @@ namespace rgame
 
 
         List<ItemInformations> IntermediateItemInformation;
+        /// <summary>
+        /// Verileri Geri yükleme(Upload etme iþlemleri)
+        /// </summary>
         public void DataUpload()
         {
             string filepath = Application.persistentDataPath + "/GameData.dat";
@@ -353,15 +394,27 @@ namespace rgame
 
     }
 
+    /// <summary>
+    /// Dil Dönüþümleri için Kullanýlýr
+    /// </summary>
     public class LanguageManager
     {
         MemoryManagement _MemoryManagement = new MemoryManagement();
+        /// <summary>
+        /// Seçilen Dili etkin yapar ve sahnelerde uygular
+        /// </summary>
+        /// <param name="SelectionLanguage">Seçilen Dil indexi</param>
         public void LanguageSelection(int SelectionLanguage)
         {
             _MemoryManagement.SaveData_int("SelectedLanguage", SelectionLanguage);
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
         }
-
+        /// <summary>
+        /// Ýstenen bir metni ilgili tablodaki ilgili keyi kullanarak DÝlini deðiþtirme
+        /// </summary>
+        /// <param name="TableName">Ýlgili Localizationun Tablo Adý</param>
+        /// <param name="key">Ýlgili localization tablosundaki iþlem yapýlmak istenen key</param>
+        /// <returns></returns>
         public string BringText(string TableName ,string key)
         {
           return  LocalizationSettings.StringDatabase.GetLocalizedString(TableName,key);

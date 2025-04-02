@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+   
     /// <summary>
     /// Savaþ Durumu fonksiyonu eðer sona gelindiyse Karakterlerin Attack animasyonunu aktif eder
     /// </summary>
