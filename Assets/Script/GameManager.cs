@@ -29,16 +29,6 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver; // oyun bitti mi
     bool ComeToEnd; // Sona geldik mi 
     
-    [Header("Sapkalar")]
-    public GameObject[] Hats;
-    
-    [Header("Sopalar")]
-    public GameObject[] Sticks;//sopa dizisi oluþturuluyor
-
-    [Header("Temalar")]
-    public Material[] ManColorMaterials;//karakter materyalleri oluþturuluyor
-    public Material DefaultManColorMaterial;
-
     [Header("Karakter Ýþlemleri")]
     public SkinnedMeshRenderer _SkinnedMeshRenderer;
 
@@ -46,19 +36,7 @@ public class GameManager : MonoBehaviour
     public bool LowerCharacterItem=false;
 
     //
-    [Header("ITEM ISLEMLERI")]
-
-    [Header("Item Renk Adlarý")]
-    public List<string> HatColorName;
-    public List<string> StickColorName;
-
-    [Header("Sapka renk islemleri")]
-    public Material HatColorMaterial;
-    public Material DefaultHatColorMaterial;
-    [Header("Sopa renk islemleri")]
-    public Material StickColorMaterial;
-    public Material DefaultStickColorMaterial;
-
+    
     //
     [Header("PAUSE ISLEMLERI")]
 
@@ -91,7 +69,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-      ItemCheck();
     }
     /// <summary>
     /// Düþman Karakterleri ortaya çýkarma iþlemi
@@ -193,7 +170,7 @@ public class GameManager : MonoBehaviour
                 item.SetActive(true);
                 item.transform.position = effect_position;
                 item.GetComponent<ParticleSystem>().Play();
-                item.GetComponent<AudioSource>().Play();
+               // item.GetComponent<AudioSource>().Play();
                 if (Status==false)
                 {
                     LiveCharacterNum--;
@@ -235,72 +212,13 @@ public class GameManager : MonoBehaviour
         {
             if (item.activeInHierarchy)
             {
-                item.GetComponent<EnemyChracter>().AnimationRun();
+                item.GetComponent<EnemyCharacter>().AnimationRun();
             }
         }
         ComeToEnd = true;
         WarSituation();
     }
    
-    /// <summary>
-    /// Karakter özelleþitirme sayfasýnda Deðiþtirilen item renklerini kayýt dosyasýndan okur ve karkterlere uygular
-    /// </summary>
-    public void ItemColorCheck()
-    {
-        Color NewColor;
-        if (_MemoryManagement.ReadData_int("ActiveHatColor") !=-1)
-        {
-            if (ColorUtility.TryParseHtmlString(HatColorName[_MemoryManagement.ReadData_int("ActiveHatColor")], out NewColor))
-            {
-                HatColorMaterial.color = NewColor;
-            }
-        }
-        else
-        {
-            HatColorMaterial.color = DefaultHatColorMaterial.color;
-        }
-
-        if (_MemoryManagement.ReadData_int("ActiveStickColor") != -1)
-        {
-            StickColorMaterial.color = DefaultStickColorMaterial.color;
-        }
-        else
-        {
-            if (ColorUtility.TryParseHtmlString(StickColorName[_MemoryManagement.ReadData_int("ActiveStickColor")], out NewColor))
-            {
-                StickColorMaterial.color = NewColor;
-            }
-        }
-    }
-    
-    /// <summary>
-    /// Customize Sayfasýnda özelleþtirilen karakterdek itemleri kayýt dosyasýndan okur ve karaktere özelleþtirmeyi uygular
-    /// </summary>
-    public void ItemCheck()
-    {
-        if (_MemoryManagement.ReadData_int("ActiveHat")!=-1)
-        {
-            Hats[_MemoryManagement.ReadData_int("ActiveHat")].SetActive(true);
-        }
-
-        if (_MemoryManagement.ReadData_int("ActiveStick") != -1)
-        {
-            Sticks[_MemoryManagement.ReadData_int("ActiveStick")].SetActive(true);
-        }
-
-        if (_MemoryManagement.ReadData_int("ActiveManColor") != -1)
-        {
-            Material[] mats=_SkinnedMeshRenderer.materials;
-            mats[0]=ManColorMaterials[_MemoryManagement.ReadData_int("ActiveManColor")];
-            _SkinnedMeshRenderer.materials = mats;
-        }
-        else
-        {
-            Material[] mats = _SkinnedMeshRenderer.materials;
-            mats[0] = DefaultManColorMaterial;
-            _SkinnedMeshRenderer.materials = mats;
-        }
-    }
 
     /// <summary>
     /// Pause düðmeseine basýlýnca Oyunu Durdurur

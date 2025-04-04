@@ -8,6 +8,10 @@ public class SceneLoading : MonoBehaviour
     public GameObject LoadingPanel;
     public Animator SceneLoadingAnimator;
    
+    /// <summary>
+    /// Ýstenen indexli sahne yüklenirken Sahne yükleme Ekranýný ortaya çýkartýr
+    /// </summary>
+    /// <param name="SceneIndex">Yüklenilmesi istenen sahnenin indexi</param>
     public void LoadScene(int SceneIndex)
     {
         LoadingPanel.SetActive(true);

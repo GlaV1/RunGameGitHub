@@ -15,7 +15,7 @@ public class EmptyChracter : MonoBehaviour
     public Animator _Animator; //dýþarýdan verilecek animatör
     [Header("Targer")]
     public GameObject Target;//dýþarýdan verilecek olan hedef
-    bool CharacterContact; //boþ karaktere temas varmý deðiþkeni
+    bool isCharacterContact; //boþ karaktere temas varmý deðiþkeni
     [Header("GameManager")]
     public GameManager _GameManager;// gamemanergar scripti dýþarýdan verilir 
 
@@ -40,7 +40,7 @@ public class EmptyChracter : MonoBehaviour
     private void LateUpdate()
     {
         //eðer karakter ile temasa geçildi ise olmasý gerekenler
-        if (CharacterContact==true)
+        if (isCharacterContact == true)
         {
             _NavMesh.SetDestination(Target.transform.position);//boþ karakterin nav mesh deðerler
         }
@@ -57,14 +57,7 @@ public class EmptyChracter : MonoBehaviour
         _Renderer.materials = material;
         _Animator.SetBool("Attack", true); //animatorde ki saldýr iþlemi aktif edilir
         gameObject.tag = "LowerCharacters";//boþ karakterin tagý alt karakter olarak deðiþtirilir
-        GameManager.LiveCharacterNum++;//gamemanager scriptindeki anlýk karakter sayýsýnda +1 deðiþimi yapýlýr
-        if (_GameManager.LowerCharacterItem==true)
-        {
-            if (gameObject.tag == "LowerCharacters" && _Animator.GetBool("Attack") == true)
-            {
-                ItemCheck();
-            }
-        }
+        GameManager.LiveCharacterNum++;//gamemanager scriptindeki anlýk karakter sayýsýnda +1 deðiþimi yapýlýr      
     }
 
     private void Awake()
@@ -87,8 +80,8 @@ public class EmptyChracter : MonoBehaviour
             if (gameObject.CompareTag("EmptyCharacters"))//eðer çarpýlan objenin tagý boþ karaktere ise olacaklar
             {
                 AnimationTrigger();//animasyon tetikleme methodunu çaðýrýr
-                CharacterContact = true;//karaktere temas var 
-                GetComponent<AudioSource>().Play();//ses dosyasý oynatma
+                isCharacterContact = true;//karaktere temas var 
+               // GetComponent<AudioSource>().Play();//ses dosyasý oynatma
             }
         }
         else if (other.CompareTag("EnemyCharacters"))//boþ karaktere düþman karakter çarparsa olmasý gerekenler

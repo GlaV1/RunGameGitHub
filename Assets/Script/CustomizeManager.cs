@@ -77,17 +77,21 @@ public class CustomizeManager : MonoBehaviour
     int hatcolorindex = -1;
    
     [Header("Item Renk Adlarý")]
-    public List<string> HatColorName;
-    public List<string> StickColorName;
+   // public List<string> HatColorName;
+   // public List<string> StickColorName;
 
 
 
     /////////
     MemoryManagement _MemoryManagement= new MemoryManagement();
     DataManager _DataManager = new DataManager();
-    LanguageManager _LanguageManager = new LanguageManager();   
+    LanguageManager _LanguageManager = new LanguageManager();
+    GameData _GameData = new GameData();
     [Header("Ýtem Bilgi Ýþlemleri")]
     public List<ItemInformations> _ItemInformations = new List<ItemInformations>();
+    public List<ColorData> _HatColorName = new List<ColorData>();
+    public List<ColorData> _StickColorName = new List<ColorData>();
+
 
     /////////
 
@@ -129,9 +133,15 @@ public class CustomizeManager : MonoBehaviour
         MakeControl(2,true);
         _MemoryManagement.SaveData_int("Point", 5000);
         PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
-        _DataManager.DataSave(_ItemInformations);
+        //_DataManager.DataSave(_ItemInformations);
+        //_DataManager.DataUpload();        
+        //_ItemInformations = _DataManager.TransferList();
         _DataManager.DataUpload();
-        _ItemInformations = _DataManager.TransferList();
+        GameData loadedData = _DataManager.GetData();
+        _ItemInformations=loadedData._ItemInformation;
+        _HatColorName=loadedData._HatColorName;
+        _StickColorName=loadedData._StickColorName;
+
     }
 
     /// <summary>
@@ -139,7 +149,11 @@ public class CustomizeManager : MonoBehaviour
     /// </summary>
     public void BackToMainMenu()
     {
-        _DataManager.DataSave(_ItemInformations);
+        // _DataManager.DataSave(_ItemInformations);
+        _GameData._ItemInformation = _ItemInformations;
+        _GameData._HatColorName = _HatColorName;
+        _GameData._StickColorName = _StickColorName;
+        _DataManager.DataSave(_GameData);
         SceneManager.LoadScene(0);//menü sahnesinin yüklenme iþlemi
     }
     /// <summary>
@@ -190,18 +204,18 @@ public class CustomizeManager : MonoBehaviour
     /// </summary>
     /// <param name="process">Hangi ýtemlerin renklerinin arasýnda gezileceðini belirler</param>
     /// <param name="direction">>Ýleri mi geri gidileceðini belirler</param>
-    private void PublicItemColorDirection(int process,string direction)
+    private void PublicItemColorDirection(int process, string direction)
     {
         Color NewColor;
         switch (process)
         {
             case 0:
-                if (direction=="Foward")
+                if (direction == "Foward")
                 {
-                    if (hatcolorindex==-1)
+                    if (hatcolorindex == -1)
                     {
                         hatcolorindex = 0;
-                        if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                        if (ColorUtility.TryParseHtmlString(_HatColorName[hatcolorindex].ColorName, out NewColor))
                         {
                             HatColorMaterial.color = NewColor;
                             HatColorRawImage.color = NewColor;
@@ -210,13 +224,13 @@ public class CustomizeManager : MonoBehaviour
                     else
                     {
                         hatcolorindex++;
-                        if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                        if (ColorUtility.TryParseHtmlString(_HatColorName[hatcolorindex].ColorName, out NewColor))
                         {
                             HatColorMaterial.color = NewColor;
                             HatColorRawImage.color = NewColor;
                         }
                     }
-                    if (hatcolorindex == HatColorName.Count- 1)
+                    if (hatcolorindex == _HatColorName.Count - 1)
                     {
                         HatColorButtons[1].interactable = false;
                     }
@@ -231,12 +245,12 @@ public class CustomizeManager : MonoBehaviour
                 }
                 else
                 {
-                    if (hatcolorindex!=-1)
+                    if (hatcolorindex != -1)
                     {
                         hatcolorindex--;
-                        if (hatcolorindex!=-1)
+                        if (hatcolorindex != -1)
                         {
-                            if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                            if (ColorUtility.TryParseHtmlString(_HatColorName[hatcolorindex].ColorName, out NewColor))
                             {
                                 HatColorMaterial.color = NewColor;
                                 HatColorRawImage.color = NewColor;
@@ -244,8 +258,8 @@ public class CustomizeManager : MonoBehaviour
                         }
                         else
                         {
-                            HatColorMaterial.color=DefaultHatColorMaterial.color;
-                            HatColorRawImage.color=Color.white;
+                            HatColorMaterial.color = DefaultHatColorMaterial.color;
+                            HatColorRawImage.color = Color.white;
                             HatColorButtons[0].interactable = false;
                         }
                     }
@@ -253,19 +267,19 @@ public class CustomizeManager : MonoBehaviour
                     {
                         HatColorButtons[0].interactable = false;
                     }
-                    if (hatcolorindex != HatColorName.Count - 1)
+                    if (hatcolorindex != _HatColorName.Count - 1)
                     {
                         HatColorButtons[1].interactable = true;
                     }
                 }
-            break;
+                break;
             case 1:
-                if(direction=="Foward")
+                if (direction == "Foward")
                 {
                     if (stickcolorindex == -1)
                     {
                         stickcolorindex = 0;
-                        if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex], out NewColor))
+                        if (ColorUtility.TryParseHtmlString(_StickColorName[stickcolorindex].ColorName, out NewColor))
                         {
                             StickColorMaterial.color = NewColor;
                             StickColorRawImage.color = NewColor;
@@ -274,13 +288,13 @@ public class CustomizeManager : MonoBehaviour
                     else
                     {
                         stickcolorindex++;
-                        if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex], out NewColor))
+                        if (ColorUtility.TryParseHtmlString(_StickColorName[stickcolorindex].ColorName, out NewColor))
                         {
                             StickColorMaterial.color = NewColor;
                             StickColorRawImage.color = NewColor;
                         }
                     }
-                    if (stickcolorindex == StickColorName.Count - 1)
+                    if (stickcolorindex == _StickColorName.Count - 1)
                     {
                         StickColorButtons[1].interactable = false;
                     }
@@ -300,7 +314,7 @@ public class CustomizeManager : MonoBehaviour
                         stickcolorindex--;
                         if (stickcolorindex != -1)
                         {
-                            if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex], out NewColor))
+                            if (ColorUtility.TryParseHtmlString(_StickColorName[stickcolorindex].ColorName, out NewColor))
                             {
                                 StickColorMaterial.color = NewColor;
                                 StickColorRawImage.color = NewColor;
@@ -317,7 +331,7 @@ public class CustomizeManager : MonoBehaviour
                     {
                         StickColorButtons[0].interactable = false;
                     }
-                    if (stickcolorindex != StickColorName.Count - 1)
+                    if (stickcolorindex != _StickColorName.Count - 1)
                     {
                         StickColorButtons[1].interactable = true;
                     }
@@ -325,7 +339,7 @@ public class CustomizeManager : MonoBehaviour
                 break;
         }
     }
-    
+
     /// <summary>
     /// Karakter özelleþtirme itemleri arasýnda gezinme iþlemlerini indexlere göre yapar
     /// </summary>
@@ -542,7 +556,10 @@ public class CustomizeManager : MonoBehaviour
         }
     }
 
-    //panelleri açma ve kapatma iþlemleri
+    /// <summary>
+    /// Ýndexlere Göre Panel Açma ve Kapatma Ýþlemlerini yapar
+    /// </summary>
+    /// <param name="Index">Panel Ýndexi</param>
     public void ProcessPanelActive(int Index)
     {
         PanelProcess[3].SetActive(false);
@@ -844,7 +861,7 @@ public class CustomizeManager : MonoBehaviour
             PanelProcess[5].gameObject.SetActive (false);
         }
     }
-   
+
     /// <summary>
     /// Item renk indexlerini kayýt dosyasýndan okur ve default index ise ona göre renk verir default halde deðil ise okunan indexe göre renk verme iþlemlerini yapar
     /// </summary>
@@ -852,13 +869,13 @@ public class CustomizeManager : MonoBehaviour
     private void ItemColorControl(int Index)
     {
         Color NewColor;
-        if (Index==0)
+        if (Index == 0)
         {
-            if (_MemoryManagement.ReadData_int("ActiveHatColor")==-1)
+            if (_MemoryManagement.ReadData_int("ActiveHatColor") == -1)
             {
                 HatColorRawImage.color = DefaultHatColorMaterial.color;
                 HatColorMaterial.color = DefaultHatColorMaterial.color;
-                if (hatcolorindex == HatColorName.Count - 1)
+                if (hatcolorindex == _HatColorName.Count - 1)
                 {
                     HatColorButtons[1].interactable = false;
                 }
@@ -874,7 +891,7 @@ public class CustomizeManager : MonoBehaviour
             else
             {
                 hatcolorindex = _MemoryManagement.ReadData_int("ActiveHatColor");
-                if (ColorUtility.TryParseHtmlString(HatColorName[hatcolorindex], out NewColor))
+                if (ColorUtility.TryParseHtmlString(_HatColorName[hatcolorindex].ColorName, out NewColor))
                 {
                     HatColorMaterial.color = NewColor;
                     HatColorRawImage.color = NewColor;
@@ -883,11 +900,11 @@ public class CustomizeManager : MonoBehaviour
         }
         else
         {
-            if (_MemoryManagement.ReadData_int("ActiveStickColor")==-1)
+            if (_MemoryManagement.ReadData_int("ActiveStickColor") == -1)
             {
                 StickColorRawImage.color = DefaultStickColorMaterial.color;
                 StickColorMaterial.color = DefaultStickColorMaterial.color;
-                if (stickcolorindex == StickColorName.Count - 1)
+                if (stickcolorindex == _StickColorName.Count - 1)
                 {
                     StickColorButtons[1].interactable = false;
                 }
@@ -903,10 +920,10 @@ public class CustomizeManager : MonoBehaviour
             else
             {
                 stickcolorindex = _MemoryManagement.ReadData_int("ActiveStickColor");
-                if (ColorUtility.TryParseHtmlString(StickColorName[stickcolorindex],out NewColor))
+                if (ColorUtility.TryParseHtmlString(_StickColorName[stickcolorindex].ColorName, out NewColor))
                 {
-                    StickColorRawImage.color= NewColor;
-                    StickColorMaterial.color= NewColor;
+                    StickColorRawImage.color = NewColor;
+                    StickColorMaterial.color = NewColor;
                 }
             }
         }

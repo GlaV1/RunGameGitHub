@@ -2507,14 +2507,6 @@ MonoBehaviour:
   HatColorMaterial: {fileID: 2100000, guid: 339f9d1e0dd6f78418b8e34db9da8844, type: 2}
   DefaultHatColorMaterial: {fileID: 2100000, guid: 2a0b0cf9c07194f4d8c372eebdcce500, type: 2}
   HatColorRawImage: {fileID: 1915783114}
-  HatColorName:
-  - red
-  - cyan
-  - black
-  StickColorName:
-  - red
-  - black
-  - cyan
   _ItemInformations:
   - GroupIndex: 0
     ItemIndex: 0
@@ -2588,6 +2580,16 @@ MonoBehaviour:
     LocalizationKey: Customize_Theme5
     Point: 750
     BuyingStatus: 0
+  _HatColorName:
+  - ColorName: red
+  - ColorName: cyan
+  - ColorName: black
+  - ColorName: green
+  _StickColorName:
+  - ColorName: red
+  - ColorName: cyan
+  - ColorName: black
+  - ColorName: green
 --- !u!1 &939354185
 GameObject:
   m_ObjectHideFlags: 0

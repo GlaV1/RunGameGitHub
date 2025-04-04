@@ -25,6 +25,7 @@ public class LowerCharacter : MonoBehaviour
     public double LowerCharacterSpeed = 1.2;
     public Animator _LowerCharacterAnimator;
 
+
     MemoryManagement _MemoryManagement= new MemoryManagement();
 
     private void Awake()
@@ -119,4 +120,5 @@ public class LowerCharacter : MonoBehaviour
             _SkinnedMeshRenderer.materials = mats;
         }
     }
+
 }

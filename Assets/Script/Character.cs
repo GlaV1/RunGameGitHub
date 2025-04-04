@@ -1,6 +1,7 @@
+using rgame;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,32 @@ public class Character : MonoBehaviour
     public double MainCharacterSpeed = 1.2;
     [Header("Ana Karakter Animator")]
     public Animator _MainCharacterAnimator;
+    [Header("Karakter Ýþlemleri")]
+    public SkinnedMeshRenderer _SkinnedMeshRenderer;
+
+    [Header("Sapkalar")]
+    public GameObject[] Hats;
+
+    [Header("Sopalar")]
+    public GameObject[] Sticks;//sopa dizisi oluþturuluyor
+
+    [Header("Temalar")]
+    public Material[] ManColorMaterials;//karakter materyalleri oluþturuluyor
+    public Material DefaultManColorMaterial;
+
+    [Header("ITEM ISLEMLERI")]
+
+    [Header("Sapka renk islemleri")]
+    public Material HatColorMaterial;
+    public Material DefaultHatColorMaterial;
+    [Header("Sopa renk islemleri")]
+    public Material StickColorMaterial;
+    public Material DefaultStickColorMaterial;
+
+    MemoryManagement _MemoryManagement = new MemoryManagement();
+    DataManager _DataManager = new DataManager();
+    public List<ColorData> _HatColorName = new List<ColorData>();
+    public List<ColorData> _StickColorName = new List<ColorData>();
 
     private void Start()
     {
@@ -77,6 +104,12 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
+        _DataManager.DataUpload();
+        GameData loadedData = _DataManager.GetData();
+        _HatColorName=loadedData._HatColorName;
+        _StickColorName=loadedData._StickColorName;
+        ItemCheck();
+        ItemColorCheck();
         _MainCharacterAnimator.speed = ((float)MainCharacterSpeed);
     }
 
@@ -129,4 +162,63 @@ public class Character : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Karakter özelleþitirme sayfasýnda Deðiþtirilen item renklerini kayýt dosyasýndan okur ve karkterlere uygular
+    /// </summary>
+    private void ItemColorCheck()
+    {
+        Color NewColor;
+        if (_MemoryManagement.ReadData_int("ActiveHatColor") != -1)
+        {
+            if (ColorUtility.TryParseHtmlString(_HatColorName[_MemoryManagement.ReadData_int("ActiveHatColor")].ColorName, out NewColor))
+            {
+                HatColorMaterial.color = NewColor;
+            }
+        }
+        else
+        {
+            HatColorMaterial.color = DefaultHatColorMaterial.color;
+        }
+
+        if (_MemoryManagement.ReadData_int("ActiveStickColor") != -1)
+        {
+            StickColorMaterial.color = DefaultStickColorMaterial.color;
+        }
+        else
+        {
+            if (ColorUtility.TryParseHtmlString(_StickColorName[_MemoryManagement.ReadData_int("ActiveStickColor")].ColorName, out NewColor))
+            {
+                StickColorMaterial.color = NewColor;
+            }
+        }
+    }  
+
+    /// <summary>
+    /// Customize Sayfasýnda özelleþtirilen karakterdek itemleri kayýt dosyasýndan okur ve karaktere özelleþtirmeyi uygular
+    /// </summary>
+    private void ItemCheck()
+    {
+        if (_MemoryManagement.ReadData_int("ActiveHat") != -1)
+        {
+            Hats[_MemoryManagement.ReadData_int("ActiveHat")].SetActive(true);
+        }
+
+        if (_MemoryManagement.ReadData_int("ActiveStick") != -1)
+        {
+            Sticks[_MemoryManagement.ReadData_int("ActiveStick")].SetActive(true);
+        }
+
+        if (_MemoryManagement.ReadData_int("ActiveManColor") != -1)
+        {
+            Material[] mats = _SkinnedMeshRenderer.materials;
+            mats[0] = ManColorMaterials[_MemoryManagement.ReadData_int("ActiveManColor")];
+            _SkinnedMeshRenderer.materials = mats;
+        }
+        else
+        {
+            Material[] mats = _SkinnedMeshRenderer.materials;
+            mats[0] = DefaultManColorMaterial;
+            _SkinnedMeshRenderer.materials = mats;
+        }
+    }
 }
