@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using rgame;
+using rgamekeys;
 using System.Xml.Serialization;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -48,7 +49,9 @@ public class GameManager : MonoBehaviour
     public Slider _MenuFxAudioSlider;
     public Slider _GameAudioSlider;
 
-    ////
+    ///Taglar
+    private const string Attack = "Attack";
+    ///Taglar
 
     Scene _Scene;
 
@@ -59,9 +62,9 @@ public class GameManager : MonoBehaviour
     {
         EnemyCreate();
         _Scene=SceneManager.GetActiveScene();
-        _MenuAudioSlider.value = _MemoryManagement.ReadData_float("MenuAudio");
-        _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float("MenuFxAudio");
-        _GameAudioSlider.value = _MemoryManagement.ReadData_float("GameAudio");
+        _MenuAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.MenuAudio);
+        _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.MenuFxAudio);
+        _GameAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.GameAudio);
     }
    
     /// <summary>
@@ -92,19 +95,19 @@ public class GameManager : MonoBehaviour
         switch (processtype)
         {
 
-            case "MultiplacationProcess":
+            case GameCharactersProcess.MultiplacationProcess:
                 _HelperLibrary.MultiplacationClass(incomingnum, LowerCharacters, newposition,FormationEffect);
                 break;
 
-            case "ExtractionProcess":
+            case GameCharactersProcess.ExtractionProcess:
                 _HelperLibrary.ExtractionClass(incomingnum, LowerCharacters, ExtinctionnEffect);
                 break;
 
-            case "DivisionProcess":
+            case GameCharactersProcess.DivisionProcess:
                 _HelperLibrary.DivisionClass(incomingnum, LowerCharacters, ExtinctionnEffect);
                 break;
 
-            case "CollectionProcess":
+            case GameCharactersProcess.CollectionProcess:
                 _HelperLibrary.CollectionClass(incomingnum, LowerCharacters, newposition,FormationEffect);
                 break;
         }
@@ -124,30 +127,30 @@ public class GameManager : MonoBehaviour
                 {
                     if (item.activeInHierarchy)
                     {
-                        item.GetComponent<Animator>().SetBool("Attack", false);
+                        item.GetComponent<Animator>().SetBool(Attack, false);
                     }
                 }
                 foreach (var item in LowerCharacters)
                 {
                     if (item.activeInHierarchy)
                     {
-                        item.GetComponent<Animator>().SetBool("Attack", false);
+                        item.GetComponent<Animator>().SetBool(Attack, false);
                     }
                 }
-                MainCharacter.GetComponent<Animator>().SetBool("Attack", false);
+                MainCharacter.GetComponent<Animator>().SetBool(Attack, false);
                 if (LiveCharacterNum < HowMuchEnemy || LiveCharacterNum == HowMuchEnemy)
                 {
                     Panels[4].SetActive(true);
                     Debug.Log("lose");
-                    _MemoryManagement.SaveData_int("Point",99);
+                    _MemoryManagement.SaveData_int(SaveKeys.Point,99);
                 }
                 else
                 {
                     Debug.Log("Win");
-                    _MemoryManagement.SaveData_int("Point", _MemoryManagement.ReadData_int("Point") +799);
-                    if (_Scene.buildIndex== _MemoryManagement.ReadData_int("LastLevel"))
+                    _MemoryManagement.SaveData_int(SaveKeys.Point, _MemoryManagement.ReadData_int(SaveKeys.Point) +799);
+                    if (_Scene.buildIndex== _MemoryManagement.ReadData_int(SaveKeys.LastLevel))
                     {
-                        _MemoryManagement.SaveData_int("LastLevel",_MemoryManagement.ReadData_int("LastLevel")+1);
+                        _MemoryManagement.SaveData_int(SaveKeys.LastLevel,_MemoryManagement.ReadData_int(SaveKeys.LastLevel)+1);
                     }
                     Panels[3].SetActive(true);
                 }
@@ -219,7 +222,6 @@ public class GameManager : MonoBehaviour
         WarSituation();
     }
    
-
     /// <summary>
     /// Pause düðmeseine basýlýnca Oyunu Durdurur
     /// </summary>
@@ -307,13 +309,13 @@ public class GameManager : MonoBehaviour
         switch (process)
         {
             case 0:
-                _MemoryManagement.SaveData_float("MenuAudio", _MenuAudioSlider.value);
+                _MemoryManagement.SaveData_float(SaveKeys.MenuAudio, _MenuAudioSlider.value);
                 break;
             case 1:
-                _MemoryManagement.SaveData_float("MenuFxAudio", _MenuFxAudioSlider.value);
+                _MemoryManagement.SaveData_float(SaveKeys.MenuFxAudio, _MenuFxAudioSlider.value);
                 break;
             case 2:
-                _MemoryManagement.SaveData_float("GameAudio", _GameAudioSlider.value);
+                _MemoryManagement.SaveData_float(SaveKeys.GameAudio, _GameAudioSlider.value);
                 break;
         }
     }

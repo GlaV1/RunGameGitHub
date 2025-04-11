@@ -1,4 +1,5 @@
 using rgame;
+using rgamekeys;
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
@@ -36,6 +37,13 @@ public class EmptyChracter : MonoBehaviour
     public Animator _EmptyCharacterAnimator;
 
     MemoryManagement _MemoryManagement = new MemoryManagement();
+
+    ///Taglar
+    private const string Attack = "Attack";
+
+    
+    ///Taglar
+
     //karaktere posizyon verme iþlemleri
     private void LateUpdate()
     {
@@ -55,8 +63,9 @@ public class EmptyChracter : MonoBehaviour
         Material[] material = _Renderer.materials;
         material[0] = _WillGivenMaterial;
         _Renderer.materials = material;
-        _Animator.SetBool("Attack", true); //animatorde ki saldýr iþlemi aktif edilir
-        gameObject.tag = "LowerCharacters";//boþ karakterin tagý alt karakter olarak deðiþtirilir
+        _Animator.SetBool(Attack, true); //animatorde ki saldýr iþlemi aktif edilir
+        gameObject.tag = GameCharacters.LowerCharacters;//boþ karakterin tagý alt karakter olarak deðiþtirilir
+        _GameManager.LowerCharacters.Add(gameObject);
         GameManager.LiveCharacterNum++;//gamemanager scriptindeki anlýk karakter sayýsýnda +1 deðiþimi yapýlýr      
     }
 
@@ -75,36 +84,36 @@ public class EmptyChracter : MonoBehaviour
     /// <param name="other">Boþ Karakter Collideri</param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("LowerCharacters")||other.CompareTag("Player"))//boþ karakterere alt karakter ve oyuncu karakterin çarptýðý zaman olacaklar
+        if (other.CompareTag(GameCharacters.LowerCharacters)||other.CompareTag(GameCharacters.Player))//boþ karakterere alt karakter ve oyuncu karakterin çarptýðý zaman olacaklar
         {
-            if (gameObject.CompareTag("EmptyCharacters"))//eðer çarpýlan objenin tagý boþ karaktere ise olacaklar
+            if (gameObject.CompareTag(GameCharacters.EmptyCharacters))//eðer çarpýlan objenin tagý boþ karaktere ise olacaklar
             {
                 AnimationTrigger();//animasyon tetikleme methodunu çaðýrýr
                 isCharacterContact = true;//karaktere temas var 
                // GetComponent<AudioSource>().Play();//ses dosyasý oynatma
             }
         }
-        else if (other.CompareTag("EnemyCharacters"))//boþ karaktere düþman karakter çarparsa olmasý gerekenler
+        else if (other.CompareTag(GameCharacters.EnemyCharacters))//boþ karaktere düþman karakter çarparsa olmasý gerekenler
         {
             _GameManager.ExtinctionnEffectRun(GivePosition(), false, false);//gamemanager scriptinden yok olma efektinin methodunu çaðýrýr ve gerekli deðerleri gönderir
             gameObject.SetActive(false);//objeyi aktifliðini kapatýr
         }
-        else if (other.CompareTag("NeedleBox"))//boþ karakter iðneli kutuya çarparsa olmasý gerekenler
+        else if (other.CompareTag(GameObstacles.NeedleBox))//boþ karakter iðneli kutuya çarparsa olmasý gerekenler
         {
             _GameManager.ExtinctionnEffectRun(GivePosition());//gamemanager scriptinden yok olma efektinin methodunu çaðýrýr ve gerekli deðerleri gönderir
             gameObject.SetActive(false);//objeyi aktifliðini kapatýr
         }
-        else if (other.CompareTag("Saw"))//boþ karakter testereye çarparsa olmasý gerekenler
+        else if (other.CompareTag(GameObstacles.Saw))//boþ karakter testereye çarparsa olmasý gerekenler
         {
             _GameManager.ExtinctionnEffectRun(GivePosition());//gamemanager scriptinden yok olma efektinin methodunu çaðýrýr ve gerekli deðerleri gönderir
             gameObject.SetActive(false);//objeyi aktifliðini kapatýr
         }
-        else if (other.CompareTag("PropallerNeedle"))//boþ karakter pervane iðnesine çarparsa olmasý gerekenler
+        else if (other.CompareTag(GameObstacles.PropallerNeedle))//boþ karakter pervane iðnesine çarparsa olmasý gerekenler
         {
             _GameManager.ExtinctionnEffectRun(GivePosition());//gamemanager scriptinden yok olma efektinin methodunu çaðýrýr ve gerekli deðerleri gönderir
             gameObject.SetActive(false);//objeyi aktifliðini kapatýr
         }
-        else if (other.CompareTag("Hammer"))//boþ karakter çekiç'e çarparsa olmasý gerekenler
+        else if (other.CompareTag(GameObstacles.Hammer))//boþ karakter çekiç'e çarparsa olmasý gerekenler
         {
             _GameManager.ExtinctionnEffectRun(GivePosition(), true);//gamemanager scriptinden yok olma efektinin methodunu çaðýrýr ve gerekli deðerleri gönderir
             gameObject.SetActive(false);//objeyi aktifliðini kapatýr
@@ -113,18 +122,18 @@ public class EmptyChracter : MonoBehaviour
 
     private void ItemCheck()
     {
-        if (_MemoryManagement.ReadData_int("ActiveHat")!=-1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHat)!=-1)
         {
-            Hats[_MemoryManagement.ReadData_int("ActiveHat")].SetActive(true);
+            Hats[_MemoryManagement.ReadData_int(SaveKeys.ActiveHat)].SetActive(true);
         }
-        if (_MemoryManagement.ReadData_int("ActiveStick")!=-1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStick)!=-1)
         {
-            Sticks[_MemoryManagement.ReadData_int("ActiveStick")].SetActive(true);
+            Sticks[_MemoryManagement.ReadData_int(SaveKeys.ActiveStick)].SetActive(true);
         }
-        if (_MemoryManagement.ReadData_int("ActiveManColor") != -1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveManColor) != -1)
         {
             Material[] mats = _SkinnedMeshRenderer.materials;
-            mats[0] = ManColorMaterials[_MemoryManagement.ReadData_int("ActiveManColor")];
+            mats[0] = ManColorMaterials[_MemoryManagement.ReadData_int(SaveKeys.ActiveManColor)];
             _SkinnedMeshRenderer.materials = mats;
         }
         else

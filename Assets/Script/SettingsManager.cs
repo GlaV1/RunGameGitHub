@@ -1,4 +1,5 @@
 using rgame;
+using rgamekeys;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -26,17 +27,10 @@ public class SettingsManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _MenuAudioSlider.value = _MemoryManagement.ReadData_float("MenuAudio");
-        _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float("MenuFxAudio");
-        _GameAudioSlider.value = _MemoryManagement.ReadData_float("GameAudio");
-        _GameLanguageDropdown.value = _MemoryManagement.ReadData_int("SelectedLanguage");
-        _LanguageManager.LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));
-      //  _GameQualityDropdown.value = PlayerPrefs.GetInt("SelectedQuality"); 
-    }
-    private void Update()
-    {
-        _GameLanguageDropdown.onValueChanged.AddListener(_LanguageManager.LanguageSelection);
-        _GameLanguageDropdown.value = _MemoryManagement.ReadData_int("SelectedLanguage");
+        _MenuAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.MenuAudio);
+        _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.MenuFxAudio);
+        _GameAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.GameAudio);
+        _GameLanguageDropdown.value = _MemoryManagement.ReadData_int(SaveKeys.SelectedLanguage);
     }
 
     /// <summary>
@@ -52,10 +46,15 @@ public class SettingsManager : MonoBehaviour
     /// <param name="SelectedQuality">Seçilen kalite deðerini kullanýcýdan alýr</param>
     public void QualitySelection(int SelectedQuality)
     {
-        PlayerPrefs.SetInt("SelectedQuality",SelectedQuality);
+        PlayerPrefs.SetInt(SaveKeys.SelectedQuality,SelectedQuality);
         QualitySettings.SetQualityLevel(SelectedQuality);
     }
 
+    public void LanguageSelection(int SelectionLanguage)
+    {
+        _MemoryManagement.SaveData_int(SaveKeys.SelectedLanguage, SelectionLanguage);
+         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
+    }
 
     /// <summary>
     /// Kullanýcýdan gelen veriye göre ses seviyelerini kayýt eder
@@ -66,13 +65,13 @@ public class SettingsManager : MonoBehaviour
         switch (process)
         {
             case 0:
-                 _MemoryManagement.SaveData_float("MenuAudio", _MenuAudioSlider.value);
+                 _MemoryManagement.SaveData_float(SaveKeys.MenuAudio, _MenuAudioSlider.value);
                 break;
             case 1:
-                 _MemoryManagement.SaveData_float("MenuFxAudio", _MenuFxAudioSlider.value);
+                 _MemoryManagement.SaveData_float(SaveKeys.MenuFxAudio, _MenuFxAudioSlider.value);
                 break;
             case 2:
-                 _MemoryManagement.SaveData_float("GameAudio", _GameAudioSlider.value);
+                 _MemoryManagement.SaveData_float(SaveKeys.GameAudio, _GameAudioSlider.value);
                 break;
         }
     }

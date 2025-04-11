@@ -8,6 +8,7 @@ using System.IO;
 using ProtoBuf;
 using UnityEngine.Playables;
 using UnityEngine.Localization.Settings;
+using rgamekeys;
 
 namespace rgame
 {
@@ -295,17 +296,17 @@ namespace rgame
         {
             if (!PlayerPrefs.HasKey("LastLevel"))//son bölüm adlý anahtar kayýtlý DEÐÝL ÝSE olmasý gerekenler
             {//Son bölüm=oyuncunun kaldýðý son bölüm
-                PlayerPrefs.SetInt("LastLevel",5);//5.index teki scene açmak için gerekli iþlemler(5.index=level 1)
-                PlayerPrefs.SetInt("Point",0);
-                PlayerPrefs.SetInt("ActiveHat",-1);
-                PlayerPrefs.SetInt("ActiveStick", -1);
-                PlayerPrefs.SetInt("ActiveManColor", -1);
-                PlayerPrefs.SetInt("ActiveHatColor", -1);
-                PlayerPrefs.SetInt("ActiveStickColor", -1);
-                PlayerPrefs.SetFloat("GameAudio",1);
-                PlayerPrefs.SetFloat("MenuAudio",1);
-                PlayerPrefs.SetFloat("MenuFxAudio", 1);
-                PlayerPrefs.SetFloat("SelectedLanguage", 0);//dropdownda 0 ýncý seçili yani trkçe
+                PlayerPrefs.SetInt(SaveKeys.LastLevel,5);//5.index teki scene açmak için gerekli iþlemler(5.index=level 1)
+                PlayerPrefs.SetInt(SaveKeys.Point,0);
+                PlayerPrefs.SetInt(SaveKeys.ActiveHat,-1);
+                PlayerPrefs.SetInt(SaveKeys.ActiveStick, -1);
+                PlayerPrefs.SetInt(SaveKeys.ActiveManColor, -1);
+                PlayerPrefs.SetInt(SaveKeys.ActiveHatColor, -1);
+                PlayerPrefs.SetInt(SaveKeys.ActiveStickColor, -1);
+                PlayerPrefs.SetFloat(SaveKeys.GameAudio,1);
+                PlayerPrefs.SetFloat(SaveKeys.MenuAudio,1);
+                PlayerPrefs.SetFloat(SaveKeys.MenuFxAudio, 1);
+                PlayerPrefs.SetFloat(SaveKeys.SelectedLanguage, 0);//dropdownda 0 ýncý seçili yani trkçe
 
             }
         }
@@ -412,15 +413,6 @@ namespace rgame
     {
         MemoryManagement _MemoryManagement = new MemoryManagement();
         /// <summary>
-        /// Seçilen Dili etkin yapar ve sahnelerde uygular
-        /// </summary>
-        /// <param name="SelectionLanguage">Seçilen Dil indexi</param>
-        public void LanguageSelection(int SelectionLanguage)
-        {
-            _MemoryManagement.SaveData_int("SelectedLanguage", SelectionLanguage);
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
-        }
-        /// <summary>
         /// Ýstenen bir metni ilgili tablodaki ilgili keyi kullanarak DÝlini deðiþtirme
         /// </summary>
         /// <param name="TableName">Ýlgili Localizationun Tablo Adý</param>
@@ -431,5 +423,7 @@ namespace rgame
           return  LocalizationSettings.StringDatabase.GetLocalizedString(TableName,key);
         }
     }
+
+
 }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using rgamekeys;
 
 public class EnemyCharacter : MonoBehaviour
 {
@@ -14,13 +15,18 @@ public class EnemyCharacter : MonoBehaviour
     [Header("GameManager")]
     public GameManager _GameManager; // dýþarýdan gamemanager scripti çaðýrýlýr
     bool AttackStarted;//saldýrý baþladý mý
-    
+
+    ///Taglar
+    private const string Attack = "Attack";
+    ///Taglar
+
+
     /// <summary>
     /// Düþman Karakterin Saldýrma efektini aktif eder
     /// </summary>
     public void AnimationRun()//animasyon çalýþtýrs
     {
-        _Animator.SetBool("Attack",true);//düþman karakter animatöründeki saldýr deðiþkenine true deðeri verilie
+        _Animator.SetBool(Attack, true);//düþman karakter animatöründeki saldýr deðiþkenine true deðeri verilie
         AttackStarted = true;//atak baþladý mý evet
     }
 
@@ -39,7 +45,7 @@ public class EnemyCharacter : MonoBehaviour
     /// <param name="other">Düþman karakterin collideri</param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("LowerCharacters"))//düþman karakter  alt karaktere çarptýðýnda olmasý gerekenler
+        if (other.CompareTag(GameCharacters.LowerCharacters))//düþman karakter  alt karaktere çarptýðýnda olmasý gerekenler
         {
             Vector3 newpos = new Vector3(transform.position.x, .23f, transform.position.z);//x ve z ekseni sabit olmak üzere y ekseninde deðiþiklik olmakla beraber yeni bir posizyon belirtilir
             _GameManager.ExtinctionnEffectRun(newpos,false,true);//gamemanager scriptinden yok olma efekti çalýþtýr fonksiyonu çaðýrýlýr

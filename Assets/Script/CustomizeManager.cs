@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using rgame;
+using rgamekeys;
 using TMPro;
 using System.IO;
 using ProtoBuf;
@@ -93,17 +94,13 @@ public class CustomizeManager : MonoBehaviour
     public List<ColorData> _StickColorName = new List<ColorData>();
 
 
-    /////////
 
-
-    ////////Dil deðiþiklik Ýþlemþeri  
-    private string LocalizationCutomizeItemTableName = "Customize_Table"; //Ýtem textlerinin tutulduðu tablo
-    private string LocalizationCustomizeTextTableName="Game_Text"; //oyun textlerinin tutulduðu tablo
+    
     public void UpdateLocalizedItemNames()
     {
         foreach (var item in _ItemInformations)
         {
-            item.ItemName = LocalizationSettings.StringDatabase.GetLocalizedString(LocalizationCutomizeItemTableName, item.LocalizationKey);
+            item.ItemName = LocalizationSettings.StringDatabase.GetLocalizedString(LanguageKeys.LocalizationCutomizeItemTableName, item.LocalizationKey);
         }
 
     }
@@ -126,7 +123,7 @@ public class CustomizeManager : MonoBehaviour
 
     void Start()
     {
-        _LanguageManager.LanguageSelection(_MemoryManagement.ReadData_int("SelectedLanguage"));
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_MemoryManagement.ReadData_int("SelectedLanguage")];
         UpdateLocalizedItemNames();
         MakeControl(0,true);
         MakeControl(1,true);
@@ -397,7 +394,7 @@ public class CustomizeManager : MonoBehaviour
                         else
                         {
                             HatButtons[0].interactable = false;
-                            HatText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_HatPanel_txt_NoHatText");
+                            HatText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_HatPanel_txt_NoHatText);
                             BuyingText.text = "-";
                             BuyButton.interactable = false;
                         }
@@ -405,7 +402,7 @@ public class CustomizeManager : MonoBehaviour
                     else
                     {
                         HatButtons[0].interactable = false;
-                        HatText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_HatPanel_txt_NoHatText");
+                        HatText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_HatPanel_txt_NoHatText);
                         BuyingText.text = "-";
                         BuyButton.interactable = false;
                     }
@@ -465,7 +462,7 @@ public class CustomizeManager : MonoBehaviour
                         else
                         {
                             StickButtons[0].interactable = false;
-                            StickText.text =_LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_SticksPanel_txt_NoStickText");
+                            StickText.text =_LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_SticksPanel_txt_NoStickText);
                             BuyingText.text = "-";
                             BuyButton.interactable = false;
                         }
@@ -473,7 +470,7 @@ public class CustomizeManager : MonoBehaviour
                     else
                     {
                         StickButtons[0].interactable = false;
-                        StickText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_SticksPanel_txt_NoStickText"); 
+                        StickText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_SticksPanel_txt_NoStickText); 
                         BuyingText.text = "-";
                         BuyButton.interactable = false;
                     }
@@ -586,7 +583,7 @@ public class CustomizeManager : MonoBehaviour
             switch (ActiveCustomizePanelIndex)
             {
                 case 0:
-                    if (_ItemInformations[hatindex].Point <= _MemoryManagement.ReadData_int("Point") )
+                    if (_ItemInformations[hatindex].Point <= _MemoryManagement.ReadData_int(SaveKeys.Point) )
                     {
                         PurchasingHelper(hatindex);
                     }
@@ -596,7 +593,7 @@ public class CustomizeManager : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (_ItemInformations[StickArrayCalculation].Point<= _MemoryManagement.ReadData_int("Point"))
+                    if (_ItemInformations[StickArrayCalculation].Point<= _MemoryManagement.ReadData_int(SaveKeys.Point))
                     {
                         PurchasingHelper(StickArrayCalculation);
                     }
@@ -606,7 +603,7 @@ public class CustomizeManager : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (_MemoryManagement.ReadData_int("Point") <= _ItemInformations[ManColorArrayCalculation].Point)
+                    if (_MemoryManagement.ReadData_int(SaveKeys.Point) <= _ItemInformations[ManColorArrayCalculation].Point)
                     {
                         PurchasingHelper(ManColorArrayCalculation);
                     }
@@ -629,17 +626,17 @@ public class CustomizeManager : MonoBehaviour
             switch (ActiveCustomizePanelIndex)
             {
                 case 0:
-                    _MemoryManagement.SaveData_int("ActiveHat",hatindex);
-                    _MemoryManagement.SaveData_int("ActiveHatColor",hatcolorindex);
+                    _MemoryManagement.SaveData_int(SaveKeys.ActiveHat,hatindex);
+                    _MemoryManagement.SaveData_int(SaveKeys.ActiveHatColor,hatcolorindex);
                     StartCoroutine(ShowAlert(1));
                     break;
                 case 1:
-                    _MemoryManagement.SaveData_int("ActiveStick",stickindex);
-                    _MemoryManagement.SaveData_int("ActiveStickColor",stickcolorindex);
+                    _MemoryManagement.SaveData_int(SaveKeys.ActiveStick,stickindex);
+                    _MemoryManagement.SaveData_int(SaveKeys.ActiveStickColor,stickcolorindex);
                     StartCoroutine(ShowAlert(1));
                     break;
                 case 2:
-                    _MemoryManagement.SaveData_int("ActiveManColor",mancolorindex);
+                    _MemoryManagement.SaveData_int(SaveKeys.ActiveManColor,mancolorindex);
                     StartCoroutine(ShowAlert(1));
                     break;
             }
@@ -657,18 +654,18 @@ public class CustomizeManager : MonoBehaviour
         int ManColorArrayCalculation = (mancolorindex) + (Hats.Length) + (Sticks.Length);
         if (Index == 0)
         {
-            if (_MemoryManagement.ReadData_int("ActiveHat") == -1)//-1 varsayýlan þapka deðeri olarak tanýmlý
+            if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHat) == -1)//-1 varsayýlan þapka deðeri olarak tanýmlý
             {
                 foreach (var item in Hats)//açýk bir þapka modeli olmasýn diye diziyi tek tek gezer ve þapkalarýn aktifliðini kapatýr
                 {
                     item.SetActive(false);
                 }
                 BuyButton.interactable = false;
-                BuyingText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
+                BuyingText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeItemPurchaseControlText);
                 if (process == true)
                 {
                     hatindex = -1;
-                    HatText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_HatPanel_txt_NoHatText");
+                    HatText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_HatPanel_txt_NoHatText);
                 }
                 if (hatindex == Hats.Length - 1)
                 {
@@ -689,7 +686,7 @@ public class CustomizeManager : MonoBehaviour
                 {
                     item.SetActive(false);
                 }           
-                hatindex = _MemoryManagement.ReadData_int("ActiveHat");
+                hatindex = _MemoryManagement.ReadData_int(SaveKeys.ActiveHat);
                 HatText.text = _ItemInformations[hatindex].ItemName;
                 Hats[hatindex].SetActive(true);
                 BuyButton.interactable = false;
@@ -714,18 +711,18 @@ public class CustomizeManager : MonoBehaviour
         else if (Index == 1)
         {
             ItemColorControl(Index);
-            if (_MemoryManagement.ReadData_int("ActiveStick") == -1)
+            if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStick) == -1)
             {
                 foreach (var item in Sticks)
                 {
                     item.SetActive(false);
                 }
                 BuyButton.interactable = false;
-                BuyingText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
+                BuyingText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeItemPurchaseControlText);
                 if (process == true)
                 {
                     stickindex = -1;
-                    StickText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_SticksPanel_txt_NoStickText");
+                    StickText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_SticksPanel_txt_NoStickText);
                     BuyButton.interactable = false;
                 }
 
@@ -748,7 +745,7 @@ public class CustomizeManager : MonoBehaviour
                 {
                     item.SetActive(false);
                 }    
-                stickindex = _MemoryManagement.ReadData_int("ActiveStick");
+                stickindex = _MemoryManagement.ReadData_int(SaveKeys.ActiveStick);
                 StickText.text = _ItemInformations[StickArrayCalculation].ItemName;
                 Sticks[stickindex].SetActive(true);
                 BuyButton.interactable = false;
@@ -773,13 +770,13 @@ public class CustomizeManager : MonoBehaviour
         }
         else if (Index == 2)
         {
-            if (_MemoryManagement.ReadData_int("ActiveManColor") == -1)
+            if (_MemoryManagement.ReadData_int(SaveKeys.ActiveManColor) == -1)
             {
-                BuyingText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
+                BuyingText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeItemPurchaseControlText);
                 if (process == true)
                 {
                     mancolorindex = -1;
-                    ManColorText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "Customize_MidItemPanel_ManColorPanel_txt_NoManColorText");
+                    ManColorText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.Customize_MidItemPanel_ManColorPanel_txt_NoManColorText);
 
                     BuyButton.interactable = false; ;
                 }
@@ -793,7 +790,7 @@ public class CustomizeManager : MonoBehaviour
             }
             else
             {
-                mancolorindex = _MemoryManagement.ReadData_int("ActiveManColor");
+                mancolorindex = _MemoryManagement.ReadData_int(SaveKeys.ActiveManColor);
                 ManColorText.text = _ItemInformations[ManColorArrayCalculation].ItemName;
                 Material[] mats = _SkinnedMeshRenderer.materials;
                 mats[0] = ManColorMaterials[mancolorindex];
@@ -871,7 +868,7 @@ public class CustomizeManager : MonoBehaviour
         Color NewColor;
         if (Index == 0)
         {
-            if (_MemoryManagement.ReadData_int("ActiveHatColor") == -1)
+            if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor) == -1)
             {
                 HatColorRawImage.color = DefaultHatColorMaterial.color;
                 HatColorMaterial.color = DefaultHatColorMaterial.color;
@@ -890,7 +887,7 @@ public class CustomizeManager : MonoBehaviour
             }
             else
             {
-                hatcolorindex = _MemoryManagement.ReadData_int("ActiveHatColor");
+                hatcolorindex = _MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor);
                 if (ColorUtility.TryParseHtmlString(_HatColorName[hatcolorindex].ColorName, out NewColor))
                 {
                     HatColorMaterial.color = NewColor;
@@ -900,7 +897,7 @@ public class CustomizeManager : MonoBehaviour
         }
         else
         {
-            if (_MemoryManagement.ReadData_int("ActiveStickColor") == -1)
+            if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor) == -1)
             {
                 StickColorRawImage.color = DefaultStickColorMaterial.color;
                 StickColorMaterial.color = DefaultStickColorMaterial.color;
@@ -919,7 +916,7 @@ public class CustomizeManager : MonoBehaviour
             }
             else
             {
-                stickcolorindex = _MemoryManagement.ReadData_int("ActiveStickColor");
+                stickcolorindex = _MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor);
                 if (ColorUtility.TryParseHtmlString(_StickColorName[stickcolorindex].ColorName, out NewColor))
                 {
                     StickColorRawImage.color = NewColor;
@@ -940,7 +937,7 @@ public class CustomizeManager : MonoBehaviour
             if (_ItemInformations[purchasecontrolindex].Point>0)
             {
                 //
-                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeItemPurchaseControlText");
+                BuyingText.text = _ItemInformations[purchasecontrolindex].Point + _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeItemPurchaseControlText);
                 BuyButton.interactable = true;
                 CustomizeSaveButton.interactable = false;
             }           
@@ -954,6 +951,7 @@ public class CustomizeManager : MonoBehaviour
 
     }
 
+
     /// <summary>
     /// Gelen iþleme göre kullanýcýya mesaj verir
     /// </summary>
@@ -964,19 +962,19 @@ public class CustomizeManager : MonoBehaviour
         switch (process)
         {
             case 0:
-                AlertText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeShowAlertPurchase");
+                AlertText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeShowAlertPurchase);
                 AlertText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 AlertText.gameObject.SetActive(false);
                 break;
             case 1:
-                AlertText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeShowAlertRecorded");
+                AlertText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeShowAlertRecorded);
                 AlertText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1f);
                 AlertText.gameObject.SetActive(false);
                 break;
             case 2:
-                AlertText.text = _LanguageManager.BringText(LocalizationCustomizeTextTableName, "CustomizeShowAlertInsufficientFunds");
+                AlertText.text = _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeShowAlertInsufficientFunds);
                 AlertText.gameObject.SetActive(true);
                 yield return new WaitForSeconds(1.5f);
                 AlertText.gameObject.SetActive(false);
@@ -992,11 +990,11 @@ public class CustomizeManager : MonoBehaviour
     private void PurchasingHelper(int ArrayIndex)
     {
         _ItemInformations[ArrayIndex].BuyingStatus = true;
-        _MemoryManagement.SaveData_int("Point", _MemoryManagement.ReadData_int("Point") - _ItemInformations[ArrayIndex].Point);
+        _MemoryManagement.SaveData_int(SaveKeys.Point, _MemoryManagement.ReadData_int(SaveKeys.Point) - _ItemInformations[ArrayIndex].Point);
         BuyButton.interactable = false;
         BuyingText.text = "-";
         CustomizeSaveButton.interactable = true;
-        PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
+        PointText.text = _MemoryManagement.ReadData_int(SaveKeys.Point).ToString();
         StartCoroutine(ShowAlert(0));
     }  
 }

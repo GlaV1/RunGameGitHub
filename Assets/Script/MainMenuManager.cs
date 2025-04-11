@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using rgame;
+using rgamekeys;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void Play() //oyna butonu iþlemleri
     {
-        sceneLoading.LoadScene(_MemoryManagement.ReadData_int("LastLevel"));  
+        sceneLoading.LoadScene(_MemoryManagement.ReadData_int(SaveKeys.LastLevel));  
     }
 
 }

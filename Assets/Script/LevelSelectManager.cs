@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using rgame;
+using rgamekeys;
 using TMPro;
 using UnityEditor.Build.Content;
 using UnityEngine.Localization.SmartFormat.Utilities;
@@ -23,7 +24,7 @@ public class LevelSelectManager : MonoBehaviour
     void Start()
     {
         //_MemoryManagement.SaveData_int("LastLevel",Level);
-        int presentlevel = _MemoryManagement.ReadData_int("LastLevel") - 4;//mevcut level bellek yönetimi int veri okuma þeklyle alýnýr
+        int presentlevel = _MemoryManagement.ReadData_int(SaveKeys.LastLevel) - 4;//mevcut level bellek yönetimi int veri okuma þeklyle alýnýr
         int index = 1;//index deðiþkenine 1 den baþlar
         for (int i = 0; i < Buttons.Length; i++)//döngü 0 dan baþlar ve button dizisini uzunluðu kadar döner
         {
@@ -48,7 +49,6 @@ public class LevelSelectManager : MonoBehaviour
     public void UploadScene(int index) //sahne yükleme iþlemleri
     {
         sceneLoading.LoadScene(index);
-        //SceneManager.LoadScene(index);
     }
     /// <summary>
     /// Ana Menüye dönme iþlemi

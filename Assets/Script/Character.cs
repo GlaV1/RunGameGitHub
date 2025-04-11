@@ -1,4 +1,5 @@
 using rgame;
+using rgamekeys;
 using System.Collections;
 using System.Collections.Generic;
 //using Unity.VisualScripting;
@@ -50,7 +51,7 @@ public class Character : MonoBehaviour
     DataManager _DataManager = new DataManager();
     public List<ColorData> _HatColorName = new List<ColorData>();
     public List<ColorData> _StickColorName = new List<ColorData>();
-
+    
     private void Start()
     {
         float difference = Vector3.Distance(transform.position, EndGame.transform.position);//mesafe deðiþkenine karaterin posizyponu ile bitiþ çizgisinin posizyonu arasýndaki mesafeyi atar
@@ -121,19 +122,19 @@ public class Character : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //taglarý bölme,toplama,çarpma,çýkarma iþlemleri olan nesneleri tetikler ise olacaklar
-        if (other.CompareTag("DivisionProcess")|| other.CompareTag("CollectionProcess") || other.CompareTag("MultiplacationProcess") || other.CompareTag("ExtractionProcess"))
+        if (other.CompareTag(GameCharactersProcess.DivisionProcess) || other.CompareTag(GameCharactersProcess.CollectionProcess) || other.CompareTag(GameCharactersProcess.MultiplacationProcess) || other.CompareTag(GameCharactersProcess.ExtractionProcess))
         {
             //gamemaner scriptindeki manmanager metoduna verileri gönderir
             int num = int.Parse(other.name);//çarptýðý nesnenin adýndaki sayýyý alýr
             _GameManager.ManManager(other.tag,num,other.transform);//manmanagera çarptýðý nesnenin tagýný, num deðiþkenini ve çarptýðý yerin pozisyonunu gönderir
         }
-        else if (other.CompareTag("LastTrigger"))//karakterin çarptýðý tetikledi nesnenin tagý son tetkleyici ise olacaklar
+        else if (other.CompareTag(GameObstacles.LastTrigger))//karakterin çarptýðý tetikledi nesnenin tagý son tetkleyici ise olacaklar
         {
             _Camera.ComeToEnd= true;//kameranýn sona geldik mi deðiþkeni true olur
             _GameManager.EnemyTrigger();//gamemanger scriptindeki düþman tetikleme metodu çalýþýr
             ComeToEnd = true;//karakterin sona geldik mi deðiþkeni true olur
         }
-        else if (other.CompareTag("EmptyCharacters"))//karakterin çarptýðý,tetiklediði nesnenin tagý boþ karakterler ise olacaklar
+        else if (other.CompareTag(GameCharacters.EmptyCharacters))//karakterin çarptýðý,tetiklediði nesnenin tagý boþ karakterler ise olacaklar
         {
             _GameManager.LowerCharacters.Add(other.gameObject);//gamemanager scriptinde  ki karakterler dizisine ekleme yapar
         }
@@ -146,7 +147,7 @@ public class Character : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //direk,iðneli kutu,pervanenin iðne taglý objelere çarptýðýnda yapýlmasý gereken iþlemler
-        if (collision.gameObject.CompareTag("Mast")|| collision.gameObject.CompareTag("NeedleBox")||collision.gameObject.CompareTag("PropallerNeedle"))
+        if (collision.gameObject.CompareTag(GameObstacles.Mast) || collision.gameObject.CompareTag(GameObstacles.NeedleBox) ||collision.gameObject.CompareTag(GameObstacles.PropallerNeedle))
         {
             //ekranýn sað tarafýnda ise
             if (transform.position.x>0)
@@ -168,9 +169,9 @@ public class Character : MonoBehaviour
     private void ItemColorCheck()
     {
         Color NewColor;
-        if (_MemoryManagement.ReadData_int("ActiveHatColor") != -1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor) != -1)
         {
-            if (ColorUtility.TryParseHtmlString(_HatColorName[_MemoryManagement.ReadData_int("ActiveHatColor")].ColorName, out NewColor))
+            if (ColorUtility.TryParseHtmlString(_HatColorName[_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor)].ColorName, out NewColor))
             {
                 HatColorMaterial.color = NewColor;
             }
@@ -180,13 +181,13 @@ public class Character : MonoBehaviour
             HatColorMaterial.color = DefaultHatColorMaterial.color;
         }
 
-        if (_MemoryManagement.ReadData_int("ActiveStickColor") != -1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor) != -1)
         {
             StickColorMaterial.color = DefaultStickColorMaterial.color;
         }
         else
         {
-            if (ColorUtility.TryParseHtmlString(_StickColorName[_MemoryManagement.ReadData_int("ActiveStickColor")].ColorName, out NewColor))
+            if (ColorUtility.TryParseHtmlString(_StickColorName[_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor)].ColorName, out NewColor))
             {
                 StickColorMaterial.color = NewColor;
             }
@@ -198,20 +199,20 @@ public class Character : MonoBehaviour
     /// </summary>
     private void ItemCheck()
     {
-        if (_MemoryManagement.ReadData_int("ActiveHat") != -1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHat) != -1)
         {
-            Hats[_MemoryManagement.ReadData_int("ActiveHat")].SetActive(true);
+            Hats[_MemoryManagement.ReadData_int(SaveKeys.ActiveHat)].SetActive(true);
         }
 
-        if (_MemoryManagement.ReadData_int("ActiveStick") != -1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStick) != -1)
         {
-            Sticks[_MemoryManagement.ReadData_int("ActiveStick")].SetActive(true);
+            Sticks[_MemoryManagement.ReadData_int(SaveKeys.ActiveStick)].SetActive(true);
         }
 
-        if (_MemoryManagement.ReadData_int("ActiveManColor") != -1)
+        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveManColor) != -1)
         {
             Material[] mats = _SkinnedMeshRenderer.materials;
-            mats[0] = ManColorMaterials[_MemoryManagement.ReadData_int("ActiveManColor")];
+            mats[0] = ManColorMaterials[_MemoryManagement.ReadData_int(SaveKeys.ActiveManColor)];
             _SkinnedMeshRenderer.materials = mats;
         }
         else
