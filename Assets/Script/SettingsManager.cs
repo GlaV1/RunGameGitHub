@@ -20,7 +20,6 @@ public class SettingsManager : MonoBehaviour
     // AudioSource MenuFxAudioSource;
     //  AudioSource GameAudioSource;
     MemoryManagement _MemoryManagement= new MemoryManagement();
-    LanguageManager _LanguageManager= new LanguageManager();
 
     /// <summary>
     /// Oyun baþladýðýnda olmasý gerekenler.Kayýt dosyasýndan ses seviyelerini okur ve verileir getirir

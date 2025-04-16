@@ -11,23 +11,33 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static int LiveCharacterNum = 1;// anlýk yaþayan karakter sayýsý (ana karakterden dolayý 1 e eþittir)
+    
     [Header("AltKarakterler")]
     public List<GameObject> LowerCharacters; //dýþarýdan karakterlerin verileceði liste
+   
     [Header("Olusma Efekti")]
     public List<GameObject> FormationEffect; // dýþarýdan oluþma efektlerinin verileceði liste
+   
     [Header("Yok Olma Efekti")]
     public List<GameObject> ExtinctionnEffect; // dýþarýdan yok olma efektlerinin verileceði liste
+    
     [Header("Ezilme efekti")]
     public List<GameObject> ManStainsEffect; //// dýþarýdan ezilme efektlerinin verileceði liste
+    
     [Header("Ana Karakter")]
     public GameObject MainCharacter; //dýþarýdan ana karakterimizin verileceði obje
+    
     HelperProcessLibrary _HelperLibrary = new HelperProcessLibrary();// sýnýf tanýmlamalarý
     MemoryManagement _MemoryManagement = new MemoryManagement();// sýnýf tanýmlamalarý
 
     [Header("Level Data")]//kolay yönetimi için oluþturulan baþlýk
+    
     public List<GameObject> EnemyCharacter; // dýþarýdan düþman karakterlerin verileceði liste
+   
     public int HowMuchEnemy; // kaç adet düþman var
+   
     public bool IsGameOver; // oyun bitti mi
+    
     bool ComeToEnd; // Sona geldik mi 
     
     [Header("Karakter Ýþlemleri")]
@@ -37,17 +47,21 @@ public class GameManager : MonoBehaviour
     public bool LowerCharacterItem=false;
 
     //
-    
+
     //
     [Header("PAUSE ISLEMLERI")]
 
     [Header("Pause Panel")]
     public GameObject[] Panels;
+    [Tooltip("Pause Panelleri")]
 
     [Header("Pause Settings")]
     public Slider _MenuAudioSlider;
+    [Tooltip("Pause Menu,Menu Audio Slider")]
     public Slider _MenuFxAudioSlider;
+    [Tooltip("Pause Menu,Menu Fx Audio Slider")]
     public Slider _GameAudioSlider;
+    [Tooltip("Pause Menu,Game Audio Slider")]
 
     ///Taglar
     private const string Attack = "Attack";
@@ -67,12 +81,6 @@ public class GameManager : MonoBehaviour
         _GameAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.GameAudio);
     }
    
-    /// <summary>
-    /// Sahne yüklenmeden önce olmasý gerekenler
-    /// </summary>
-    private void Awake()
-    {
-    }
     /// <summary>
     /// Düþman Karakterleri ortaya çýkarma iþlemi
     /// </summary>
@@ -221,18 +229,9 @@ public class GameManager : MonoBehaviour
         ComeToEnd = true;
         WarSituation();
     }
-   
-    /// <summary>
-    /// Pause düðmeseine basýlýnca Oyunu Durdurur
-    /// </summary>
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-        Panels[0].gameObject.SetActive(true);
-    }
 
     /// <summary>
-    /// Oyun Durunca açýlan duraklama menüsündeki islemleri kontrol eder 0=play||1=replay|2=settings|3=gotomainmenu|4=exit|5=next level
+    /// Oyun Durunca açýlan duraklama menüsündeki islemleri kontrol eder 0=play||1=replay|2=settings|3=gotomainmenu|4=exit|5=next level| 6=Oyun durdurma |7= Ayarlar panelini kapatýr ve duraklama menüsünü açar
     /// </summary>
     /// <param name="process">Kullanýcýnýn Hangi Ýþlemi Yaptýðýnýn Bilgisini alýr</param>
     public void PauseProcess(int process)
@@ -271,6 +270,14 @@ public class GameManager : MonoBehaviour
             case 5:
                 SceneManager.LoadScene(_Scene.buildIndex + 1);
                 break;
+            case 6:
+                Time.timeScale = 0;
+                Panels[0].gameObject.SetActive(true);
+                break;
+                case 7:
+                Panels[1].gameObject.SetActive(false);
+                Panels[0].gameObject.SetActive(true);
+                break;
         }
     }
 
@@ -289,15 +296,6 @@ public class GameManager : MonoBehaviour
             Panels[2].gameObject.SetActive(false);
             Panels[0].gameObject.SetActive(true);
         }
-    }
-
-    /// <summary>
-    /// Ayarlar panelini kapatýr ve duraklama menüsünü açar
-    /// </summary>
-    public void BackToPauseMenu()
-    {
-        Panels[1].gameObject.SetActive(false);
-        Panels[0].gameObject.SetActive(true);
     }
 
     /// <summary>

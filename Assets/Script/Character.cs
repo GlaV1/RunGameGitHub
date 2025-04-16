@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     [Header("Savas Alani")]
     public GameObject WillGoWarCharacter;//karakterlerin gideceði yer
     [Header("Slider")]
-    public Slider _Slider;//slider
+    public Slider _GameMapSlider;//slider
     [Header("Bitis Cizgisi")]
     public GameObject EndGame;//finish line
     [Header("Ana Karakter Hýz")]
@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         float difference = Vector3.Distance(transform.position, EndGame.transform.position);//mesafe deðiþkenine karaterin posizyponu ile bitiþ çizgisinin posizyonu arasýndaki mesafeyi atar
-        _Slider.maxValue = difference;//sliderýn maksimum deðerine mesafe deðiþkenini atars
+        _GameMapSlider.maxValue = difference;//sliderýn maksimum deðerine mesafe deðiþkenini atars
     }
     private void FixedUpdate()
     {
@@ -77,16 +77,16 @@ public class Character : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, WillGoWarCharacter.transform.position, .015f);
                 //bitiþ çizgisini geçtikten sonra slider da kalan boþluðu kapatmak için yapýlan iþlemler
                 //eðer karakter bitiþ çigisini geçtiyse ve sliderýn deðeri 0 a eþit DEÐÝLSE sliderýn deðerini .005 azalt
-                if (_Slider.value != 0)
+                if (_GameMapSlider.value != 0)
                 {
-                    _Slider.value -= .005f;
+                    _GameMapSlider.value -= .005f;
                 }
             }
             else//karakter sona gelmediyse olmasý gerekenler
             {
                 float difference = Vector3.Distance(transform.position, EndGame.transform.position);//mesafe deðiþkenine bitiþ çizgisi ile karakterin arasýndaki mesafeyi atar
-                _Slider.value = difference;// kaydýrýcýnýn deðerine mesafayi atar
-
+                _GameMapSlider.value = difference;// kaydýrýcýnýn deðerine mesafayi atar
+    
                 if (Input.GetKey(KeyCode.Mouse0)) //mousenin sað tuþuna basýldýðýnda olmasý gerekenler
                 {
                     //karakterin x bileþeninde saða ve sola haraket etmesini saðlayan koþullar
@@ -110,7 +110,7 @@ public class Character : MonoBehaviour
         _HatColorName=loadedData._HatColorName;
         _StickColorName=loadedData._StickColorName;
         ItemCheck();
-        ItemColorCheck();
+        //ItemColorCheck();
         _MainCharacterAnimator.speed = ((float)MainCharacterSpeed);
     }
 
@@ -166,33 +166,33 @@ public class Character : MonoBehaviour
     /// <summary>
     /// Karakter özelleþitirme sayfasýnda Deðiþtirilen item renklerini kayýt dosyasýndan okur ve karkterlere uygular
     /// </summary>
-    private void ItemColorCheck()
-    {
-        Color NewColor;
-        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor) != -1)
-        {
-            if (ColorUtility.TryParseHtmlString(_HatColorName[_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor)].ColorName, out NewColor))
-            {
-                HatColorMaterial.color = NewColor;
-            }
-        }
-        else
-        {
-            HatColorMaterial.color = DefaultHatColorMaterial.color;
-        }
+    //private void ItemColorCheck()
+    //{
+    //    Color NewColor;
+    //    if (_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor) != -1)
+    //    {
+    //        if (ColorUtility.TryParseHtmlString(_HatColorName[_MemoryManagement.ReadData_int(SaveKeys.ActiveHatColor)].ColorName, out NewColor))
+    //        {
+    //            HatColorMaterial.color = NewColor;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        HatColorMaterial.color = DefaultHatColorMaterial.color;
+    //    }
 
-        if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor) != -1)
-        {
-            StickColorMaterial.color = DefaultStickColorMaterial.color;
-        }
-        else
-        {
-            if (ColorUtility.TryParseHtmlString(_StickColorName[_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor)].ColorName, out NewColor))
-            {
-                StickColorMaterial.color = NewColor;
-            }
-        }
-    }  
+    //    if (_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor) != -1)
+    //    {
+    //        StickColorMaterial.color = DefaultStickColorMaterial.color;
+    //    }
+    //    else
+    //    {
+    //        if (ColorUtility.TryParseHtmlString(_StickColorName[_MemoryManagement.ReadData_int(SaveKeys.ActiveStickColor)].ColorName, out NewColor))
+    //        {
+    //            StickColorMaterial.color = NewColor;
+    //        }
+    //    }
+    //}  
 
     /// <summary>
     /// Customize Sayfasýnda özelleþtirilen karakterdek itemleri kayýt dosyasýndan okur ve karaktere özelleþtirmeyi uygular

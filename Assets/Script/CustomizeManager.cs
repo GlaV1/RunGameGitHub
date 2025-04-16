@@ -77,17 +77,14 @@ public class CustomizeManager : MonoBehaviour
     public RawImage HatColorRawImage;
     int hatcolorindex = -1;
    
-    [Header("Item Renk Adlarý")]
-   // public List<string> HatColorName;
-   // public List<string> StickColorName;
-
-
 
     /////////
     MemoryManagement _MemoryManagement= new MemoryManagement();
     DataManager _DataManager = new DataManager();
     LanguageManager _LanguageManager = new LanguageManager();
     GameData _GameData = new GameData();
+
+
     [Header("Ýtem Bilgi Ýþlemleri")]
     public List<ItemInformations> _ItemInformations = new List<ItemInformations>();
     public List<ColorData> _HatColorName = new List<ColorData>();

@@ -30,7 +30,9 @@ public class EnemyCharacter : MonoBehaviour
         AttackStarted = true;//atak baþladý mý evet
     }
 
-
+    /// <summary>
+    /// Oyun Pabþlatýktan sonra yapýlmasý gerekenler
+    /// </summary>
     private void LateUpdate()
     {
         if (AttackStarted==true)//eðer saldýrý baþladý ise olmasý gerekenler

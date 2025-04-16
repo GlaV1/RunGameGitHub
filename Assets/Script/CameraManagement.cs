@@ -1,13 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.Video;
 
 public class CameraManagement : MonoBehaviour
 {
+    [Header("Kamera hedefi(Karakter)")]
+    [Tooltip("Ana karakter verilecek")]
     public Transform target; //hedef
+
+    [Header("Karakter ile arasindaki mesafe")]
+    [Tooltip("mesafe verilecek")]
     public Vector3 target_offset; //mesafe
+
     public bool ComeToEnd; // sona geldik mi
+    [Header("Kameranýn gidecegi yer")]
+    [Tooltip("bolum sonunda kameranýn alacagi konum")]
     public GameObject WillGoCamera; // kameranýn gideceði yer
     void Start()
     {

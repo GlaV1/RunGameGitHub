@@ -10,15 +10,23 @@ public class MainMenuManager : MonoBehaviour
 
     
     [Header("Item Islemleri")]
+    [Tooltip("item listesi")]
     public List<ItemInformations> _ItemInformations= new List<ItemInformations>();
+
+    [Tooltip("Sapkalarýn renk nameleri")]
     [Header("Sapka Renk Islemleri")]
     public List<ColorData> _HatColorName = new List<ColorData>();
+
+    [Tooltip("Sopa Renk Nameleri")]
     [Header("Sopa Renk Islemleri")]
     public List<ColorData> _StickColorName = new List<ColorData>();
 
     DataManager _DataManager = new DataManager();
     GameData _GameData = new GameData();
     MemoryManagement _MemoryManagement = new MemoryManagement();
+
+    [Header("Scene Loading")]
+    [Tooltip("SceneLoadingImage itemi verilecek")]
     public SceneLoading sceneLoading;  
 
     void Start()
@@ -29,7 +37,6 @@ public class MainMenuManager : MonoBehaviour
         _MemoryManagement.Check();
         _DataManager.FirstSave(_GameData);
     }
-
 
     public void UploadScene(int index) //sahne yükleme isþlemleri
     {

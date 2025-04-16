@@ -66,6 +66,10 @@ public class EmptyChracter : MonoBehaviour
         _Animator.SetBool(Attack, true); //animatorde ki saldýr iþlemi aktif edilir
         gameObject.tag = GameCharacters.LowerCharacters;//boþ karakterin tagý alt karakter olarak deðiþtirilir
         _GameManager.LowerCharacters.Add(gameObject);
+        if (_GameManager.LowerCharacterItem==true)
+        {
+            ItemCheck();
+        }
         GameManager.LiveCharacterNum++;//gamemanager scriptindeki anlýk karakter sayýsýnda +1 deðiþimi yapýlýr      
     }
 
