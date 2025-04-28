@@ -13,18 +13,23 @@ public class GameManager : MonoBehaviour
     public static int LiveCharacterNum = 1;// anlýk yaþayan karakter sayýsý (ana karakterden dolayý 1 e eþittir)
     
     [Header("AltKarakterler")]
+    [Tooltip("LowerCharacterPool daki alt karakterler verilecek")]
     public List<GameObject> LowerCharacters; //dýþarýdan karakterlerin verileceði liste
    
     [Header("Olusma Efekti")]
+    [Tooltip("EffectPool daki formationeffectleri verilecek")]
     public List<GameObject> FormationEffect; // dýþarýdan oluþma efektlerinin verileceði liste
    
     [Header("Yok Olma Efekti")]
+    [Tooltip("EffectPool daki extinctioneffectleri verilecek")]
     public List<GameObject> ExtinctionnEffect; // dýþarýdan yok olma efektlerinin verileceði liste
     
     [Header("Ezilme efekti")]
+    [Tooltip("EffectPool daki manstains efectleri verilecek")]
     public List<GameObject> ManStainsEffect; //// dýþarýdan ezilme efektlerinin verileceði liste
     
     [Header("Ana Karakter")]
+    [Tooltip("Main character verilecek")]
     public GameObject MainCharacter; //dýþarýdan ana karakterimizin verileceði obje
     
     HelperProcessLibrary _HelperLibrary = new HelperProcessLibrary();// sýnýf tanýmlamalarý
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Pause Panelleri")]
 
     [Header("Pause Settings")]
+
     public Slider _MenuAudioSlider;
     [Tooltip("Pause Menu,Menu Audio Slider")]
     public Slider _MenuFxAudioSlider;

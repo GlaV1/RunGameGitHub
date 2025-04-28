@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +12,17 @@ using UnityEngine.Localization.SmartFormat.Utilities;
 public class LevelSelectManager : MonoBehaviour
 {
     [Header("Butonlar")]
+    [Tooltip("Level Butonlarý")]
     public Button[] Buttons;//dýþarýdan verilecek butonlar
+
     [Header("Istenen Yere Kadar level Açma islemi(5-20)")]
     public int Level;
     [Header("Kilit resmi")]
+    [Tooltip("Kilit Sprite Verilecek")]
     public Sprite LockedButtons;//dýþarýdan verilen sprite
 
+    [Header("Ara Sahne Manager")]
+    [Tooltip("SceneLoadingImage itemi verilecek")]
     public SceneLoading sceneLoading;
 
     MemoryManagement _MemoryManagement= new MemoryManagement();

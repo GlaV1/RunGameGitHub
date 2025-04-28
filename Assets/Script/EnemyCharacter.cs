@@ -7,13 +7,21 @@ using rgamekeys;
 public class EnemyCharacter : MonoBehaviour
 {
     [Header("Saldiri Hedefi")]
+    [Tooltip("Attack target vetrilecek")]
     public GameObject Attack_Target;//dýþarýdan saldýrý hedefi verilir
+
     [Header("NavMesh")]
+    [Tooltip("EnemyCharacter navmesh verilecek")]
     public NavMeshAgent _NavMesh;//dýþarýdan nav mash agent verilir
+
     [Header("Animator")]
+    [Tooltip("EnemyCharacterin animatoru verilecek")]
     public Animator _Animator;//dýþarýdan animatör verilir
+
     [Header("GameManager")]
+    [Tooltip("Gamemanager scripti verilir")]
     public GameManager _GameManager; // dýþarýdan gamemanager scripti çaðýrýlýr
+
     bool AttackStarted;//saldýrý baþladý mý
 
     ///Taglar

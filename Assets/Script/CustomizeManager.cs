@@ -23,16 +23,22 @@ using UnityEngine.Localization.Settings;
 public class CustomizeManager : MonoBehaviour
 {
     [Header("Paneller")]
+    [Tooltip("islem yapilacak paneller")]
     public GameObject[] PanelProcess;
     int ActiveCustomizePanelIndex = 0;//aktif panel
 
-    [Header("Canvaslar")]   
+    [Header("Canvaslar")]
+    [Tooltip("islem yapilacak canvaslar")]
     public GameObject[] CanvasProcess;
 
     [Header("Text")]
+    [Tooltip("PointText (Puan) TextMesh verilecek")]
     public TextMeshProUGUI PointText;//dýþarýdan puan verilmesi
+    [Tooltip("BuyingText (Satýn Alma) Texti verilecek")]
     public TextMeshProUGUI BuyingText;//dýþarýdan puan verilmesi
+    [Tooltip("AlertText (kullanici alarm) text verilecek")]
     public TextMeshProUGUI AlertText;//dýþarýdan puan verilmesi//
+    [Tooltip("HatText (Sapka isimleri)")]
     public Text HatText;//dýþarýdan þapka texti verilmesi
     public Text StickText;//dýþarýdan sopa texti verilmesi
     public Text ManColorText;//dýþarýdan tema rengi texti verilmesi
@@ -83,6 +89,7 @@ public class CustomizeManager : MonoBehaviour
     DataManager _DataManager = new DataManager();
     LanguageManager _LanguageManager = new LanguageManager();
     GameData _GameData = new GameData();
+    /////////
 
 
     [Header("Ýtem Bilgi Ýþlemleri")]

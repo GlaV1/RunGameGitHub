@@ -11,10 +11,20 @@ using UnityEngine.Localization.Settings;
 
 public class SettingsManager : MonoBehaviour
 {
+    [Header("Ses Sliderlari")]
+    [Tooltip("Menu Audio Slider")]
     public Slider _MenuAudioSlider;
+    [Tooltip("Menu Fx Audio Slider")]
     public Slider _MenuFxAudioSlider;
+    [Tooltip("GAme Audio Slider")]
     public Slider _GameAudioSlider;
+
+    [Header("Oyun Kalite DropDown")]
+    [Tooltip("Oyun Kalite DropDown")]
     public TMP_Dropdown _GameQualityDropdown;
+
+    [Header("Dil Secenekleri DwopDown")]
+    [Tooltip("Dil secenekleri DropDown")]
     public TMP_Dropdown _GameLanguageDropdown;
     // AudioSource MenuAudioSource;
     // AudioSource MenuFxAudioSource;
