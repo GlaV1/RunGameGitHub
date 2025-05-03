@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using rgame;
 using rgamekeys;
 using TMPro;
-using UnityEditor.Build.Content;
+//using UnityEditor.Build.Content;
 using UnityEngine.Localization.SmartFormat.Utilities;
 
 public class LevelSelectManager : MonoBehaviour

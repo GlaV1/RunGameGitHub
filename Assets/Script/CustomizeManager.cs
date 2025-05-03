@@ -199,7 +199,6 @@ public class CustomizeManager : MonoBehaviour
         PublicItemColorDirection(1,direction);
     }
 
-
     /// <summary>
     ///  Karakter özelleþtirme itemlerinin RENKleri  arasýnda gezinme iþlemlerini indexlere göre yapar
     /// </summary>

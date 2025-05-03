@@ -15,17 +15,10 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Turkish (Turkey) (tr-TR)
   m_Data:
     m_SerializedData: []
-  m_GUID: 4781e4e699f1a03408d53d02c5362184
+  m_GUID: d632ed1c4d50dd44898fd8d1781ef12e
   m_SerializeEntries:
-  - m_GUID: 419fbe410e0adbd41ba463236d93edfb
+  - m_GUID: 66478ec62fa8a604ba07e3b58c861f29
     m_Address: Game_Text_tr-TR
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-tr-TR
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 65d74893bd234994ea8f3bfd39f92bed
-    m_Address: Customize_Table_tr-TR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-tr-TR

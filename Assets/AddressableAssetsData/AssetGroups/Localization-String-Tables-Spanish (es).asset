@@ -15,17 +15,10 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Spanish (es)
   m_Data:
     m_SerializedData: []
-  m_GUID: 53656c0d0e90f8541a5b67aba4ef25b1
+  m_GUID: d8ea20ce8aa315a448d347c68ddb6e3a
   m_SerializeEntries:
-  - m_GUID: b4ab28c0e33fa1f48a92e2e68c11c693
+  - m_GUID: e957978c4c1af974082a1a72c07d4e6b
     m_Address: Game_Text_es
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-es
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c8ae853cc812bc24f874b7e922e37a90
-    m_Address: Customize_Table_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

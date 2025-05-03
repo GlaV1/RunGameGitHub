@@ -15,16 +15,9 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Chinese (Simplified) (zh)
   m_Data:
     m_SerializedData: []
-  m_GUID: 061edfd3c36f3ad46919b94aefcc9827
+  m_GUID: d061b9517c1247b4a8c36132e9518e0f
   m_SerializeEntries:
-  - m_GUID: 425d14108d29faf45ae9a4fc9550b453
-    m_Address: Customize_Table_zh
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-zh
-    - Preload
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 817c645949c39e145a6dacdc9d378e4d
+  - m_GUID: 7d0f68245a5ac3a42a0faeed407c66f7
     m_Address: Game_Text_zh
     m_ReadOnly: 1
     m_SerializedLabels:

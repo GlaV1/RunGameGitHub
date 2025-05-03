@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Localization-Locales
   m_Data:
     m_SerializedData: []
-  m_GUID: 852ad75ab3d3a5c43bda6d5916ae505b
+  m_GUID: b831527a47b9afb41b06a5d6e9d3cdbd
   m_SerializeEntries:
   - m_GUID: 287f80e4124c125489bccf7a2bc6b38b
     m_Address: Turkish (Turkey) (tr-TR)
@@ -23,13 +23,13 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6fa32158362100a449e0e7732a4e3b0d
+  - m_GUID: 848bc347b2355b745bb92fa3df6ae995
     m_Address: Spanish (es)
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b28b73950e3323441b6eb21a9dc2814b
+  - m_GUID: 89b303b5ff95a8d41a11672a7baa6d48
     m_Address: Chinese (Simplified) (zh)
     m_ReadOnly: 1
     m_SerializedLabels:

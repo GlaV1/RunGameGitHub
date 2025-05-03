@@ -459,9 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
+      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
     m_TableEntryReference:
-      m_KeyId: 44769808384
+      m_KeyId: 559767425024
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -726,9 +726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
+      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
     m_TableEntryReference:
-      m_KeyId: 46271369216
+      m_KeyId: 562556637184
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1177,9 +1177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
+      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
     m_TableEntryReference:
-      m_KeyId: 45512200192
+      m_KeyId: 561478701056
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1485,9 +1485,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
+      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
     m_TableEntryReference:
-      m_KeyId: 44019027968
+      m_KeyId: 292430876672
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1732,7 +1732,6 @@ GameObject:
   - component: {fileID: 1526857241}
   - component: {fileID: 1526857240}
   - component: {fileID: 1526857242}
-  - component: {fileID: 1526857243}
   m_Layer: 5
   m_Name: txt_Settings
   m_TagString: Untagged
@@ -1870,9 +1869,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:08490f6ddcd0a3544a22c6d42427fff6
+      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
     m_TableEntryReference:
-      m_KeyId: 46963429376
+      m_KeyId: 565362626560
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1893,34 +1892,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  references:
-    version: 2
-    RefIds: []
---- !u!114 &1526857243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526857238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_StringReference:
-    m_TableReference:
-      m_TableCollectionName: 
-    m_TableEntryReference:
-      m_KeyId: 0
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  m_FormatArguments: []
-  m_UpdateString:
-    m_PersistentCalls:
-      m_Calls: []
   references:
     version: 2
     RefIds: []
@@ -2041,6 +2012,8 @@ MonoBehaviour:
     LocalizationKey: Customize_Theme5
     Point: 750
     BuyingStatus: 0
+  _HatColorName: []
+  _StickColorName: []
   sceneLoading: {fileID: 25856374}
 --- !u!1 &1593860711
 GameObject:

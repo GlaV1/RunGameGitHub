@@ -411,7 +411,6 @@ namespace rgame
     /// </summary>
     public class LanguageManager
     {
-        MemoryManagement _MemoryManagement = new MemoryManagement();
         /// <summary>
         /// Ýstenen bir metni ilgili tablodaki ilgili keyi kullanarak DÝlini deðiþtirme
         /// </summary>
