@@ -15,10 +15,16 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Spanish (es)
   m_Data:
     m_SerializedData: []
-  m_GUID: d8ea20ce8aa315a448d347c68ddb6e3a
+  m_GUID: d562e295b9db0d0458427688a6d137d1
   m_SerializeEntries:
-  - m_GUID: e957978c4c1af974082a1a72c07d4e6b
+  - m_GUID: a7f13ed3e98487047880df72c893b725
     m_Address: Game_Text_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd8aa0aa0db6aef418d9a30efefa277d
+    m_Address: Customize_Table_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
@@ -28,5 +34,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 3522af0f6dfc37645b308ff393efe979, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 0ab334b92e058c548bd6099d3f680b2d, type: 2}
-    - {fileID: 11400000, guid: 08d662800e7ed1040ad3e21b8027e001, type: 2}
+    - {fileID: 11400000, guid: ab5a43c727dd3a34e886f2a89ae6ced6, type: 2}
+    - {fileID: 11400000, guid: 209e9d0b37ac9b14c90184b155d84b44, type: 2}

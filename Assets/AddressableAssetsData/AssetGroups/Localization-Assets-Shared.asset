@@ -15,9 +15,14 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_Data:
     m_SerializedData: []
-  m_GUID: 36b067d5fec87b8488b4bb79efea974c
+  m_GUID: f02828c37aa28cb4f887c360c3430bf6
   m_SerializeEntries:
-  - m_GUID: 32ad2374df0ba8e44b648d19d0f9a035
+  - m_GUID: 7276af1084490f640a3c5cbf3dde3a93
+    m_Address: Assets/Localization/Customize_Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fafb1804bcfc25449bf995a4dd830d10
     m_Address: Assets/Localization/Game_Text Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
@@ -26,5 +31,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 3522af0f6dfc37645b308ff393efe979, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 9be4dc5c12fb14b4fac8ef28a7c66c37, type: 2}
-    - {fileID: 11400000, guid: d9851be619f75234380da8212e549925, type: 2}
+    - {fileID: 11400000, guid: f36e6330064e27e41b01c7af5abcc99f, type: 2}
+    - {fileID: 11400000, guid: 3dbc9b12f1c71774cae680e8952c87de, type: 2}

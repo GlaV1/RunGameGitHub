@@ -1179,9 +1179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 291625570304
+      m_KeyId: 1342873341952
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

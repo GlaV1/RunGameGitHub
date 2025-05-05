@@ -459,9 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 559767425024
+      m_KeyId: 68677341184
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -726,9 +726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 562556637184
+      m_KeyId: 64894078976
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1177,9 +1177,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 561478701056
+      m_KeyId: 70493474816
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1485,9 +1485,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 292430876672
+      m_KeyId: 66882179072
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1869,9 +1869,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 565362626560
+      m_KeyId: 72825507840
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

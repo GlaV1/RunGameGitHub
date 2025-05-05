@@ -14,10 +14,130 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: tr-TR
-  m_SharedData: {fileID: 11400000, guid: 32ad2374df0ba8e44b648d19d0f9a035, type: 2}
+  m_SharedData: {fileID: 11400000, guid: fafb1804bcfc25449bf995a4dd830d10, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 68677341184
+    m_Localized: "B\xF6l\xFCm Se\xE7imi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66882179072
+    m_Localized: "\xD6zelle\u015Ftirme"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64894078976
+    m_Localized: Oyna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70493474816
+    m_Localized: Market
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72825507840
+    m_Localized: Ayarlar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1342873341952
+    m_Localized: "B\xF6l\xFCm Se\xE7imi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1727046422528
+    m_Localized: "Men\xFC Sesi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1901852430336
+    m_Localized: "Men\xFC Fx Sesi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2165112115200
+    m_Localized: Oyun Sesi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2343613304832
+    m_Localized: Oyun Kalite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2638577733632
+    m_Localized: "D\xFC\u015F\xFCk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2749592571904
+    m_Localized: Orta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876826783744
+    m_Localized: "Y\xFCksek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2947412725760
+    m_Localized: "\xC7ok Y\xFCksek"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3105227608064
+    m_Localized: "Dil Se\xE7imi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3326942711808
+    m_Localized: "\xC7ince"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328683347968
+    m_Localized: "\u0130ngilizce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3330298155008
+    m_Localized: "\u0130spanyolca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3336652525568
+    m_Localized: "T\xFCrk\xE7e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3894746615808
+    m_Localized: "Sat\u0131n Al"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3896491446272
+    m_Localized: Kaydet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4531047698432
+    m_Localized: Yetersiz Bakiye
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4664061661184
+    m_Localized: Kaydedildi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4772195012608
+    m_Localized: "Sat\u0131n Al\u0131nd\u0131"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4994136608768
+    m_Localized: "Sat\u0131n Al"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5057634177024
+    m_Localized: Tema Yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5109710655488
+    m_Localized: Sopa Yok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5157718659072
+    m_Localized: "\u015Eapka Yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5575123210240
+    m_Localized: "Kazand\u0131n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5730450870272
+    m_Localized: Kaybettin
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

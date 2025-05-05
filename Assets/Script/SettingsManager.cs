@@ -39,43 +39,7 @@ public class SettingsManager : MonoBehaviour
         _MenuAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.MenuAudio);
         _MenuFxAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.MenuFxAudio);
         _GameAudioSlider.value = _MemoryManagement.ReadData_float(SaveKeys.GameAudio);
-        //_GameLanguageDropdown.value = _MemoryManagement.ReadData_int(SaveKeys.SelectedLanguage);
-
-        int savedLangIndex = _MemoryManagement.ReadData_int(SaveKeys.SelectedLanguage);
-        StartCoroutine(InitializeLanguage(savedLangIndex));
-    }
-    IEnumerator InitializeLanguage(int langIndex)
-    {
-        yield return LocalizationSettings.InitializationOperation;
-
-        if (langIndex >= 0 && langIndex < LocalizationSettings.AvailableLocales.Locales.Count)
-        {
-            _GameLanguageDropdown.value = langIndex;
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[langIndex];
-        }
-        else
-        {
-            Debug.LogWarning("Kaydedilen dil geçersiz. 0. indexe ayarlandý.");
-            _GameLanguageDropdown.value = 0;
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
-        }
-
-        _GameLanguageDropdown.onValueChanged.AddListener(LanguageSelection);
-    }
-
-    public void LanguageSelection(int selectedIndex)
-    {
-        _MemoryManagement.SaveData_int(SaveKeys.SelectedLanguage, selectedIndex);
-        StartCoroutine(SetLanguageAsync(selectedIndex));
-    }
-
-    IEnumerator SetLanguageAsync(int index)
-    {
-        if (index >= 0 && index < LocalizationSettings.AvailableLocales.Locales.Count)
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
-        }
-        yield return null;
+        _GameLanguageDropdown.value = _MemoryManagement.ReadData_int(SaveKeys.SelectedLanguage);
     }
 
     /// <summary>
@@ -95,11 +59,11 @@ public class SettingsManager : MonoBehaviour
         QualitySettings.SetQualityLevel(SelectedQuality);
     }
 
-    //public void LanguageSelection(int SelectionLanguage)
-    //{
-    //    _MemoryManagement.SaveData_int(SaveKeys.SelectedLanguage, SelectionLanguage);
-    //     LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
-    //}
+    public void LanguageSelection(int SelectionLanguage)
+    {
+        _MemoryManagement.SaveData_int(SaveKeys.SelectedLanguage, SelectionLanguage);
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[SelectionLanguage];
+    }
 
     /// <summary>
     /// Kullanýcýdan gelen veriye göre ses seviyelerini kayýt eder

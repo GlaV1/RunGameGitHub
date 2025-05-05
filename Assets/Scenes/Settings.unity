@@ -533,33 +533,33 @@ MonoBehaviour:
   _GameLanguageDropdown: {fileID: 33479563}
   localizedOptions:
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1134131220480
+      m_KeyId: 3326942711808
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1134814892032
+      m_KeyId: 3328683347968
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1135565672448
+      m_KeyId: 3330298155008
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1196609572864
+      m_KeyId: 3336652525568
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -716,12 +716,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1296618557440
+      m_KeyId: 1901852430336
       m_Key: 
     m_FallbackState: 0
-    m_WaitForCompletion: 0
+    m_WaitForCompletion: 1
     m_LocalVariables: []
   m_FormatArguments: []
   m_UpdateString:
@@ -1961,9 +1961,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 981722796032
+      m_KeyId: 2343613304832
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2248,33 +2248,33 @@ MonoBehaviour:
   _GameQualityDropdown: {fileID: 739861132}
   localizedOptions:
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 863078518784
+      m_KeyId: 2638577733632
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 864122900480
+      m_KeyId: 2749592571904
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 865095979008
+      m_KeyId: 2876826783744
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
   - m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 980837797888
+      m_KeyId: 2947412725760
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2431,9 +2431,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1297423863808
+      m_KeyId: 1727046422528
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -4098,9 +4098,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 982502936576
+      m_KeyId: 2165112115200
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -4915,9 +4915,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:32ad2374df0ba8e44b648d19d0f9a035
+      m_TableCollectionName: GUID:fafb1804bcfc25449bf995a4dd830d10
     m_TableEntryReference:
-      m_KeyId: 1295624507392
+      m_KeyId: 3105227608064
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0

@@ -142,7 +142,6 @@ public class CustomizeManager : MonoBehaviour
         _ItemInformations=loadedData._ItemInformation;
         _HatColorName=loadedData._HatColorName;
         _StickColorName=loadedData._StickColorName;
-
     }
 
     /// <summary>
@@ -802,6 +801,7 @@ public class CustomizeManager : MonoBehaviour
                 CustomizeSaveButton.interactable = true;
                 BuyingText.text = "-";
             }
+            ItemColorPanelControl(3,3);
         }
     }
 

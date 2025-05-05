@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
   m_Name: Game_Text
   m_EditorClassIdentifier: 
-  m_SharedTableData: {fileID: 11400000, guid: 32ad2374df0ba8e44b648d19d0f9a035, type: 2}
+  m_SharedTableData: {fileID: 11400000, guid: fafb1804bcfc25449bf995a4dd830d10, type: 2}
   m_Tables:
-  - {fileID: 11400000, guid: 7d0f68245a5ac3a42a0faeed407c66f7, type: 2}
-  - {fileID: 11400000, guid: b8aaf453b8ca1c04787095795872cde9, type: 2}
-  - {fileID: 11400000, guid: e957978c4c1af974082a1a72c07d4e6b, type: 2}
-  - {fileID: 11400000, guid: 66478ec62fa8a604ba07e3b58c861f29, type: 2}
+  - {fileID: 11400000, guid: c671e92763ef75a49a5b3081f9dee458, type: 2}
+  - {fileID: 11400000, guid: a7f13ed3e98487047880df72c893b725, type: 2}
+  - {fileID: 11400000, guid: c38f62040fbc49f46899c8a91f895e06, type: 2}
+  - {fileID: 11400000, guid: 7a6572f0dbf03f84b9d87401bacda49d, type: 2}
   m_Extensions: []
   m_Group: String Table
   references:
