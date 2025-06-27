@@ -127,16 +127,13 @@ public class CustomizeManager : MonoBehaviour
 
     void Start()
     {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_MemoryManagement.ReadData_int("SelectedLanguage")];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[_MemoryManagement.ReadData_int(SaveKeys.SelectedLanguage)];
         UpdateLocalizedItemNames();
         MakeControl(0,true);
         MakeControl(1,true);
         MakeControl(2,true);
-        _MemoryManagement.SaveData_int("Point", 5000);
-        PointText.text = _MemoryManagement.ReadData_int("Point").ToString();
-        //_DataManager.DataSave(_ItemInformations);
-        //_DataManager.DataUpload();        
-        //_ItemInformations = _DataManager.TransferList();
+        _MemoryManagement.SaveData_int(SaveKeys.Point, 5000);
+        PointText.text = _MemoryManagement.ReadData_int(SaveKeys.Point).ToString();
         _DataManager.DataUpload();
         GameData loadedData = _DataManager.GetData();
         _ItemInformations=loadedData._ItemInformation;
@@ -939,7 +936,6 @@ public class CustomizeManager : MonoBehaviour
         {
             if (_ItemInformations[purchasecontrolindex].Point>0)
             {
-                //
                 BuyingText.text = _ItemInformations[purchasecontrolindex].Point + _LanguageManager.BringText(LanguageKeys.LocalizationCustomizeTextTableName, LanguageKeys.CustomizeItemPurchaseControlText);
                 BuyButton.interactable = true;
                 CustomizeSaveButton.interactable = false;
@@ -951,7 +947,6 @@ public class CustomizeManager : MonoBehaviour
             BuyButton.interactable = false;
             CustomizeSaveButton.interactable = true;
         }
-
     }
 
 

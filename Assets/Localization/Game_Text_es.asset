@@ -17,7 +17,127 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: fafb1804bcfc25449bf995a4dd830d10, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 5730450870272
+    m_Localized: perdida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5575123210240
+    m_Localized: ganado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5157718659072
+    m_Localized: sin sombrero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5109710655488
+    m_Localized: sin palo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5057634177024
+    m_Localized: sin tema
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4994136608768
+    m_Localized: comprar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4772195012608
+    m_Localized: compra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4664061661184
+    m_Localized: grabada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4531047698432
+    m_Localized: Fondos insuficientes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3896491446272
+    m_Localized: ahorrar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3894746615808
+    m_Localized: comprar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3336652525568
+    m_Localized: turca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3330298155008
+    m_Localized: "espa\xF1ol"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3328683347968
+    m_Localized: "ingl\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3326942711808
+    m_Localized: chino
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3105227608064
+    m_Localized: idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2947412725760
+    m_Localized: muy alto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2876826783744
+    m_Localized: alto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2749592571904
+    m_Localized: medio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 64894078976
+    m_Localized: jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 66882179072
+    m_Localized: Personalizar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68677341184
+    m_Localized: Seleccionar nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1342873341952
+    m_Localized: Seleccionar nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2638577733632
+    m_Localized: Bajo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2343613304832
+    m_Localized: Calidad del juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2165112115200
+    m_Localized: Audio del juego
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1901852430336
+    m_Localized: "Men\xFA Efectos Audio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1727046422528
+    m_Localized: "Men\xFA Audio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72825507840
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70493474816
+    m_Localized: Mercado
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -339,7 +339,7 @@ namespace rgame
     [Serializable]
     public class ColorData
     {
-        [ProtoMember(1)] public string ColorName;        
+        [ProtoMember(1)] public string ColorName;//color name girlir    
     }
 
 
@@ -425,4 +425,3 @@ namespace rgame
 
 
 }
-
